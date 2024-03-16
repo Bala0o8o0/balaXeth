@@ -3515,9 +3515,9 @@ body.loaded {
   text-align: center;
 }
 
-.author-profile .butns .inf-butn:last-of-type {
+/* .author-profile .butns .inf-butn:last-of-type {
   border-left: 1px solid rgba(255, 255, 255, 0.12);
-}
+} */
 
 .sticky.is_stuck {
   margin-top: 50px;
