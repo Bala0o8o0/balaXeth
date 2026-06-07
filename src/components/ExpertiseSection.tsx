@@ -2,24 +2,43 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { Volume2, VolumeX, Activity, Cpu, Thermometer, Radio } from "lucide-react";
+import {
+  Volume2,
+  VolumeX,
+  Activity,
+  Cpu,
+  Thermometer,
+  Radio,
+  Terminal,
+  Bot,
+  Brain,
+  Palette,
+  Database,
+  Box,
+  Rocket,
+  Sparkles,
+  Link,
+  Sliders,
+  Workflow,
+} from "lucide-react";
 
 // ─── High-Precision Command Terminal (Sci-Fi HUD Style) ─────────────────────────────
 function CommandTerminal() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  
+
   // Real-time fluctuating telemetry state
   const [telemetry, setTelemetry] = useState({
     cpu: 84.6,
     ping: 13.37,
-    temp: 42.3
+    temp: 42.3,
   });
-  
+
   const [bootLogs, setBootLogs] = useState<string[]>([]);
   const [isBooting, setIsBooting] = useState(false);
 
   const activeItem = EXPERTISE_ITEMS[activeIndex];
+  const ActiveIcon = activeItem.icon;
 
   // Telemetry fluctuation loop
   useEffect(() => {
@@ -27,7 +46,7 @@ function CommandTerminal() {
       setTelemetry({
         cpu: +(72 + Math.random() * 18).toFixed(1),
         ping: +(12.9 + Math.random() * 0.9).toFixed(2),
-        temp: +(40.8 + Math.random() * 2.8).toFixed(1)
+        temp: +(40.8 + Math.random() * 2.8).toFixed(1),
       });
     }, 1200);
     return () => clearInterval(interval);
@@ -49,7 +68,8 @@ function CommandTerminal() {
     init() {
       try {
         if (!this.ctx && typeof window !== "undefined") {
-          const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+          const AudioCtx =
+            window.AudioContext || (window as any).webkitAudioContext;
           if (AudioCtx) {
             this.ctx = new AudioCtx();
           }
@@ -73,9 +93,15 @@ function CommandTerminal() {
         const gain = this.ctx.createGain();
         osc.type = "sine";
         osc.frequency.setValueAtTime(1400, this.ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(400, this.ctx.currentTime + 0.04);
+        osc.frequency.exponentialRampToValueAtTime(
+          400,
+          this.ctx.currentTime + 0.04,
+        );
         gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          this.ctx.currentTime + 0.04,
+        );
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start();
@@ -154,13 +180,16 @@ function CommandTerminal() {
         osc.type = type;
         osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
         gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          this.ctx.currentTime + duration,
+        );
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start();
         osc.stop(this.ctx.currentTime + duration);
       } catch (e) {}
-    }
+    },
   });
 
   // Sync mute state with synthesizer
@@ -180,7 +209,7 @@ function CommandTerminal() {
       `BalaOS:~$ load --module=0x${hex}`,
       `[ RUNNING ] INTEGRITY SYSTEM SCAN...`,
       `[ COMPLETED ] METADATA INTEGRITY VERIFIED (chksum: 0x${Math.random().toString(16).slice(2, 8).toUpperCase()})`,
-      `[ ACTIVE ] LOADING DATASTREAM "SYS_${targetModule.title.replace(/[^A-Z]/gi, '_').toUpperCase()}"`,
+      `[ ACTIVE ] LOADING DATASTREAM "SYS_${targetModule.title.replace(/[^A-Z]/gi, "_").toUpperCase()}"`,
       `[ SUCCESS ] DIRECT DATA ACCESS CONNECTED AT PORT_80${hex}`,
     ];
 
@@ -251,13 +280,13 @@ function CommandTerminal() {
         />
 
         {/* ── Left Column: Nav ── */}
-        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-[280px] sm:h-[340px] md:h-[580px] bg-[#020000]/70">
+        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-[280px] sm:h-[340px] md:h-[630px] bg-[#020000]/70">
           {/* Top Header */}
           <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 justify-between bg-[#FF0000]/20">
             <span className="text-[#FF0000] text-[10px] tracking-[0.4em] font-black uppercase font-mono drop-shadow-[0_0_4px_#FF0000]">
               SYS.MODULES
             </span>
-            
+
             {/* Sound Controls */}
             <button
               onClick={() => {
@@ -268,8 +297,14 @@ function CommandTerminal() {
               className="flex items-center gap-1.5 px-2.5 py-1 border border-[#FF0000] bg-[#FF0000]/20 hover:bg-[#FF0000]/35 rounded text-[#FF0000] text-[9px] tracking-widest font-mono uppercase font-black transition-all cursor-pointer shadow-[0_0_12px_rgba(255,0,0,0.3)]"
               title="Toggle Audio Feedback"
             >
-              {isMuted ? <VolumeX size={10} /> : <Volume2 size={10} className="animate-pulse" />}
-              <span className="hidden min-[400px]:inline">{isMuted ? "SOUND: OFF" : "SOUND: ON"}</span>
+              {isMuted ? (
+                <VolumeX size={10} />
+              ) : (
+                <Volume2 size={10} className="animate-pulse" />
+              )}
+              <span className="hidden min-[400px]:inline">
+                {isMuted ? "SOUND: OFF" : "SOUND: ON"}
+              </span>
             </button>
           </div>
 
@@ -326,28 +361,50 @@ function CommandTerminal() {
         </div>
 
         {/* ── Right Column: Output ── */}
-        <div className="w-full md:w-[65%] relative z-10 bg-[#050000]/95 flex flex-col h-[420px] sm:h-[450px] md:h-[580px]">
-
-
+        <div className="w-full md:w-[65%] relative z-10 bg-[#050000]/95 flex flex-col h-[420px] sm:h-[450px] md:h-[630px]">
           {/* Top Bar Right: Telemetry Dashboard */}
           <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 sm:px-6 md:px-8 justify-between bg-[#FF0000]/[0.05] relative z-10">
             <span className="text-[#FF0000] text-[10px] tracking-[0.3em] font-bold font-mono drop-shadow-[0_0_4px_rgba(255,0,0,0.4)]">
               DATABANK // {String(activeIndex + 1).padStart(2, "0")}
             </span>
-            
+
             {/* Live Fluctuating Telemetry Widgets */}
             <div className="flex gap-4 sm:gap-6 text-[9px] font-mono text-[#FF0000] select-none font-bold">
               <div className="flex items-center gap-1.5">
-                <Cpu size={10} className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]" />
-                <span>CPU: <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">{telemetry.cpu}%</span></span>
+                <Cpu
+                  size={10}
+                  className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]"
+                />
+                <span>
+                  CPU:{" "}
+                  <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">
+                    {telemetry.cpu}%
+                  </span>
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Activity size={10} className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]" />
-                <span>PING: <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">{telemetry.ping}ms</span></span>
+                <Activity
+                  size={10}
+                  className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]"
+                />
+                <span>
+                  PING:{" "}
+                  <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">
+                    {telemetry.ping}ms
+                  </span>
+                </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Thermometer size={10} className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]" />
-                <span>TEMP: <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">{telemetry.temp}°C</span></span>
+                <Thermometer
+                  size={10}
+                  className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]"
+                />
+                <span>
+                  TEMP:{" "}
+                  <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">
+                    {telemetry.temp}°C
+                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -369,7 +426,9 @@ function CommandTerminal() {
                       <Cpu size={12} className="animate-spin text-[#FF0000]" />
                       SYS.SYNCING_CORES
                     </span>
-                    <span className="text-[#FF0000] text-[9px] animate-pulse font-bold drop-shadow-[0_0_4px_#FF0000]">UPLINK_ON</span>
+                    <span className="text-[#FF0000] text-[9px] animate-pulse font-bold drop-shadow-[0_0_4px_#FF0000]">
+                      UPLINK_ON
+                    </span>
                   </div>
 
                   {bootLogs.map((log, lIdx) => {
@@ -381,8 +440,8 @@ function CommandTerminal() {
                           log.startsWith("[ SUCCESS ]")
                             ? "text-[#D1D5DB] font-bold"
                             : log.startsWith("BalaOS:")
-                            ? "text-white/60"
-                            : "text-[#FF0000]/60"
+                              ? "text-white/60"
+                              : "text-[#FF0000]/60"
                         }`}
                       >
                         {log}
@@ -404,18 +463,21 @@ function CommandTerminal() {
                 <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
                 <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
 
-                <div key={activeIndex} className="h-full flex flex-col justify-between">
+                <div
+                  key={activeIndex}
+                  className="h-full flex flex-col justify-between"
+                >
                   <div>
                     {/* Header Info */}
                     <div className="flex flex-row items-start gap-4 sm:gap-6 mb-6">
                       <div
-                        className="w-14 h-14 sm:w-20 sm:h-20 shrink-0 bg-[#FF0000]/20 border border-[#FF0000] flex items-center justify-center text-3xl sm:text-4xl shadow-[0_0_25px_rgba(255,0,0,0.4)] relative"
+                        className="w-14 h-14 sm:w-20 sm:h-20 shrink-0 bg-[#FF0000]/20 border border-[#FF0000] flex items-center justify-center shadow-[0_0_25px_rgba(255,0,0,0.4)] relative"
                         style={{
                           clipPath:
                             "polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
                         }}
                       >
-                        {activeItem.icon}
+                        <ActiveIcon className="w-7 h-7 sm:w-10 sm:h-10 text-[#FF0000] filter drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]" />
                         <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-[#FF0000] shadow-[0_0_6px_#FF0000]" />
                         <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-[#FF0000]" />
                       </div>
@@ -452,7 +514,7 @@ function CommandTerminal() {
                       <motion.div
                         className="grid grid-cols-1 sm:grid-cols-2 gap-3"
                         variants={{
-                          show: { transition: { staggerChildren: 0.05 } }
+                          show: { transition: { staggerChildren: 0.05 } },
                         }}
                         initial="hidden"
                         animate="show"
@@ -464,7 +526,7 @@ function CommandTerminal() {
                               key={idx}
                               variants={{
                                 hidden: { opacity: 0, x: 12, scale: 0.98 },
-                                show: { opacity: 1, x: 0, scale: 1 }
+                                show: { opacity: 1, x: 0, scale: 1 },
                               }}
                               transition={{ duration: 0.25, ease: "easeOut" }}
                               className="flex items-center justify-between p-3 border border-[#FF0000]/40 bg-[#FF0000]/5 hover:bg-[#FF0000]/15 hover:border-[#FF0000] hover:shadow-[0_0_20px_rgba(255,0,0,0.3)] transition-all duration-300 relative group cursor-default"
@@ -474,7 +536,7 @@ function CommandTerminal() {
                               }}
                             >
                               <div className="absolute top-0 bottom-0 w-[2.5px] bg-[#FF0000] left-0 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300 shadow-[0_0_8px_#FF0000]" />
-                              
+
                               <div className="flex items-center gap-2.5">
                                 <span className="text-[#FF0000] text-[9px] font-mono font-bold">
                                   0x{String(idx + 1).padStart(2, "0")}
@@ -512,15 +574,15 @@ function CommandTerminal() {
                             <div
                               key={i}
                               className={`w-1 h-2 sm:h-2.5 transition-all ${
-                                i % 4 === 0 
-                                  ? "bg-[#FF0000] shadow-[0_0_6px_#FF0000] animate-pulse" 
+                                i % 4 === 0
+                                  ? "bg-[#FF0000] shadow-[0_0_6px_#FF0000] animate-pulse"
                                   : "bg-[#FF0000]/30"
                               }`}
                             />
                           ))}
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-4">
                         <span className="text-[8px] font-mono text-[#FF0000]/60 tracking-[0.2em] hidden sm:inline">
                           SECURE_LINK // BALA_OS_16.1.6
@@ -534,7 +596,6 @@ function CommandTerminal() {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             )}
@@ -548,74 +609,119 @@ function CommandTerminal() {
 // ─── Data ────────────────────────────────────────────────────────────────────
 const EXPERTISE_ITEMS = [
   {
-    title: "AI Agents / MCPs",
+    title: "Web Development",
+    sub: "Next.js & React Ecosystem",
+    skills: [
+      "React.js",
+      "Next.js",
+      "JS/TS",
+      "Tailwind CSS",
+      "FRAMER MOTION",
+      "GSAP",
+      "THREE.JS",
+      "WEBGL",
+    ],
+    className: "",
+    icon: Terminal,
+  },
+  {
+    title: "AI Agents / MCPs / IDEs",
     sub: "Autonomous Systems Architecture",
     skills: [
-      "Gemini CLI",
-      "Qwen CLI",
+      "Antigravity",
+      "claude code",
       "Cursor",
       "Google AI Studio",
-      "Antigravity",
+      "Open Code/DESIGN",
+      "QWEN CODE",
+      "HERMES AGENT",
       "MCP Servers",
     ],
     className: "",
-    icon: "🤖",
+    icon: Bot,
   },
-  {
-    title: "Web Development",
-    sub: "Next.js & React Ecosystem",
-    skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"],
-    className: "",
-    icon: "💻",
-  },
+
   {
     title: "AI Model Integration",
     sub: "LLMs & Vision Systems",
-    skills: ["Gemini", "OpenAI", "Replicate", "Qwen", "LangChain"],
+    skills: [
+      "GOOGLE models",
+      "OpenAI",
+      "Replicate",
+      "Qwen",
+      "open-router",
+      "ollama",
+      "groq",
+      "HUGGINGFACE",
+    ],
     className: "",
-    icon: "🧠",
+    icon: Brain,
   },
   {
-    title: "Web Design",
-    sub: "UI/UX & Interactive Design",
-    skills: ["Figma", "Creative Coding", "Motion", "Shader Lab"],
+    title: "AI Agent Development",
+    sub: "Agentic UI & SDK Ecosystems",
+    skills: [
+      "Mastra AI",
+      "CopilotKit",
+      "Vercel AI SDK",
+      "LangChain",
+      "CrewAI",
+      "ChromaDB",
+      "Supabase vector",
+    ],
     className: "",
-    icon: "🎨",
+    icon: Workflow,
   },
   {
-    title: "Serverless Backends",
+    title: "Fine Tuning `qlora`",
+    sub: "Model Optimization & Alignment",
+    skills: ["Unsloth", "Unsloth Studio"],
+    className: "",
+    icon: Sliders,
+  },
+
+  {
+    title: "Backends",
     sub: "Scalable Cloud Infrastructure",
-    skills: ["Supabase", "Convex", "Prisma", "PostgreSQL"],
+    skills: ["Supabase", "Convex", "Prisma", "inforge", "PostgreSQL"],
     className: "",
-    icon: "⚡",
+    icon: Database,
   },
-  {
-    title: "Web3 & Blockchain",
-    sub: "DApp Smart Contracts",
-    skills: ["Solidity", "Thirdweb", "Ethers.js", "Web3Auth"],
-    className: "",
-    icon: "⛓️",
-  },
+
   {
     title: "3D Rendering",
     sub: "Three.js & WebGL Visuals",
-    skills: ["Spline", "Three.js", "GLSL", "Blender"],
+    skills: ["Spline", "Three.js", "GLSL", "Blender", "tripo ai", "meshy ai"],
     className: "",
-    icon: "🧱",
+    icon: Box,
   },
   {
     title: "Deployment",
     sub: "Vercel & AWS Edge Services",
-    skills: ["Vercel", "Netlify", "CI/CD Pipelines", "Docker"],
+    skills: ["Vercel", "Netlify", "Railway"],
     className: "",
-    icon: "🚀",
+    icon: Rocket,
+  },
+  {
+    title: "Web Design",
+    sub: "UI/UX & Interactive Design",
+    skills: ["Figma", "GOOGLE STITCH", "WIX", "WORDPRESS"],
+    className: "",
+    icon: Palette,
   },
   {
     title: "Generative Design",
     sub: "Creative AI Tooling Systems",
-    skills: ["Stable Diffusion", "Midjourney", "ComfyUI", "LoRA"],
+    skills: ["Stable Diffusion", "civit ai", "Photoshop", "tensor art", "flux"],
     className: "",
-    icon: "🪄",
+    icon: Sparkles,
+  },
+  {
+    title: "Web3 & Blockchain",
+    sub: "DApp Smart Contracts",
+    skills: ["Solidity", "next.js", "Thirdweb", "Ethers.js", "Web3Auth"],
+    className: "",
+    icon: Link,
   },
 ];
 
@@ -627,12 +733,12 @@ function DragonNetworkVisualizer() {
   const nodes = [
     "UI DESIGN",
     "WEB-APPS",
-    "SERVERLESS DB's",
+    "BACKEND & DB's",
     "AI MODELS",
     "FINE TUNING",
     "Generative UI",
     "WEB3",
-    "GEN DESIGN",
+    "AI AGENTS",
   ];
 
   const [radius, setRadius] = useState(310);

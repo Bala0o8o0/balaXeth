@@ -1,13 +1,109 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+
+// ─── Matrix Rain Component ──────────────────────────────────────────────────
+const MatrixRain = ({ color = "#FF2222" }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let timer: NodeJS.Timeout;
+    
+    const resizeCanvas = () => {
+      if (canvas.parentElement) {
+        const width = canvas.parentElement.clientWidth;
+        const height = canvas.parentElement.clientHeight;
+        canvas.width = width > 0 ? width : 500;
+        canvas.height = height > 0 ? height : 500;
+      } else {
+        canvas.width = 500;
+        canvas.height = 500;
+      }
+    };
+    
+    resizeCanvas();
+    // Delay slightly to wait for DOM layouts to stabilize
+    timer = setTimeout(resizeCanvas, 150);
+    
+    const fontSize = 11;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(0).map(() => Math.floor(Math.random() * (canvas.height / fontSize) - 15));
+    
+    const chars = "0101010101010101ABCDEF<>[]/\\_-+=#!@$%^&*ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺ";
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = `bold ${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const trailLength = 6;
+        for (let j = 0; j < trailLength; j++) {
+          const yIndex = drops[i] - j;
+          if (yIndex < 0) continue;
+
+          const y = yIndex * fontSize;
+          const x = i * fontSize;
+          const text = chars[Math.floor((Math.random() * chars.length + yIndex) % chars.length)];
+          const opacity = (trailLength - j) / trailLength;
+
+          ctx.fillStyle = `rgba(255, 0, 0, ${opacity * 0.95})`;
+          ctx.shadowColor = "#FF0000";
+          ctx.shadowBlur = 4;
+
+          ctx.fillText(text, x, y);
+        }
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    };
+
+    let lastTime = 0;
+    const fps = 24;
+    const interval = 1000 / fps;
+
+    const animate = (timestamp: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+      const delta = timestamp - lastTime;
+      if (delta > interval) {
+        draw();
+        lastTime = timestamp - delta % interval;
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    window.addEventListener("resize", resizeCanvas);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      clearTimeout(timer);
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, [color]);
+
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-4 rounded-sm opacity-85 pointer-events-none z-[12]" 
+    />
+  );
+};
+
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const PROJECTS = [
   {
-    id: "169",
+    id: "0x-01",
     title: "GUARDIAN_AI",
     type: "AI / SECURITY",
     link: "https://contract-guardian-ai.vercel.app/",
@@ -19,7 +115,7 @@ const PROJECTS = [
       "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop",
   },
   {
-    id: "155",
+    id: "0x-02",
     title: "SCRIBBLER_AI",
     type: "AI / SYNTHESIS",
     link: "https://meta-goblinz-scribbler-ai.vercel.app/",
@@ -31,7 +127,7 @@ const PROJECTS = [
       "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
   },
   {
-    id: "241",
+    id: "0x-03",
     title: "ALIENHOOD_DAPP",
     type: "WEB3 / DAPP",
     link: "https://alienhood-nft.vercel.app/",
@@ -46,39 +142,47 @@ const PROJECTS = [
 
 // ─── HUD Card Component ──────────────────────────────────────────────────────
 const HUDCard = ({ project, isActive, isPrev, isNext, onClick }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const isHoveredState = isHovered && !isActive;
+  const isVisible = isActive || isPrev || isNext;
+
   return (
     <motion.div
       initial={false}
       animate={{
-        scale: isActive ? 1 : 0.72,
-        rotateY: isActive ? 0 : isNext ? -40 : 40,
-        z: isActive ? 100 : -250,
-        x: isPrev ? "-72%" : isNext ? "72%" : "0%",
-        opacity: isActive ? 1 : 0.85,
-        filter: isActive ? "drop-shadow(0 0 35px rgba(255, 0, 0, 0.2))" : "none",
+        scale: isActive ? 1 : isHoveredState ? 0.68 : 0.62,
+        rotateY: isActive ? 0 : isNext ? -45 : 45,
+        rotateZ: isActive ? 0 : isPrev ? -4 : 4,
+        skewY: isActive ? 0 : isPrev ? -2 : 2,
+        z: isActive ? 150 : isHoveredState ? -100 : -350,
+        x: isPrev ? "-75%" : isNext ? "75%" : "0%",
+        opacity: isActive ? 1 : !isVisible ? 0 : isHoveredState ? 0.8 : 0.35,
+        filter: isActive
+          ? "drop-shadow(0 0 35px rgba(255, 0, 0, 0.25))"
+          : isHoveredState
+          ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.1))"
+          : "none",
+        zIndex: isActive ? 30 : isHoveredState ? 20 : 10,
       }}
       transition={{
         type: "spring",
-        stiffness: 220,
-        damping: 24,
+        stiffness: 180,
+        damping: 20,
       }}
-      className={`absolute w-full max-w-[500px] h-[500px] pointer-events-auto transition-all duration-500 ${
-        !isActive ? "cursor-pointer hover:scale-[0.76]" : ""
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`absolute w-full max-w-[500px] h-[500px] transition-all duration-500 ${
+        isActive ? "pointer-events-auto" : isVisible ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
       }`}
       onClick={onClick}
     >
       <div className="relative w-full h-full group overflow-visible">
-        {/* Glassmorphic Neon Backlight Glow (Luxurious gradient-based glow on back cards) */}
-        {!isActive && (
-          <div className="absolute inset-12 bg-gradient-to-tr from-[#FF0000]/8 to-[#FF0000]/1 rounded-full blur-[80px] pointer-events-none transition-all duration-700 group-hover:inset-4 group-hover:from-[#FF0000]/22 group-hover:to-[#FF0000]/3 group-hover:blur-[100px]" />
-        )}
-
         {/* 1. Base Frame with premium glassmorphism */}
         <div
           className={`absolute inset-4 transition-all duration-700 rounded-sm border ${
             isActive
               ? "bg-black/90 border-[#FF0000]/35 shadow-[0_0_60px_rgba(0,0,0,0.95)]"
-              : "bg-[#050505]/20 backdrop-blur-xl border-[#FF0000]/20 shadow-[inset_0_0_20px_rgba(255,0,0,0.05),_0_0_40px_rgba(0,0,0,0.6)] group-hover:bg-[#050505]/30 group-hover:border-[#FF0000]/40 group-hover:shadow-[inset_0_0_30px_rgba(255,0,0,0.15),_0_0_50px_rgba(255,0,0,0.15)]"
+              : "bg-[#050505]/35 backdrop-blur-[8px] border-[#FF0000]/15 shadow-[inset_0_0_15px_rgba(255,0,0,0.05),_0_0_30px_rgba(255,0,0,0.5)] group-hover:bg-[#050505]/45 group-hover:border-[#FF0000]/30 group-hover:shadow-[inset_0_0_25px_rgba(255,0,0,0.1),_0_0_45px_rgba(255,0,0,0.15)]"
           }`}
         />
 
@@ -88,6 +192,9 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick }: any) => {
             isActive ? "border-[#FF0000]/15" : "border-[#FF0000]/5 group-hover:border-[#FF0000]/20"
           }`}
         />
+
+        {/* Matrix Rain digital code rain background on back cards */}
+        {!isActive && <MatrixRain />}
 
         {/* 3. High-tech HUD Alignment Calibration Crosshairs (Toggles on hover / back cards) */}
         {!isActive && (
@@ -171,56 +278,48 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick }: any) => {
         </div>
 
         {/* Big ID Number */}
-        <div className="absolute top-6 right-8 z-30 transition-all duration-500">
+        <div className={`absolute top-6 right-8 z-30 transition-all duration-500 ${
+          isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
+        }`}>
           <span
-            className={`text-[54px] font-black leading-none transition-all duration-500 ${
-              isActive
-                ? "text-[#FF0000] drop-shadow-[0_0_15px_rgba(255,0,0,0.5)]"
-                : "text-[#FF0000]/20 group-hover:text-[#FF0000]/60 group-hover:drop-shadow-[0_0_12px_rgba(255,0,0,0.4)]"
-            }`}
+            className="text-[#FF0000] drop-shadow-[0_0_8px_rgba(255,0,0,0.4)] text-[15px] font-black tracking-wider leading-none"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
             {project.id}
           </span>
-          <div className={`h-[3px] transition-all duration-500 ${
-            isActive ? "w-full bg-[#FF0000]" : "w-1/3 bg-[#FF0000]/15 group-hover:w-full group-hover:bg-[#FF0000]/45"
-          }`} />
+          <div className="h-[1.5px] w-full bg-[#FF0000]/60 mt-1" />
         </div>
 
         {/* Title & Stats */}
-        <div className="absolute bottom-12 left-12 z-30 flex flex-col gap-2">
+        <div className={`absolute bottom-12 left-12 z-30 flex flex-col gap-2 transition-all duration-500 ${
+          isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        }`}>
           <div className="flex items-center gap-3">
-            <div className={`h-4 w-[2px] bg-[#FF0000] ${isActive ? "animate-pulse" : "opacity-40 group-hover:opacity-80"}`} />
-            <span className={`font-mono text-[10px] tracking-[0.4em] font-black uppercase transition-colors duration-500 ${
-              isActive ? "text-[#FF0000]" : "text-[#FF0000]/40 group-hover:text-[#FF0000]/70"
-            }`}>
+            <div className="h-4 w-[2px] bg-[#FF0000] animate-pulse" />
+            <span className="text-[#FF0000] font-mono text-[10px] tracking-[0.4em] font-black uppercase">
               DATA_STREAM: {project.type}
             </span>
           </div>
           <h3
-            className={`text-3xl font-black uppercase tracking-tighter transition-colors duration-500 ${
-              isActive ? "text-white" : "text-white/40 group-hover:text-white/85"
-            }`}
+            className="text-white text-3xl font-black uppercase tracking-tighter"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
             {project.title}
           </h3>
-          <div className={`h-[1px] transition-all duration-500 ${
-            isActive ? "w-16 bg-[#FF0000]/60" : "w-6 bg-[#FF0000]/15 group-hover:w-16 group-hover:bg-[#FF0000]/45"
-          }`} />
+          <div className="w-16 h-[1px] bg-[#FF0000]/60" />
         </div>
 
         {/* Corner Decor Dots */}
-        <div className={`absolute top-4 left-4 w-3 h-3 border rounded-full z-40 transition-all duration-500 ${
-          isActive ? "border-[#FF0000]/30" : "border-[#FF0000]/10 group-hover:border-[#FF0000]/30"
+        <div className={`absolute top-4 left-4 w-3 h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
+          isActive ? "opacity-100" : "opacity-0 pointer-events-none"
         }`} />
-        <div className={`absolute bottom-4 right-4 w-3 h-3 border rounded-full z-40 transition-all duration-500 ${
-          isActive ? "border-[#FF0000]/30" : "border-[#FF0000]/10 group-hover:border-[#FF0000]/30"
+        <div className={`absolute bottom-4 right-4 w-3 h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
+          isActive ? "opacity-100" : "opacity-0 pointer-events-none"
         }`} />
 
         {/* Right Edge Decorative Text */}
-        <div className={`absolute right-4 bottom-32 [writing-mode:vertical-lr] font-black text-[14px] tracking-[1.5em] uppercase select-none pointer-events-none transition-colors duration-500 ${
-          isActive ? "text-[#FF0000]/10" : "text-[#FF0000]/4 group-hover:text-[#FF0000]/12"
+        <div className={`absolute right-4 bottom-32 [writing-mode:vertical-lr] font-black text-[14px] tracking-[1.5em] uppercase select-none pointer-events-none transition-all duration-500 ${
+          isActive ? "text-[#FF0000]/10 opacity-100" : "opacity-0"
         }`}>
           SYSTEM_ACCESS_GRANTED
         </div>
@@ -278,7 +377,10 @@ export function SelectedWork() {
       </div>
 
       {/* 3D Stack Container */}
-      <div className="relative w-full max-w-[1200px] h-[550px] flex items-center justify-center perspective-[1500px]">
+      <div 
+        className="relative w-full max-w-[1200px] h-[550px] flex items-center justify-center perspective-[1500px] [transform-style:preserve-3d]"
+        style={{ transformStyle: "preserve-3d" }}
+      >
         {PROJECTS.map((project, i) => {
           const isActive = i === index;
           const isPrev = i === (index - 1 + PROJECTS.length) % PROJECTS.length;

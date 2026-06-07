@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Signal, BatteryFull, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import CyberTelemetry from "./CyberTelemetry";
 
 /**
  * UI/UX Pro Max - High-End Technical HUD
@@ -97,9 +98,9 @@ export function ExperienceTeaser() {
               </div>
             </Link>
 
-            {/* Pixel Noise Panel */}
+            {/* Cyber Telemetry Status Panel */}
             <div className="h-16 w-full relative border border-[#FF0000]/20 bg-[#FF0000]/5 overflow-hidden">
-              <PixelNoise />
+              <CyberTelemetry />
             </div>
 
             <div className="flex justify-between items-center text-[9px] font-mono">

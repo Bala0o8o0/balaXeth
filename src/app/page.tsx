@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { CyberScanner } from "@/components/CyberScanner";
 import { HoloWave } from "@/components/HoloWave";
 import { AboutTitle } from "@/components/AboutTitle";
@@ -77,7 +78,7 @@ function ScrambleHeading() {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 1.0 }}
-    >
+    >         
       {/* Tiny mono label */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -98,12 +99,12 @@ function ScrambleHeading() {
             key={i}
             className={
               ch !== " " &&
-                i >=
+              i >=
                 TARGET.split("").filter((_, j) => j < i && TARGET[j] !== " ")
                   .length &&
-                !revealed
+              !revealed
                 ? // ? "text-[#FF0000]/40"
-                "text-[#ff0000bd]"
+                  "text-[#ff0000bd]"
                 : "text-[#FF0000]"
             }
           >
@@ -146,7 +147,7 @@ export default function Home() {
 
   return (
     <main className="bg-[#050505] min-h-screen text-white font-sans overflow-x-hidden selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
-      {/* <Preloader /> */}
+      <Preloader />
       {/* <ParticleBackground /> */}
 
       {/* Hero Section */}
@@ -166,46 +167,82 @@ export default function Home() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="relative w-8 h-8 md:w-10 md:h-10 flex items-center justify-center cursor-target"
+              whileHover={{ scale: 1.05 }}
+              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center cursor-target"
+              style={{
+                perspective: "500px",
+                transformStyle: "preserve-3d",
+              }}
             >
-              <svg
-                viewBox="0 0 100 100"
-                fill="none"
-                className="w-full h-full text-[#FF0000]"
-                xmlns="http://www.w3.org/2000/svg"
+              {/* Central Dragon Logo */}
+              <div
+                className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center"
+                style={{
+                  position: "relative",
+                  transform: "translateZ(0px)",
+                  transformStyle: "preserve-3d",
+                }}
               >
-                {/* Minimalist Japanese-style 'B' using brush-stroke aesthetic */}
-                <path
-                  d="M38 22V78M38 22H58C68 22 74 30 74 38C74 46 68 50 58 50H38M38 50H62C72 50 80 58 80 68C80 78 72 82 62 82H38"
-                  stroke="currentColor"
-                  strokeWidth="8"
-                  strokeLinecap="square"
+                <Image
+                  src="/assets/dragon_logo.png"
+                  alt="Dragon Logo"
+                  fill
+                  sizes="(max-width: 768px) 32px, 40px"
+                  className="object-contain filter drop-shadow-[0_0_8px_#FF0000]"
+                  priority
                 />
-                {/* Decorative Kanji-style accent dots */}
-                <rect x="25" y="22" width="6" height="6" fill="currentColor" />
-                <rect x="25" y="72" width="6" height="6" fill="currentColor" />
+              </div>
 
-                {/* Outer Framing Accents */}
-                <path
-                  d="M10 30V10H30"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  opacity="0.4"
-                />
-                <path
-                  d="M70 90H90V70"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  opacity="0.4"
-                />
-              </svg>
+              {/* Horizontal 3D Orbiting Text Ring */}
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none animate-orbit-text-h"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {Array.from("BALA•BALA•").map((char, i, arr) => {
+                  const angle = (i * 360) / arr.length;
+                  return (
+                    <span
+                      key={`h-${i}`}
+                      className="absolute text-[7px] md:text-[8px] font-black text-[#FF0000] drop-shadow-[0_0_3px_#FF0000] select-none font-mono"
+                      style={{
+                        transform: `rotateY(${angle}deg) translateZ(var(--orbit-radius)) rotateY(${-angle}deg)`,
+                        backfaceVisibility: "visible",
+                      }}
+                    >
+                      {char}
+                    </span>
+                  );
+                })}
+              </div>
+
+              {/* Vertical 3D Orbiting Text Ring */}
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none animate-orbit-text-v"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {Array.from("BALA•BALA•").map((char, i, arr) => {
+                  const angle = (i * 360) / arr.length;
+                  return (
+                    <span
+                      key={`v-${i}`}
+                      className="absolute text-[7px] md:text-[8px] font-black text-[#FF0000] drop-shadow-[0_0_3px_#FF0000] select-none font-mono"
+                      style={{
+                        transform: `rotateX(${angle}deg) translateZ(var(--orbit-radius)) rotateX(${-angle}deg)`,
+                        backfaceVisibility: "visible",
+                      }}
+                    >
+                      {char}
+                    </span>
+                  );
+                })}
+              </div>
 
               {/* Subtle pulsing background glow for the logo */}
               <motion.div
                 animate={{ opacity: [0.1, 0.3, 0.1] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute inset-0 bg-[#FF0000] rounded-sm blur-md -z-10"
+                className="absolute inset-3 bg-[#FF0000] rounded-full blur-md -z-10"
+                style={{ transform: "translateZ(-10px)" }}
               />
             </motion.div>
           </div>
@@ -219,7 +256,7 @@ export default function Home() {
               href="#portfolio"
               className="hover:opacity-60 font-light transition-opacity"
             >
-              <span> PORTFOLIO </span>
+              {/* <span> PORTFOLIO </span> */}
             </a>
           </div>
 

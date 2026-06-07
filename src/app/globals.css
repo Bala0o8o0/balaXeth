@@ -79,6 +79,28 @@
     0%, 100% { opacity: 0.03; }
     50% { opacity: 0.06; }
   }
+
+  --animate-orbit-text-h: orbit-text-h 10s linear infinite;
+  --animate-orbit-text-v: orbit-text-v 14s linear infinite;
+
+  @keyframes orbit-text-h {
+    0% { transform: rotateY(0deg) rotateX(15deg); }
+    100% { transform: rotateY(360deg) rotateX(15deg); }
+  }
+
+  @keyframes orbit-text-v {
+    0% { transform: rotateX(0deg) rotateY(45deg); }
+    100% { transform: rotateX(-360deg) rotateY(45deg); }
+  }
+}
+
+:root {
+  --orbit-radius: 20px;
+}
+@media (min-width: 768px) {
+  :root {
+    --orbit-radius: 26px;
+  }
 }
 
 body {

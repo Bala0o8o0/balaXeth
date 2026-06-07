@@ -53,6 +53,7 @@ export function Footer() {
                                     src="/assets/dragon_logo.png"
                                     alt="Dragon Insignia"
                                     fill
+                                    sizes="64px"
                                     className="object-contain p-2 opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] transition-all"
                                 />
                             </div>

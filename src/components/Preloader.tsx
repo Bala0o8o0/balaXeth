@@ -37,12 +37,13 @@ export function Preloader() {
                             <motion.div
                                 animate={{ opacity: [1, 0.5, 1, 0.8, 1], filter: ["hue-rotate(0deg)", "hue-rotate(20deg)", "hue-rotate(0deg)"] }}
                                 transition={{ duration: 0.3, repeat: Infinity, repeatType: "mirror" }}
-                                className="w-full h-full"
+                                className="relative w-full h-full"
                             >
                                 <Image
                                     src="/assets/dragon_logo.png"
                                     alt="Dragon Insignia"
                                     fill
+                                    sizes="(max-width: 768px) 192px, 256px"
                                     className="object-contain"
                                     priority
                                 />
