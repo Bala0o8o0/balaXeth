@@ -22,6 +22,7 @@ import {
   Instagram,
   Linkedin,
   Twitter,
+  Flame,
 } from "lucide-react";
 import { ArwesCard } from "@/components/ArwesCard";
 import ProfileLiquidShader from "@/components/ProfileLiquidShader";
@@ -78,7 +79,7 @@ function ScrambleHeading() {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 1.0 }}
-    >         
+    >
       {/* Tiny mono label */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -141,6 +142,7 @@ function ScrambleHeading() {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [isFireEnabled, setIsFireEnabled] = useState(true);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -168,81 +170,81 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center cursor-target"
-              style={{
-                perspective: "500px",
-                transformStyle: "preserve-3d",
-              }}
+              className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center cursor-target group"
             >
-              {/* Central Dragon Logo */}
-              <div
-                className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center"
-                style={{
-                  position: "relative",
-                  transform: "translateZ(0px)",
-                  transformStyle: "preserve-3d",
-                }}
+              {/* Animated Hacker Hexagon HUD (2D Rotate / Pulse / Scan) */}
+              <svg
+                className="absolute w-14 h-14 md:w-16 md:h-16 pointer-events-none"
+                viewBox="0 0 100 100"
+                style={{ transform: "translateZ(0px)" }}
               >
+                {/* Outer Hexagon with Crawling Dashes */}
+                <motion.polygon
+                  points="50,8 86.37,29 86.37,71 50,92 13.63,71 13.63,29"
+                  stroke="#FF0000"
+                  strokeWidth="1.2"
+                  strokeDasharray="15 25"
+                  fill="none"
+                  opacity="0.5"
+                  className="filter drop-shadow-[0_0_4px_#FF0000]"
+                  animate={{ strokeDashoffset: [0, 160] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                />
+
+                {/* Inner Pulsing Dotted Hexagon */}
+                <motion.polygon
+                  points="50,16 79.44,33 79.44,67 50,84 20.56,67 20.56,33"
+                  stroke="#FF0000"
+                  strokeWidth="0.8"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  opacity="0.3"
+                  animate={{ opacity: [0.15, 0.45, 0.15] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Scanline Gradient & Clip Path */}
+                <defs>
+                  <linearGradient id="laserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#FF0000" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#FF0000" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#FF0000" stopOpacity="0" />
+                  </linearGradient>
+                  <clipPath id="hexClip">
+                    <polygon points="50,8 86.37,29 86.37,71 50,92 13.63,71 13.63,29" />
+                  </clipPath>
+                </defs>
+
+                {/* Vertical Scanning Laser */}
+                <g clipPath="url(#hexClip)">
+                  <motion.rect
+                    x="0"
+                    width="100"
+                    height="12"
+                    fill="url(#laserGrad)"
+                    animate={{ y: [-15, 115] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  />
+                </g>
+              </svg>
+
+              {/* Central Dragon Logo */}
+              <div className="relative w-7 h-7 md:w-8 md:h-8 flex items-center justify-center z-10">
                 <Image
                   src="/assets/dragon_logo.png"
                   alt="Dragon Logo"
                   fill
-                  sizes="(max-width: 768px) 32px, 40px"
-                  className="object-contain filter drop-shadow-[0_0_8px_#FF0000]"
+                  sizes="(max-width: 768px) 28px, 32px"
+                  className="object-contain filter drop-shadow-[0_0_6px_#FF0000]"
                   priority
                 />
               </div>
 
-              {/* Horizontal 3D Orbiting Text Ring */}
-              <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none animate-orbit-text-h"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {Array.from("BALA•BALA•").map((char, i, arr) => {
-                  const angle = (i * 360) / arr.length;
-                  return (
-                    <span
-                      key={`h-${i}`}
-                      className="absolute text-[7px] md:text-[8px] font-black text-[#FF0000] drop-shadow-[0_0_3px_#FF0000] select-none font-mono"
-                      style={{
-                        transform: `rotateY(${angle}deg) translateZ(var(--orbit-radius)) rotateY(${-angle}deg)`,
-                        backfaceVisibility: "visible",
-                      }}
-                    >
-                      {char}
-                    </span>
-                  );
-                })}
-              </div>
-
-              {/* Vertical 3D Orbiting Text Ring */}
-              <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none animate-orbit-text-v"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {Array.from("BALA•BALA•").map((char, i, arr) => {
-                  const angle = (i * 360) / arr.length;
-                  return (
-                    <span
-                      key={`v-${i}`}
-                      className="absolute text-[7px] md:text-[8px] font-black text-[#FF0000] drop-shadow-[0_0_3px_#FF0000] select-none font-mono"
-                      style={{
-                        transform: `rotateX(${angle}deg) translateZ(var(--orbit-radius)) rotateX(${-angle}deg)`,
-                        backfaceVisibility: "visible",
-                      }}
-                    >
-                      {char}
-                    </span>
-                  );
-                })}
-              </div>
-
-              {/* Subtle pulsing background glow for the logo */}
+              {/* Pulsing glow background */}
               <motion.div
-                animate={{ opacity: [0.1, 0.3, 0.1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute inset-3 bg-[#FF0000] rounded-full blur-md -z-10"
-                style={{ transform: "translateZ(-10px)" }}
+                animate={{ opacity: [0.05, 0.15, 0.05] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute inset-2 bg-[#FF0000] rounded-full blur-md -z-10"
               />
             </motion.div>
           </div>
@@ -261,19 +263,35 @@ export default function Home() {
           </div>
 
           {/* Right Auth / Action */}
-          <div className="flex items-center gap-4 lg:gap-8">
+          <div className="flex items-center gap-4 lg:gap-8 pointer-events-auto">
             <div className="hidden md:block">
               <a href="#contact" className="block group">
                 <ArwesCard
                   type="corners"
                   className="py-2 md:py-3 px-5 md:px-6 transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(255,0,0,0.3)]"
                 >
-                  <span className="text-white/70 group-hover:text-[#FF0000] transition-colors duration-300 text-[10px] sm:text-xs font-bold tracking-widest uppercase block">
-                    Contact Me
+                  <span className="text-[#FF0000] group-hover:text-[#FF0000] text-[10px] sm:text-xs font-bold tracking-widest uppercase block">
+                    Contact ME
                   </span>
                 </ArwesCard>
               </a>
             </div>
+
+            {/* Toggle Fire Button */}
+            <div className="hidden md:flex items-center group relative cursor-pointer">
+              <button
+                onClick={() => setIsFireEnabled(!isFireEnabled)}
+                className={`w-9 h-9 md:w-10 md:h-10 border rounded-lg bg-[#000000] flex items-center justify-center transition-all duration-300 ${
+                  isFireEnabled 
+                    ? "border-[#FF0000] shadow-[0_0_15px_rgba(255,0,0,0.4)]" 
+                    : "border-[#FF0000]/30 hover:border-[#FF0000]/60"
+                }`}
+                title="Toggle Fire Animation"
+              >
+                <Flame className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-300 ${isFireEnabled ? "text-[#FF0000]" : "text-[#FF0000]/40"}`} />
+              </button>
+            </div>
+
             <div className="md:hidden mt-2">
               <MobileNav />
             </div>
@@ -336,9 +354,11 @@ export default function Home() {
             className="w-full h-full relative pointer-events-auto origin-bottom"
           >
             {/* desktopScale=1.0 guarantees zero internal clipping of your head. */}
-            <ProfileLiquidShader desktopScale={1.0} />
+            <ProfileLiquidShader desktopScale={1.0} isAnimationEnabled={isFireEnabled} />
           </motion.div>
         </div>
+
+
 
         {/* Hero Interactive Layers */}
         <div className="relative flex-1 w-full flex flex-col pointer-events-none z-40 pt-2 md:pt-4">

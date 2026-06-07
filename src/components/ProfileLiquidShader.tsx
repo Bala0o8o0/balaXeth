@@ -18,6 +18,7 @@ const fragmentShader = `
   uniform sampler2D uTexture;
   uniform float uTime; 
   uniform vec3 uEdgeColor;
+  uniform float uEnableAnimation;
 
   float random(vec2 st) {
       return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
@@ -68,12 +69,12 @@ const fragmentShader = `
     float wave = fract(angle - uTime * 0.4 + noiseVal * 0.5);
     float electricEdge = smoothstep(0.95, 0.98, wave);
     float core = smoothstep(0.98, 1.0, wave);
-    vec3 electricColor = uEdgeColor * electricEdge * 5.0 + uEdgeColor * core * 10.0;
+    vec3 electricColor = (uEdgeColor * electricEdge * 5.0 + uEdgeColor * core * 10.0) * uEnableAnimation;
     gl_FragColor = vec4(texColor.rgb + electricColor, texColor.a);
   }
 `;
 
-function DissolveImage({ url, scale = 1.0 }: { url: string; scale?: number }) {
+function DissolveImage({ url, scale = 1.0, isAnimationEnabled = true }: { url: string; scale?: number; isAnimationEnabled?: boolean }) {
     const meshRef = useRef<THREE.Mesh>(null);
     const texture = useTexture(url);
     const { viewport } = useThree();
@@ -90,12 +91,14 @@ function DissolveImage({ url, scale = 1.0 }: { url: string; scale?: number }) {
         uTexture: { value: texture },
         uTime: { value: 0 },
         uEdgeColor: { value: new THREE.Color("#FF0000") },
-    }), [texture]);
+        uEnableAnimation: { value: isAnimationEnabled ? 1.0 : 0.0 }
+    }), [texture, isAnimationEnabled]);
 
     useFrame((state) => {
         if (meshRef.current) {
             const material = meshRef.current.material as THREE.ShaderMaterial;
             material.uniforms.uTime.value = state.clock.elapsedTime;
+            material.uniforms.uEnableAnimation.value = isAnimationEnabled ? 1.0 : 0.0;
         }
     });
 
@@ -114,10 +117,12 @@ function DissolveImage({ url, scale = 1.0 }: { url: string; scale?: number }) {
 
 export default function ProfileLiquidShader({
     desktopScale = 1.0, 
-    mobileScale = 1.0
+    mobileScale = 1.0,
+    isAnimationEnabled = true
 }: {
     desktopScale?: number;
     mobileScale?: number;
+    isAnimationEnabled?: boolean;
 }) {
     const [isDesktop, setIsDesktop] = useState(false);
     useEffect(() => {
@@ -134,7 +139,7 @@ export default function ProfileLiquidShader({
             <Canvas camera={{ position: [0, 0, 5], fov: 52 }}>
                 <ambientLight intensity={1} />
                 <Suspense fallback={null}>
-                    <DissolveImage url="/assets/bala 1.png" scale={currentScale} />
+                    <DissolveImage url="/assets/bala 1.png" scale={currentScale} isAnimationEnabled={isAnimationEnabled} />
                 </Suspense>
             </Canvas>
         </div>

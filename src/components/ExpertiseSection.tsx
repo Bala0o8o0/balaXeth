@@ -280,12 +280,17 @@ function CommandTerminal() {
         />
 
         {/* ── Left Column: Nav ── */}
-        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-[280px] sm:h-[340px] md:h-[630px] bg-[#020000]/70">
+        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-auto md:h-[630px] bg-[#020000]/70">
           {/* Top Header */}
-          <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 justify-between bg-[#FF0000]/20">
-            <span className="text-[#FF0000] text-[10px] tracking-[0.4em] font-black uppercase font-mono drop-shadow-[0_0_4px_#FF0000]">
-              SYS.MODULES
-            </span>
+          <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 justify-between bg-[#FF0000]/20 shrink-0">
+            <div className="flex items-center gap-2">
+              <span className="text-[#FF0000] text-[10px] tracking-[0.4em] font-black uppercase font-mono drop-shadow-[0_0_4px_#FF0000]">
+                SYS.MODULES
+              </span>
+              <span className="md:hidden text-[#FF0000]/90 text-[8px] animate-pulse font-mono tracking-widest border border-[#FF0000]/40 px-1.5 py-0.5 rounded bg-[#FF0000]/10">
+                SWIPE &gt;&gt;
+              </span>
+            </div>
 
             {/* Sound Controls */}
             <button
@@ -309,24 +314,24 @@ function CommandTerminal() {
           </div>
 
           {/* Nav Items */}
-          <div className="flex-1 overflow-y-auto scrollbar-hide py-2 bg-[#020000]/60">
+          <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto scrollbar-hide py-2 md:py-2 bg-[#020000]/60 gap-2 md:gap-0 px-2 md:px-0">
             {EXPERTISE_ITEMS.map((item, idx) => {
               const isActive = activeIndex === idx;
               return (
                 <button
                   key={idx}
                   onClick={() => triggerModuleChange(idx)}
-                  className="w-full text-left px-5 py-3.5 flex items-center justify-between transition-all duration-300 relative group cursor-pointer"
+                  className="w-auto md:w-full flex-shrink-0 md:flex-shrink text-left px-4 md:px-5 py-2.5 md:py-3.5 flex items-center gap-4 md:justify-between transition-all duration-300 relative group cursor-pointer border border-[#FF0000]/20 md:border-transparent rounded md:rounded-none bg-[#FF0000]/5 md:bg-transparent"
                 >
                   {/* Hover/Active Background */}
                   {isActive && !isBooting && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#FF0000]/25 to-transparent border-l-[3px] border-[#FF0000]" />
+                    <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[#FF0000]/25 to-transparent border-b-[3px] md:border-b-0 md:border-l-[3px] border-[#FF0000] rounded md:rounded-none" />
                   )}
                   <div
-                    className={`absolute inset-0 bg-[#FF0000]/10 opacity-0 group-hover:opacity-100 transition-opacity ${isActive ? "hidden" : ""}`}
+                    className={`absolute inset-0 bg-[#FF0000]/10 opacity-0 group-hover:opacity-100 transition-opacity rounded md:rounded-none ${isActive ? "hidden" : ""}`}
                   />
 
-                  <div className="relative z-10 flex items-center gap-3">
+                  <div className="relative z-10 flex items-center gap-2 md:gap-3">
                     <span
                       className={`text-[9px] font-mono font-bold ${isActive ? "text-[#FF0000] drop-shadow-[0_0_4px_#FF0000]" : "text-[#FF0000]/50"}`}
                     >
@@ -342,7 +347,7 @@ function CommandTerminal() {
 
                   {/* Decorative right element */}
                   <div
-                    className={`relative z-10 text-[8px] font-mono transition-colors tracking-widest ${isActive ? "text-[#FF0000] font-black drop-shadow-[0_0_4px_#FF0000]" : "text-[#FF0000]/30"}`}
+                    className={`hidden md:block relative z-10 text-[8px] font-mono transition-colors tracking-widest ${isActive ? "text-[#FF0000] font-black drop-shadow-[0_0_4px_#FF0000]" : "text-[#FF0000]/30"}`}
                   >
                     {isActive ? "[ ACTIVE ]" : "------"}
                   </div>
@@ -352,7 +357,7 @@ function CommandTerminal() {
           </div>
 
           {/* Bottom decorative bar */}
-          <div className="h-10 border-t border-[#FF0000]/40 flex items-center px-5 gap-3 bg-[#050000]">
+          <div className="hidden md:flex h-10 border-t border-[#FF0000]/40 items-center px-5 gap-3 bg-[#050000] mt-auto shrink-0">
             <div className="w-2.5 h-2.5 bg-[#FF0000] animate-pulse rounded-sm shadow-[0_0_12px_#FF0000]" />
             <span className="text-[#FF0000] text-[9px] tracking-[0.3em] font-black font-mono drop-shadow-[0_0_5px_rgba(255,0,0,0.5)]">
               SYS.INTEGRITY_SAFE
@@ -361,9 +366,9 @@ function CommandTerminal() {
         </div>
 
         {/* ── Right Column: Output ── */}
-        <div className="w-full md:w-[65%] relative z-10 bg-[#050000]/95 flex flex-col h-[420px] sm:h-[450px] md:h-[630px]">
+        <div className="w-full md:w-[65%] relative z-10 bg-[#050000]/95 flex flex-col h-[640px] sm:h-[660px] md:h-[630px]">
           {/* Top Bar Right: Telemetry Dashboard */}
-          <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 sm:px-6 md:px-8 justify-between bg-[#FF0000]/[0.05] relative z-10">
+          <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 sm:px-6 md:px-8 justify-between bg-[#FF0000]/[0.05] relative z-10 shrink-0">
             <span className="text-[#FF0000] text-[10px] tracking-[0.3em] font-bold font-mono drop-shadow-[0_0_4px_rgba(255,0,0,0.4)]">
               DATABANK // {String(activeIndex + 1).padStart(2, "0")}
             </span>
@@ -375,7 +380,7 @@ function CommandTerminal() {
                   size={10}
                   className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]"
                 />
-                <span>
+                <span className="hidden min-[400px]:inline">
                   CPU:{" "}
                   <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">
                     {telemetry.cpu}%
@@ -399,7 +404,7 @@ function CommandTerminal() {
                   size={10}
                   className="text-[#FF0000] animate-pulse filter drop-shadow-[0_0_3px_#FF0000]"
                 />
-                <span>
+                <span className="hidden min-[450px]:inline">
                   TEMP:{" "}
                   <span className="text-[#D1D5DB] font-bold drop-shadow-[0_0_3px_#FF0000]">
                     {telemetry.temp}°C
@@ -456,114 +461,115 @@ function CommandTerminal() {
               </div>
             ) : (
               // ── Stunning Eye-Catching GUI HUD Card ──
-              <div className="flex-1 p-5 sm:p-8 md:p-10 relative flex flex-col justify-between z-10">
+              <div className="flex-1 p-5 sm:p-8 md:p-10 relative flex flex-col z-10 overflow-hidden">
                 {/* Corner Bracket Decorators */}
-                <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
-                <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
-                <div className="absolute bottom-6 left-6 w-8 h-8 border-b-2 border-l-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
-                <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-[#FF0000] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.3)]" />
+                <div className="absolute top-0 left-0 md:top-6 md:left-6 w-6 h-6 md:w-8 md:h-8 border-t-2 border-l-2 border-[#FF0000] animate-pulse pointer-events-none" />
+                <div className="absolute top-0 right-0 md:top-6 md:right-6 w-6 h-6 md:w-8 md:h-8 border-t-2 border-r-2 border-[#FF0000] animate-pulse pointer-events-none" />
+                <div className="absolute bottom-0 left-0 md:bottom-6 md:left-6 w-6 h-6 md:w-8 md:h-8 border-b-2 border-l-2 border-[#FF0000] animate-pulse pointer-events-none" />
+                <div className="absolute bottom-0 right-0 md:bottom-6 md:right-6 w-6 h-6 md:w-8 md:h-8 border-b-2 border-r-2 border-[#FF0000] animate-pulse pointer-events-none" />
 
-                <div
+                <motion.div
                   key={activeIndex}
-                  className="h-full flex flex-col justify-between"
+                  initial={{ opacity: 0, filter: "blur(4px)", scale: 0.98 }}
+                  animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="flex-1 flex flex-col min-h-0"
                 >
-                  <div>
-                    {/* Header Info */}
-                    <div className="flex flex-row items-start gap-4 sm:gap-6 mb-6">
-                      <div
-                        className="w-14 h-14 sm:w-20 sm:h-20 shrink-0 bg-[#FF0000]/20 border border-[#FF0000] flex items-center justify-center shadow-[0_0_25px_rgba(255,0,0,0.4)] relative"
-                        style={{
-                          clipPath:
-                            "polygon(0 12px, 12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
-                        }}
-                      >
-                        <ActiveIcon className="w-7 h-7 sm:w-10 sm:h-10 text-[#FF0000] filter drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]" />
-                        <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-[#FF0000] shadow-[0_0_6px_#FF0000]" />
-                        <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-[#FF0000]" />
-                      </div>
-                      <div className="pt-1 select-none">
-                        <h3
-                          className="text-[#FF0000] text-xl sm:text-3xl font-black uppercase tracking-widest leading-none mb-2.5"
-                          style={{ fontFamily: "var(--font-orbitron)" }}
-                        >
-                          {activeItem.title}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="px-1.5 py-0.5 bg-[#FF0000]/30 text-[#FF0000] text-[8px] font-mono tracking-[0.2em] font-bold border border-[#FF0000] shadow-[0_0_6px_rgba(255,0,0,0.3)]">
-                            CORE.SYS
-                          </span>
-                          <p className="text-[#FF3333] text-[9px] sm:text-[11px] tracking-[0.2em] uppercase font-black font-mono drop-shadow-[0_0_5px_rgba(255,0,0,0.4)]">
-                            {activeItem.sub}
-                          </p>
-                        </div>
-                      </div>
+                  {/* Header Info */}
+                  <div className="flex flex-row items-start gap-4 sm:gap-6 mb-6 shrink-0">
+                    <div
+                      className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-[#FF0000]/20 border border-[#FF0000] flex items-center justify-center shadow-[0_0_25px_rgba(255,0,0,0.4)] relative mt-0.5"
+                      style={{
+                        clipPath:
+                          "polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",
+                      }}
+                    >
+                      <ActiveIcon className="w-8 h-8 sm:w-10 sm:h-10 text-[#FF0000] filter drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]" />
+                      <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-[#FF0000] shadow-[0_0_6px_#FF0000]" />
+                      <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-[#FF0000]" />
                     </div>
-
-                    {/* Highly eye-catching tech skill layout */}
-                    <div className="mb-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-[1.5px] w-8 bg-[#FF0000]" />
-                        <span className="text-[9px] text-[#FF0000] tracking-[0.3em] font-black uppercase font-mono flex items-center gap-1.5 drop-shadow-[0_0_4px_#FF0000]">
-                          <Radio size={10} className="animate-pulse" />
-                          SYS.TELEMETRY_DATA
-                        </span>
-                        <div className="h-[1.5px] flex-1 bg-gradient-to-r from-[#FF0000] to-transparent" />
-                      </div>
-
-                      {/* Staggered entrance panel cards */}
-                      <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-                        variants={{
-                          show: { transition: { staggerChildren: 0.05 } },
-                        }}
-                        initial="hidden"
-                        animate="show"
+                    <div className="select-none flex-1 flex flex-col justify-start">
+                      <h3
+                        className="text-[#FF0000] text-xl sm:text-3xl font-black uppercase tracking-widest leading-none mb-2 sm:mb-2.5 drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]"
+                        style={{ fontFamily: "var(--font-orbitron)" }}
                       >
-                        {activeItem.skills.map((skill, idx) => {
-                          const statusTag = getSkillStatusTag(idx);
-                          return (
-                            <motion.div
-                              key={idx}
-                              variants={{
-                                hidden: { opacity: 0, x: 12, scale: 0.98 },
-                                show: { opacity: 1, x: 0, scale: 1 },
-                              }}
-                              transition={{ duration: 0.25, ease: "easeOut" }}
-                              className="flex items-center justify-between p-3 border border-[#FF0000]/40 bg-[#FF0000]/5 hover:bg-[#FF0000]/15 hover:border-[#FF0000] hover:shadow-[0_0_20px_rgba(255,0,0,0.3)] transition-all duration-300 relative group cursor-default"
-                              style={{
-                                clipPath:
-                                  "polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)",
-                              }}
-                            >
-                              <div className="absolute top-0 bottom-0 w-[2.5px] bg-[#FF0000] left-0 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300 shadow-[0_0_8px_#FF0000]" />
-
-                              <div className="flex items-center gap-2.5">
-                                <span className="text-[#FF0000] text-[9px] font-mono font-bold">
-                                  0x{String(idx + 1).padStart(2, "0")}
-                                </span>
-                                <span className="font-bold tracking-widest uppercase text-xs text-[#CCCCCC] group-hover:text-[#FF3333] transition-colors drop-shadow-[0_0_5px_rgba(255,0,0,0.3)]">
-                                  {skill}
-                                </span>
-                              </div>
-
-                              {/* Cyber competency tag */}
-                              <div className="text-right flex flex-col items-end">
-                                <span className="text-[9px] font-mono text-[#FF0000] font-black tracking-widest uppercase drop-shadow-[0_0_6px_rgba(255,0,0,0.4)]">
-                                  [{statusTag}]
-                                </span>
-                                <span className="text-[7px] font-mono text-white/50 tracking-wider">
-                                  SYS_OK
-                                </span>
-                              </div>
-                            </motion.div>
-                          );
-                        })}
-                      </motion.div>
+                        {activeItem.title}
+                      </h3>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
+                        <span className="px-1.5 py-0.5 bg-[#FF0000]/30 text-[#FF0000] text-[8px] sm:text-[9px] font-mono tracking-[0.2em] font-bold border border-[#FF0000] shadow-[0_0_6px_rgba(255,0,0,0.3)] w-fit shrink-0">
+                          CORE.SYS
+                        </span>
+                        <p className="text-[#FF3333] text-[9px] sm:text-[11px] tracking-[0.15em] sm:tracking-[0.2em] uppercase font-black font-mono drop-shadow-[0_0_5px_rgba(255,0,0,0.4)]">
+                          {activeItem.sub}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Highly eye-catching tech skill layout */}
+                  <div className="flex-1 flex flex-col min-h-0 mb-4">
+                    <div className="flex items-center gap-3 mb-4 shrink-0">
+                      <div className="h-[1.5px] w-8 bg-[#FF0000]" />
+                      <span className="text-[9px] text-[#FF0000] tracking-[0.3em] font-black uppercase font-mono flex items-center gap-1.5 drop-shadow-[0_0_4px_#FF0000]">
+                        <Radio size={10} className="animate-pulse" />
+                        SYS.TELEMETRY_DATA
+                      </span>
+                      <div className="h-[1.5px] flex-1 bg-gradient-to-r from-[#FF0000] to-transparent" />
+                    </div>
+
+                    {/* Staggered entrance panel cards */}
+                    <motion.div
+                      className="flex-1 overflow-y-auto md:overflow-visible scrollbar-hide pr-2 md:pr-0 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 content-start pb-2 md:pb-0"
+                      variants={{
+                        show: { transition: { staggerChildren: 0.05 } },
+                      }}
+                      initial="hidden"
+                      animate="show"
+                    >
+                      {activeItem.skills.map((skill, idx) => {
+                        const statusTag = getSkillStatusTag(idx);
+                        return (
+                          <motion.div
+                            key={idx}
+                            variants={{
+                              hidden: { opacity: 0, x: 12, scale: 0.98 },
+                              show: { opacity: 1, x: 0, scale: 1 },
+                            }}
+                            transition={{ duration: 0.25, ease: "easeOut" }}
+                            className="flex items-center justify-between p-3.5 sm:p-4 border border-[#FF0000]/40 bg-[#FF0000]/5 hover:bg-[#FF0000]/15 hover:border-[#FF0000] hover:shadow-[0_0_20px_rgba(255,0,0,0.3)] transition-all duration-300 relative group cursor-default"
+                            style={{
+                              clipPath:
+                                "polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)",
+                            }}
+                          >
+                            <div className="absolute top-0 bottom-0 w-[2.5px] bg-[#FF0000] left-0 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-300 shadow-[0_0_8px_#FF0000]" />
+
+                            <div className="flex items-center gap-3">
+                              <span className="text-[#FF0000] text-[10px] sm:text-xs font-mono font-bold">
+                                0x{String(idx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="font-bold tracking-widest uppercase text-[10px] sm:text-xs text-[#CCCCCC] group-hover:text-[#FF3333] transition-colors drop-shadow-[0_0_5px_rgba(255,0,0,0.3)]">
+                                {skill}
+                              </span>
+                            </div>
+
+                            {/* Cyber competency tag */}
+                            <div className="text-right flex flex-col items-end">
+                              <span className="text-[9px] sm:text-[10px] font-mono text-[#FF0000] font-black tracking-widest uppercase drop-shadow-[0_0_6px_rgba(255,0,0,0.4)]">
+                                [{statusTag}]
+                              </span>
+                              <span className="text-[7px] sm:text-[8px] font-mono text-white/50 tracking-wider mt-0.5">
+                                SYS_OK
+                              </span>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </motion.div>
+                  </div>
+
                   {/* Decorative Footer */}
-                  <div className="mt-4 flex flex-col gap-3 border-t border-[#FF0000]/40 pt-4 relative z-10 select-none">
+                  <div className="mt-auto flex flex-col gap-3 border-t border-[#FF0000]/40 pt-4 relative z-10 select-none shrink-0">
                     <div className="flex justify-between items-end">
                       <div className="flex flex-col gap-1.5">
                         <span className="text-[#FF0000] text-[8px] uppercase tracking-[0.3em] font-black font-mono drop-shadow-[0_0_4px_#FF0000]">
@@ -596,7 +602,7 @@ function CommandTerminal() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             )}
           </div>
