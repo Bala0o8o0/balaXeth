@@ -200,12 +200,22 @@ export default function Home() {
                   fill="none"
                   opacity="0.3"
                   animate={{ opacity: [0.15, 0.45, 0.15] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
 
                 {/* Scanline Gradient & Clip Path */}
                 <defs>
-                  <linearGradient id="laserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <linearGradient
+                    id="laserGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
                     <stop offset="0%" stopColor="#FF0000" stopOpacity="0" />
                     <stop offset="50%" stopColor="#FF0000" stopOpacity="0.8" />
                     <stop offset="100%" stopColor="#FF0000" stopOpacity="0" />
@@ -223,7 +233,11 @@ export default function Home() {
                     height="12"
                     fill="url(#laserGrad)"
                     animate={{ y: [-15, 115] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                 </g>
               </svg>
@@ -282,13 +296,15 @@ export default function Home() {
               <button
                 onClick={() => setIsFireEnabled(!isFireEnabled)}
                 className={`w-9 h-9 md:w-10 md:h-10 border rounded-lg bg-[#000000] flex items-center justify-center transition-all duration-300 ${
-                  isFireEnabled 
-                    ? "border-[#FF0000] shadow-[0_0_15px_rgba(255,0,0,0.4)]" 
+                  isFireEnabled
+                    ? "border-[#FF0000] shadow-[0_0_15px_rgba(255,0,0,0.4)]"
                     : "border-[#FF0000]/30 hover:border-[#FF0000]/60"
                 }`}
                 title="Toggle Fire Animation"
               >
-                <Flame className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-300 ${isFireEnabled ? "text-[#FF0000]" : "text-[#FF0000]/40"}`} />
+                <Flame
+                  className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-300 ${isFireEnabled ? "text-[#FF0000]" : "text-[#FF0000]/40"}`}
+                />
               </button>
             </div>
 
@@ -354,11 +370,12 @@ export default function Home() {
             className="w-full h-full relative pointer-events-auto origin-bottom"
           >
             {/* desktopScale=1.0 guarantees zero internal clipping of your head. */}
-            <ProfileLiquidShader desktopScale={1.0} isAnimationEnabled={isFireEnabled} />
+            <ProfileLiquidShader
+              desktopScale={1.0}
+              isAnimationEnabled={isFireEnabled}
+            />
           </motion.div>
         </div>
-
-
 
         {/* Hero Interactive Layers */}
         <div className="relative flex-1 w-full flex flex-col pointer-events-none z-40 pt-2 md:pt-4">

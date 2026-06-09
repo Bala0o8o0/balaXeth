@@ -477,16 +477,40 @@ function CommandTerminal() {
                 >
                   {/* Header Info */}
                   <div className="flex flex-row items-start gap-4 sm:gap-6 mb-6 shrink-0">
-                    <div
-                      className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-[#FF0000]/20 border border-[#FF0000] flex items-center justify-center shadow-[0_0_25px_rgba(255,0,0,0.4)] relative mt-0.5"
-                      style={{
-                        clipPath:
-                          "polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",
-                      }}
-                    >
-                      <ActiveIcon className="w-8 h-8 sm:w-10 sm:h-10 text-[#FF0000] filter drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]" />
-                      <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-[#FF0000] shadow-[0_0_6px_#FF0000]" />
-                      <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-[#FF0000]" />
+                    {/* ASCII Styled Icon Container */}
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 mt-0.5 group flex items-center justify-center bg-[#050000] font-mono">
+                      
+                      {/* Pure ASCII Borders */}
+                      <div className="absolute inset-0 flex flex-col justify-between text-[#FF0000]/60 group-hover:text-[#FF0000] text-[10px] sm:text-xs leading-none pointer-events-none transition-colors duration-300">
+                        <div className="flex justify-between items-center w-full overflow-hidden whitespace-nowrap">
+                          <span>+</span><span className="tracking-[-1px] opacity-50">-------------------------</span><span>+</span>
+                        </div>
+                        <div className="absolute top-2 bottom-2 left-0 flex flex-col justify-between opacity-50">
+                          <span>|</span><span>|</span><span>|</span>
+                        </div>
+                        <div className="absolute top-2 bottom-2 right-0 flex flex-col justify-between opacity-50">
+                          <span>|</span><span>|</span><span>|</span>
+                        </div>
+                        <div className="flex justify-between items-center w-full overflow-hidden whitespace-nowrap mt-auto">
+                          <span>+</span><span className="tracking-[-1px] opacity-50">-------------------------</span><span>+</span>
+                        </div>
+                      </div>
+
+                      {/* ASCII Background Fill */}
+                      <div className="absolute inset-1 opacity-[0.15] group-hover:opacity-[0.25] overflow-hidden text-[6px] sm:text-[7px] leading-[6px] sm:leading-[7px] break-all text-[#FF0000] pointer-events-none select-none transition-opacity duration-300 flex items-center">
+                        {"01001011 01100101 01111001 01100010 01101111 01100001 01110010 01100100 ".repeat(8)}
+                      </div>
+
+                      {/* Target Reticle Accents */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <div className="absolute top-2 left-1/2 -translate-x-1/2 text-[#FF0000] text-[8px] leading-none animate-pulse">v</div>
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[#FF0000] text-[8px] leading-none animate-pulse">^</div>
+                        <div className="absolute left-2 top-1/2 -translate-y-1/2 text-[#FF0000] text-[8px] leading-none animate-pulse">&gt;</div>
+                        <div className="absolute right-2 top-1/2 -translate-y-1/2 text-[#FF0000] text-[8px] leading-none animate-pulse">&lt;</div>
+                      </div>
+
+                      {/* Central Icon */}
+                      <ActiveIcon className="relative z-20 w-7 h-7 sm:w-9 sm:h-9 text-[#FF0000] drop-shadow-[0_0_5px_rgba(255,0,0,0.8)] group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <div className="select-none flex-1 flex flex-col justify-start">
                       <h3
@@ -499,7 +523,7 @@ function CommandTerminal() {
                         <span className="px-1.5 py-0.5 bg-[#FF0000]/30 text-[#FF0000] text-[8px] sm:text-[9px] font-mono tracking-[0.2em] font-bold border border-[#FF0000] shadow-[0_0_6px_rgba(255,0,0,0.3)] w-fit shrink-0">
                           CORE.SYS
                         </span>
-                        <p className="text-[#FF3333] text-[9px] sm:text-[11px] tracking-[0.15em] sm:tracking-[0.2em] uppercase font-black font-mono drop-shadow-[0_0_5px_rgba(255,0,0,0.4)]">
+                        <p className="text-slate-200 text-[9px] sm:text-[11px] tracking-[0.15em] sm:tracking-[0.2em] uppercase font-black font-mono drop-shadow-[0_0_5px_rgba(226,232,240,0.4)]">
                           {activeItem.sub}
                         </p>
                       </div>

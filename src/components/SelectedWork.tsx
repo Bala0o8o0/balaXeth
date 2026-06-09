@@ -166,7 +166,7 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         x: isPrev ? (isMobile ? "-45%" : "-75%") : isNext ? (isMobile ? "45%" : "75%") : "0%",
         opacity: isActive ? 1 : !isVisible ? 0 : isHoveredState ? 0.8 : (isMobile ? 0.25 : 0.35),
         filter: isActive
-          ? "drop-shadow(0 0 35px rgba(255, 0, 0, 0.25))"
+          ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.15))"
           : isHoveredState
           ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.1))"
           : "none",
@@ -291,7 +291,7 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
 
         {/* Big ID Number */}
         <div className={`absolute top-4 right-6 md:top-6 md:right-8 z-30 transition-all duration-500 ${
-          isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
+          isActive ? "opacity-100 translate-y-0 scale-100 delay-[300ms]" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
         }`}>
           <span
             className="text-[#FF0000] drop-shadow-[0_0_8px_rgba(255,0,0,0.4)] text-[12px] md:text-[15px] font-black tracking-wider leading-none"
@@ -304,7 +304,7 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
 
         {/* Title & Stats */}
         <div className={`absolute bottom-8 left-6 md:bottom-12 md:left-12 pr-6 z-30 flex flex-col gap-1.5 md:gap-2 transition-all duration-500 ${
-          isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+          isActive ? "opacity-100 translate-y-0 delay-[300ms]" : "opacity-0 translate-y-4 pointer-events-none"
         }`}>
           <div className="flex items-center gap-2 md:gap-3">
             <div className="h-3 md:h-4 w-[2px] bg-[#FF0000] animate-pulse" />
@@ -326,18 +326,11 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
 
         {/* Corner Decor Dots */}
         <div className={`absolute top-3 left-3 md:top-4 md:left-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
-          isActive ? "opacity-100" : "opacity-0 pointer-events-none"
+          isActive ? "opacity-100 delay-[300ms]" : "opacity-0 pointer-events-none"
         }`} />
         <div className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
-          isActive ? "opacity-100" : "opacity-0 pointer-events-none"
+          isActive ? "opacity-100 delay-[300ms]" : "opacity-0 pointer-events-none"
         }`} />
-
-        {/* Right Edge Decorative Text */}
-        <div className={`absolute right-2 md:right-4 bottom-24 md:bottom-32 [writing-mode:vertical-lr] font-black text-[10px] md:text-[14px] tracking-[1em] md:tracking-[1.5em] uppercase select-none pointer-events-none transition-all duration-500 ${
-          isActive ? "text-[#FF0000]/10 opacity-100" : "opacity-0"
-        }`}>
-          SYSTEM_ACCESS_GRANTED
-        </div>
       </div>
     </motion.div>
   );
