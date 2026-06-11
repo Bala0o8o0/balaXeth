@@ -103,39 +103,39 @@ const MatrixRain = ({ color = "#FF2222" }) => {
 const PROJECTS = [
   {
     id: "0x-01",
-    title: "GUARDIAN_AI",
-    type: "AI / SECURITY",
-    link: "https://contract-guardian-ai.vercel.app/",
+    title: "LUMINA_AI",
+    type: "AI / SAAS",
+    link: "#",
     description:
-      "HIGH_PRECISION AUDIT PROTOCOL FOR SMART CONTRACT VULNERABILITY DETECTION.",
-    status: "ACTIVE",
-    tech: ["AI", "SOLIDITY", "REACT"],
+      "VIRTUAL FITTING PROTOCOL. AI PROJECTION OF APPAREL ONTO SUBJECTS IN REAL-TIME.",
+    status: "LIVE_ALPHA",
+    tech: ["AI", "SUPABASE", "NEXT.JS"],
     image:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop",
+      "/LUMINA_SAMPLE.png",
   },
   {
     id: "0x-02",
-    title: "SCRIBBLER_AI",
-    type: "AI / SYNTHESIS",
-    link: "https://meta-goblinz-scribbler-ai.vercel.app/",
+    title: "CLAWX_DEX",
+    type: "WEB3 / DEX",
+    link: "https://www.figma.com/proto/lpHTMs3OkzMwQH2emyBYGd/CLAWX-DEX?node-id=4194-813&p=f&viewport=301%2C257%2C0.05&t=Gw29hRjLFNMXZW1R-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4194%3A835&page-id=215%3A3283",
     description:
-      "REAL-TIME NEURAL UPSCALING FOR SKETCH-TO-ASSET TRANSFORMATION.",
-    status: "DEPLOYED",
-    tech: ["NEXT", "PYTHON", "GAN"],
+      "AUTONOMOUS DECENTRALIZED EXCHANGE PROTOCOL. HIGH-FREQUENCY TOKEN SWAPS WITH MINIMAL SLIPPAGE.",
+    status: "PROTOTYPE",
+    tech: ["PHOTOSHOP", "FIGMA"],
     image:
-      "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
+      "/assets/clawx.png",
   },
   {
     id: "0x-03",
-    title: "ALIENHOOD_DAPP",
-    type: "WEB3 / DAPP",
-    link: "https://alienhood-nft.vercel.app/",
+    title: "DANK_DEALERZ",
+    type: "WEB3 / NFT",
+    link: "#",
     description:
-      "EXTRATERRESTRIAL ASSET MANAGEMENT PROTOCOL FOR INTERPLANETARY TOKENS.",
-    status: "OPERATIONAL",
-    tech: ["WEB3", "REACT", "IPFS"],
+      "DIGITAL ASSET BROKER PLATFORM. STEALTH TRADING AND SECURE PEER-TO-PEER ASSET TRANSFERS.",
+    status: "DEPLOYED",
+    tech: ["FIGMA", "REACT.JS"],
     image:
-      "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1000&auto=format&fit=crop",
+      "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
   },
 ];
 

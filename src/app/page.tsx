@@ -485,25 +485,23 @@ export default function Home() {
                 {/* Social Icons Stack */}
                 <div className="grid grid-cols-2 place-items-center gap-y-3 sm:flex sm:w-full sm:justify-between sm:items-center mt-3 md:mt-6">
                   {[
-                    { icon: Github, label: "GITHUB" },
-                    { icon: Twitter, label: "TWITTER" },
-                    { icon: Linkedin, label: "LINKEDIN" },
-                    { icon: Instagram, label: "INSTA" },
+                    { icon: Github, label: "GITHUB", href: "https://github.com/Bala0o8o0" },
+                    { icon: Twitter, label: "X", href: "https://x.com/balaXeth" },
+                    { icon: Linkedin, label: "LINKEDIN", href: "https://www.linkedin.com/in/bala-murugan-a3ba20240/" },
+                    { icon: Instagram, label: "INSTAGRAM", href: "https://www.instagram.com/balaxeth" },
                   ].map((Social, i) => (
                     <div
                       key={i}
                       className="group flex flex-col items-center gap-1.5 md:gap-3"
                     >
                       <a
-                        href="#"
+                        href={Social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="w-10 h-10 sm:w-10 sm:h-10 md:w-14 md:h-14 border border-[#FF0000]/30 rounded-lg md:rounded-xl bg-[#000000] flex items-center justify-center hover:bg-[#FF0000]/20 hover:border-[#FF0000] transition-all duration-300 shadow-[0_0_10px_rgba(255,0,0,0)] hover:shadow-[0_0_20px_rgba(255,0,0,0.6)] group-hover:-translate-y-1"
                       >
                         <Social.icon className="w-4 h-4 md:w-6 md:h-6 text-[#FF0000] group-hover:scale-110 transition-transform duration-300" />
                       </a>
-                      {/* Label */}
-                      <span className="text-[#FF0000] text-[6px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-widest transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]">
-                        {Social.label}
-                      </span>
                     </div>
                   ))}
                 </div>

@@ -16,17 +16,17 @@ import {
 const PORTFOLIO_PROJECTS = [
   {
     title: "Baroque Tatu",
-    shortName: "GUARDIAN",
-    id: "PRJ-77A",
+    shortName: "BAROQUE",
+    id: "PRJ-BT1",
     imgSrc: "/assets/TATU.png",
     link: "https://baroquetatu.com/",
-    category: ["AI"],
+    category: ["WEBSITE"],
     type: "DESIGN / WEBSITE",
     year: "2024",
     role: "WEB DESIGNER",
     status: "DEPLOYED_LIVE",
     description:
-      "A high-precision AI specialized in detecting vulnerabilities and ensuring robust smart contract security.",
+      "A sophisticated and immersive website design for a high-end tattoo studio.",
     tech: ["FIGMA", "WORDPRESS", "JAVASCRIPT"],
   },
   {
@@ -35,14 +35,14 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-44Y",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
     link: "#",
-    category: ["DESIGN"],
+    category: ["WEBSITE"],
     type: "WEB3 / NFT",
     year: "2021",
     role: "Frontend Dev",
     status: "DEPLOYED",
     description:
       "Digital asset broker platform. Stealth trading and secure peer-to-peer asset transfers.",
-    tech: ["FIGMA", "REACT.JS",],
+    tech: ["FIGMA", "REACT.JS"],
   },
   {
     title: "Lumina AI Try-On",
@@ -50,7 +50,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-LR",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/1.jpg",
     link: "#",
-    category: ["AI"],
+    category: ["MVPS & SAAS"],
     type: "AI / SAAS",
     year: "2024",
     role: "PRODUCT DEVELOPER",
@@ -65,7 +65,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-L",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/1.jpg",
     link: "#",
-    category: ["AI"],
+    category: ["MVPS & SAAS"],
     type: "AI / SAAS",
     year: "2024",
     role: "PRODUCT DEVELOPER",
@@ -80,7 +80,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-77A",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/6.gif",
     link: "https://contract-guardian-ai.vercel.app/",
-    category: ["AI"],
+    category: ["WEB APPS"],
     type: "AI",
     year: "2023",
     role: "PRODUCT DEVELOPER",
@@ -95,7 +95,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-12B",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/8.gif",
     link: "https://meta-goblinz-scribbler-ai.vercel.app/",
-    category: ["AI"],
+    category: ["WEB APPS"],
     type: "AI / SYNTHESIS",
     year: "2023",
     role: "Fullstack / AI",
@@ -110,7 +110,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-12",
     imgSrc: "/assets/clawx.png",
     link: "https://www.figma.com/proto/lpHTMs3OkzMwQH2emyBYGd/CLAWX-DEX?node-id=4194-813&p=f&viewport=301%2C257%2C0.05&t=Gw29hRjLFNMXZW1R-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4194%3A835&page-id=215%3A3283",
-    category: ["DESIGN"],
+    category: ["UI DESIGNS"],
     type: "web3/ dex",
     year: "2023",
     role: "UI DESIGNER",
@@ -125,7 +125,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-09X",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/12.gif",
     link: "https://alienhood-nft.vercel.app/",
-    category: ["DESIGN"],
+    category: ["WEBSITE"],
     type: "WEB3 / DAPP",
     year: "2022",
     role: "Smart Contract Dev",
@@ -140,7 +140,7 @@ const PORTFOLIO_PROJECTS = [
     id: "PRJ-88D",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/10.png",
     link: "https://balaxeth-ai.vercel.app/assets/imgs/display/DIGI.mp4",
-    category: ["WEB3", "DESIGN"],
+    category: ["WEBSITE"],
     type: "WEB3 / NFT",
     year: "2022",
     role: "WEB3 DAPP DEVELOPER",
@@ -149,14 +149,13 @@ const PORTFOLIO_PROJECTS = [
       "Asset tracking system. Scours the blockchain to aggregate and visualize holding balances.",
     tech: ["HTML", "CSS", "JAVASCRIPT"],
   },
-
   {
     title: "NeoNet Tech Forum",
     shortName: "NEONET",
     id: "PRJ-32N",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/4.gif",
     link: "#",
-    category: ["DESIGN"],
+    category: ["UI DESIGNS"],
     type: "FULLSTACK / COMMUNITY",
     year: "2024",
     role: "Fullstack Dev",
@@ -165,28 +164,58 @@ const PORTFOLIO_PROJECTS = [
       "Centralized communications hub. Global chat relays and encrypted developer forums.",
     tech: ["NEXT", "FIREBASE", "UX"],
   },
-  // {
-  //   title: "RickFarm NFT Staking",
-  //   shortName: "RICKFARM",
-  //   id: "PRJ-01F",
-  //   imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/5.gif",
-  //   link: "#",
-  //   category: ["WEB3"],
-  //   type: "WEB3 / GAMIFI",
-  //   year: "2022",
-  //   role: "Web3 Developer",
-  //   status: "ARCHIVED",
-  //   description:
-  //     "Yield-generation simulation. Lock assets into secure smart-vaults to farm high-yield tokens.",
-  //   tech: ["VUE", "SOLIDITY", "WEB3"],
-  // },
+  {
+    title: "RickFarm NFT Staking Game",
+    shortName: "RICKFARM",
+    id: "PRJ-01F",
+    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/5.gif",
+    link: "https://balaxeth-ai.vercel.app/assets/imgs/display/rickfarm%20video.mp4",
+    category: ["WEBSITE"],
+    type: "WEB3 / GAMIFI",
+    year: "2022",
+    role: "Web3 Developer",
+    status: "ARCHIVED",
+    description:
+      "Yield-generation simulation. Lock assets into secure smart-vaults to farm high-yield tokens.",
+    tech: ["FIGMA", "NEXT.JS", "TAILWINDCSS", "SOLIDITY", "THIRDWEBSDK"],
+  },
+  {
+    title: "FTM Grow House",
+    shortName: "FTMGROW",
+    id: "PRJ-FTM",
+    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/13.png",
+    link: "#",
+    category: ["UI DESIGNS"],
+    type: "WEB DESIGN",
+    year: "2022",
+    role: "UI DESIGNER",
+    status: "DELIVERED",
+    description:
+      "A complete web design mapping for the FTM Grow House platform.",
+    tech: ["FIGMA", "ADOBE SUITE"],
+  },
+  {
+    title: "Berry Coffee Shop",
+    shortName: "BERRY",
+    id: "PRJ-BRY",
+    imgSrc: "",
+    link: "#",
+    category: ["WEBSITE"],
+    type: "WEBSITE",
+    year: "2022",
+    role: "Frontend Developer",
+    status: "DELIVERED",
+    description:
+      "A modern and responsive landing page for a boutique coffee shop.",
+    tech: ["FIGMA", "HTML", "CSS", "JAVASCRIPT"],
+  },
   {
     title: "Cannabrew Website",
     shortName: "CANNABREW",
     id: "PRJ-55M",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/9.png",
     link: "https://balaxeth-ai.vercel.app/assets/imgs/display/cannabrew.png",
-    category: ["DESIGN", "DEVELOPMENT"],
+    category: ["UI DESIGNS"],
     type: "WEBSITE DESIGN",
     year: "2023",
     role: "Frontend UI DESIGNER",
@@ -195,14 +224,13 @@ const PORTFOLIO_PROJECTS = [
       "Botanical distribution network interface. Streamlined inventory and sleek consumer frontend.",
     tech: ["FIGMA"],
   },
-
   {
     title: "Oblinz Token Dapp",
     shortName: "OBLINZ",
     id: "PRJ-99C",
     imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/2.gif",
     link: "#",
-    category: ["WEB3"],
+    category: ["WEBSITE"],
     type: "DEFI / PROTOCOL",
     year: "2022",
     role: "Web3 Engineer",
@@ -243,8 +271,8 @@ const CATEGORY_CONFIG: Record<
     ),
     count: PORTFOLIO_PROJECTS.length,
   },
-  DESIGN: {
-    label: "DESIGN",
+  "UI DESIGNS": {
+    label: "UI DESIGNS",
     icon: (
       <motion.svg
         width="14"
@@ -263,7 +291,7 @@ const CATEGORY_CONFIG: Record<
         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12c0 2 1 3 2 4s3 6 8 6z" />
       </motion.svg>
     ),
-    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("DESIGN"))
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("UI DESIGNS"))
       .length,
   },
   "WEB APPS": {
@@ -285,11 +313,11 @@ const CATEGORY_CONFIG: Record<
       </motion.svg>
     ),
     count: PORTFOLIO_PROJECTS.filter(
-      (p) => p.category.includes("DEVELOPMENT") || p.category.includes("AI"),
+      (p) => p.category.includes("WEB APPS")
     ).length,
   },
-  "WEB3(PAST)": {
-    label: "WEB3(PAST)",
+  WEBSITE: {
+    label: "WEBSITE",
     icon: (
       <motion.svg
         width="14"
@@ -301,12 +329,32 @@ const CATEGORY_CONFIG: Record<
         animate={{ y: [0, -2, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-        <line x1="12" y1="22.08" x2="12" y2="12" />
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
       </motion.svg>
     ),
-    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("WEB3")).length,
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("WEBSITE")).length,
+  },
+  "MVPS & SAAS": {
+    label: "MVPS & SAAS",
+    icon: (
+      <motion.svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </motion.svg>
+    ),
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("MVPS & SAAS")).length,
   },
 };
 
@@ -556,17 +604,15 @@ export default function Portfolio2Page() {
     return () => clearInterval(interval);
   }, []);
 
-  const filters = ["ALL", "DESIGN", "WEB APPS", "WEB3(PAST)"];
+  const filters = ["ALL", "UI DESIGNS", "WEBSITE", "WEB APPS", "MVPS & SAAS"];
   const filteredProjects =
     filter === "ALL"
       ? PORTFOLIO_PROJECTS
       : PORTFOLIO_PROJECTS.filter((p) => {
-          if (filter === "DESIGN") return p.category.includes("DESIGN");
-          if (filter === "WEB APPS")
-            return (
-              p.category.includes("DEVELOPMENT") || p.category.includes("AI")
-            );
-          if (filter === "WEB3(PAST)") return p.category.includes("WEB3");
+          if (filter === "UI DESIGNS") return p.category.includes("UI DESIGNS");
+          if (filter === "WEB APPS") return p.category.includes("WEB APPS");
+          if (filter === "WEBSITE") return p.category.includes("WEBSITE");
+          if (filter === "MVPS & SAAS") return p.category.includes("MVPS & SAAS");
           return false;
         });
   const liveCount = PORTFOLIO_PROJECTS.filter(
@@ -765,88 +811,105 @@ export default function Portfolio2Page() {
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
-      <section className="relative z-10 py-32 md:py-48 px-6">
+      {/* ─── CTA (MECHA / PROFESSIONAL CYBERPUNK) ─── */}
+      <section className="relative z-10 py-32 md:py-48 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative bg-[#0a0a0a] border border-[#FF0000]/30 p-12 md:p-20 overflow-hidden"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative bg-[#050505] p-1 border-t-2 border-[#FF0000]/60 shadow-[0_10px_30px_rgba(255,0,0,0.1)]"
+            style={{
+              clipPath:
+                "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
+            }}
           >
-            {/* Background Grid Accent */}
+            {/* Inner Container to give a thick mechanical border feel */}
             <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
+              className="relative w-full h-full bg-[#0a0a0a] p-8 sm:p-16 md:p-24 overflow-hidden flex flex-col items-center border border-white/5"
               style={{
-                backgroundImage: `radial-gradient(#FF0000 1px, transparent 1px)`,
-                backgroundSize: "30px 30px",
+                clipPath:
+                  "polygon(0 0, 100% 0, 100% calc(100% - 38px), calc(100% - 38px) 100%, 0 100%)",
               }}
-            />
+            >
+              {/* Subtle Grid Pattern */}
+              <div
+                className="absolute inset-0 opacity-10 pointer-events-none"
+                style={{
+                  backgroundImage: `linear-gradient(to right, #FF0000 1px, transparent 1px), linear-gradient(to bottom, #FF0000 1px, transparent 1px)`,
+                  backgroundSize: "40px 40px",
+                }}
+              />
 
-            {/* Corner Brackets */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#FF0000]" />
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#FF0000]" />
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FF0000]" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#FF0000]" />
-
-            {/* Technical Metadata Floaters */}
-            <div className="absolute top-6 left-6 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-[#FF0000] rounded-full animate-pulse" />
-              <span className="text-[10px] font-mono text-[#FF0000]/60 tracking-[0.2em]">
-                COMMS_STATION_B44
-              </span>
-            </div>
-            <div className="absolute bottom-6 right-6 text-right">
-              <span className="text-[9px] font-mono text-white/20 tracking-[0.3em] block">
-                U_LATENCY // 0.002ms
-              </span>
-              <span className="text-[9px] font-mono text-white/20 tracking-[0.3em] block">
-                SIGNAL_STRENGTH // 100%
-              </span>
-            </div>
-
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="mb-14 text-center">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: 100 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1 }}
-                  className="h-px bg-gradient-to-r from-transparent via-[#FF0000] to-transparent mx-auto mb-8"
-                />
-                <h2
-                  className="text-4xl sm:text-5xl md:text-6xl font-black tracking-normal uppercase leading-tight mb-4"
-                  style={{ fontFamily: "var(--font-orbitron)" }}
-                >
-                  <span className="text-[#FF0000]">HAVE A </span>
-                  <span className="text-white">PROJECT</span>
-                  <br className="hidden sm:block" />
-                  <span className="text-white sm:hidden"> </span>
-                  <span className="text-white">IN </span>
-                  <span className="text-[#FF0000]">MIND?</span>
-                </h2>
+              {/* Mecha Decorators */}
+              <div className="absolute top-0 left-0 w-32 h-1 bg-[#FF0000]/80" />
+              <div className="absolute top-1 left-0 w-12 h-1 bg-[#FF0000]/40" />
+              <div className="absolute bottom-0 right-0 w-48 h-1 bg-[#FF0000]/80" />
+              
+              {/* Professional Status HUD */}
+              <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-2 font-mono text-[10px] text-white/50 tracking-[0.15em] uppercase z-10">
+                <span className="flex items-center gap-2 text-white/80">
+                  <span className="w-1.5 h-1.5 bg-[#FF0000] rounded-sm animate-pulse" />
+                  System Status: Secure
+                </span>
+                <span>Active Nodes: 142</span>
+                <span>Latency: 12ms</span>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <Link
-                  href="/#contact"
-                  className="group relative px-10 py-4 bg-[#FF0000] text-black font-mono text-[12px] font-bold tracking-wider uppercase transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,0,0,0.3)]"
-                >
-                  INITIATE_COMMS
-                </Link>
+              {/* Data Hash Decorator */}
+              <div className="hidden lg:block absolute bottom-8 left-8 font-mono text-[10px] text-white/30 tracking-widest z-10">
+                HASH: 0x8F92...B4A1
+              </div>
 
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative px-10 py-4 bg-transparent border border-white/20 text-white font-mono text-[12px] font-bold tracking-wider uppercase transition-all hover:border-[#FF0000] hover:text-[#FF0000]"
+              {/* Main Content */}
+              <div className="relative z-20 flex flex-col items-center text-center max-w-2xl">
+                {/* Mechanical Accent Icon */}
+                <motion.div
+                  initial={{ rotate: -90, opacity: 0 }}
+                  whileInView={{ rotate: 0, opacity: 1 }}
+                  transition={{ duration: 1, ease: "backOut" }}
+                  className="mb-8"
                 >
-                  <div className="flex items-center gap-3">
-                    <Github size={16} />
-                    <span>GITHUB_STATION</span>
-                  </div>
-                </a>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF0000" strokeWidth="1.5">
+                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+                    <circle cx="12" cy="12" r="4" />
+                    <line x1="12" y1="2" x2="12" y2="8" />
+                    <line x1="12" y1="16" x2="12" y2="22" />
+                  </svg>
+                </motion.div>
+
+                <h2
+                  className="text-4xl sm:text-5xl md:text-6xl font-black tracking-wider uppercase leading-tight text-white mb-6"
+                  style={{ fontFamily: "var(--font-orbitron)" }}
+                >
+                  HAVE A <br className="hidden sm:block" />
+                  <span className="text-[#FF0000]">PROJECT</span> IN MIND?
+                </h2>
+                
+                <p className="mb-12 text-white/60 font-mono text-sm tracking-wide leading-relaxed">
+                  Let&apos;s build something exceptional together. Available for freelance opportunities and full-time roles.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
+                  {/* Primary Button */}
+                  <a
+                    href="https://api.whatsapp.com/send/?phone=%2B919080880124&text=Hi%20Bala%2C%20I%27d%20like%20to%20discuss%20a%20new%20project%20with%20you.&type=phone_number&app_absent=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative px-10 py-4 bg-[#FF0000] text-black font-mono text-sm font-bold tracking-widest uppercase transition-all hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,0,0,0.4)] group w-full sm:w-auto text-center"
+                    style={{
+                      clipPath: "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                    }}
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      Contact Me
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </span>
+                  </a>
+
+
+                </div>
               </div>
             </div>
           </motion.div>

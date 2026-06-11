@@ -724,6 +724,7 @@ export function CTASectionChip() {
 // ============================================================================
 export function CTASection() {
   const [isConnecting, setIsConnecting] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleConnect = () => {
     setIsConnecting(true);
@@ -740,25 +741,30 @@ export function CTASection() {
       <circle cx="30" cy="50" r="2" fill="#FF0000" />
       
       {/* Target Bracket */}
-      <path d="M 50 10 L 60 10 L 60 40 L 50 40" stroke="#FF0000" strokeWidth="4" fill="none" />
-      <path d="M 70 25 L 85 25" stroke="#FF0000" strokeWidth="4" fill="none" />
+      <path d="M 50 10 L 60 10 L 60 40 L 50 40" stroke="#FF0000" strokeWidth="1.5" fill="none" opacity="0.8" />
+      <path d="M 70 25 L 85 25" stroke="#FF0000" strokeWidth="1.5" fill="none" opacity="0.8" />
       
-      {/* Diagonal Main Arm */}
-      <path d="M 80 40 L 100 40 L 150 90 L 450 390 L 480 390" stroke="#FF0000" strokeWidth="4" fill="none" opacity="0.9" />
+      {/* Diagonal Main Arm - HORIZONTAL ENTRY TO CIRCLE CORE */}
+      <path d="M -90 0 L -60 0 L -20 40 L 80 40 L 100 40 L 150 90 L 450 390 L 480 390" stroke="#FF0000" strokeWidth="1" fill="none" opacity="0.4" />
+      
+      {/* Node Connector */}
+      <circle cx="-90" cy="0" r="4" fill="#FF0000" className="animate-pulse shadow-[0_0_10px_#FF0000]" />
+      <circle cx="-90" cy="0" r="8" stroke="#FF0000" strokeWidth="1" fill="none" opacity="0.7" />
+      <rect x="-93" y="-3" width="6" height="6" fill="none" stroke="#FF0000" strokeWidth="1" opacity="0.5" transform="rotate(45 -90 0)" />
       
       {/* Diagonal Secondary Arm */}
-      <path d="M 70 60 L 90 60 L 140 110 L 380 350" stroke="#FF0000" strokeWidth="2" fill="none" opacity="0.6" />
-      <path d="M 90 80 L 110 80 L 160 130 L 360 330" stroke="#FF0000" strokeWidth="1.5" strokeDasharray="5 5" fill="none" opacity="0.5" />
+      <path d="M 70 60 L 90 60 L 140 110 L 380 350" stroke="#FF0000" strokeWidth="1" fill="none" opacity="0.6" />
+      <path d="M 90 80 L 110 80 L 160 130 L 360 330" stroke="#FF0000" strokeWidth="1" strokeDasharray="5 5" fill="none" opacity="0.5" />
       
       {/* Inner Tech Details */}
-      <path d="M 90 20 L 120 20 L 160 60" stroke="#FF0000" strokeWidth="2" fill="none" />
-      <path d="M 180 40 L 250 40" stroke="#FF0000" strokeWidth="4" fill="none" opacity="0.9" />
-      <path d="M 180 55 L 230 55" stroke="#FF0000" strokeWidth="2" strokeDasharray="4 4" fill="none" opacity="0.7" />
+      <path d="M 90 20 L 120 20 L 160 60" stroke="#FF0000" strokeWidth="1" fill="none" />
+      <path d="M 180 40 L 250 40" stroke="#FF0000" strokeWidth="2" fill="none" opacity="0.9" />
+      <path d="M 180 55 L 230 55" stroke="#FF0000" strokeWidth="1" strokeDasharray="4 4" fill="none" opacity="0.7" />
       
       {/* Vertical Block Accents */}
-      <path d="M -10 90 L -10 250" stroke="#FF0000" strokeWidth="3" fill="none" opacity="0.9" />
-      <path d="M 10 110 L 10 210" stroke="#FF0000" strokeWidth="2" strokeDasharray="4 4" fill="none" opacity="0.7" />
-      <path d="M 25 120 L 25 150" stroke="#FF0000" strokeWidth="6" fill="none" opacity="0.5" />
+      <path d="M -10 90 L -10 250" stroke="#FF0000" strokeWidth="1.5" fill="none" opacity="0.9" />
+      <path d="M 10 110 L 10 210" stroke="#FF0000" strokeWidth="1" strokeDasharray="4 4" fill="none" opacity="0.7" />
+      <path d="M 25 120 L 25 150" stroke="#FF0000" strokeWidth="3" fill="none" opacity="0.5" />
       <circle cx="-10" cy="70" r="3" fill="#FF0000" />
       <circle cx="-10" cy="270" r="3" fill="#FF0000" />
 
@@ -778,40 +784,35 @@ export function CTASection() {
          <circle cx="245" cy="165" r="1.5" />
       </g>
 
-      {/* Animated Flowing Line */}
+      {/* Animated Flowing Line - FLOWS HORIZONTALLY INTO CIRCLE CORE */}
       <path 
-        d="M 480 390 L 450 390 L 150 90 L 100 40 L 80 40" 
+        d="M 480 390 L 450 390 L 150 90 L 100 40 L 80 40 L -20 40 L -60 0 L -90 0" 
         stroke="#FF0000" fill="none" 
-        className={`flowing-line ${isConnecting ? 'electric-surge' : ''}`} 
+        className={`flowing-line ${isConnecting ? 'electric-surge' : ''} ${isHovered ? 'speed-surge' : ''}`} 
       />
     </g>
   );
 
   return (
     <section className="w-full py-16 md:py-24 px-4 bg-transparent flex justify-center items-center">
-       {/* Hacker HUD Outer Frame */}
-       <div className="relative w-full max-w-[1200px] min-h-[700px] md:min-h-[850px] bg-[#020000] border border-[#FF0000]/30 flex justify-center items-center font-mono overflow-hidden group">
-           
-           {/* Frame Corner Accents */}
-           <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-[#FF0000] pointer-events-none"></div>
-           <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[#FF0000] pointer-events-none"></div>
-           <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-[#FF0000] pointer-events-none"></div>
-           <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-[#FF0000] pointer-events-none"></div>
-
-           {/* Edge Brackets */}
-           <div className="absolute top-4 left-[20%] right-[20%] h-[2px] bg-[#FF0000]/20"></div>
-           <div className="absolute bottom-4 left-[20%] right-[20%] h-[2px] bg-[#FF0000]/20"></div>
-           <div className="absolute left-4 top-[20%] bottom-[20%] w-[2px] bg-[#FF0000]/20"></div>
-           <div className="absolute right-4 top-[20%] bottom-[20%] w-[2px] bg-[#FF0000]/20"></div>
+       {/* Hacker HUD Outer Container */}
+       <div className="relative w-full max-w-[1200px] min-h-[700px] md:min-h-[850px] bg-[#020000] flex justify-center items-center font-mono overflow-hidden group">
 
            <style>{`
              .flowing-line {
                stroke-dasharray: 80 1000;
                stroke-dashoffset: 1080;
-               stroke-width: 4;
+               stroke-width: 1.5;
                animation: flowAnim 3s linear infinite;
                /* Reverted to old normal brightness */
                
+             }
+             .speed-surge {
+               animation: flowAnim 1.5s linear infinite !important;
+               stroke-dasharray: 100 600;
+               stroke-width: 2;
+               stroke: #FF0000;
+               filter: drop-shadow(0 0 2px #FF0000);
              }
              @keyframes flowAnim {
                to { stroke-dashoffset: 0; }
@@ -820,7 +821,7 @@ export function CTASection() {
              /* Electric Surge Animation on Click (SUPER BRIGHT PURE RED remains) */
              .electric-surge {
                stroke: #FF0000 !important;
-               stroke-width: 10 !important;
+               stroke-width: 4 !important;
                stroke-dasharray: 400 400 !important;
                
                animation: surgeShoot 0.8s ease-out forwards, flicker 0.1s infinite alternate !important;
@@ -830,8 +831,8 @@ export function CTASection() {
                100% { stroke-dashoffset: 0; }
              }
              @keyframes flicker {
-               0% { opacity: 0.7; stroke-width: 6; }
-               100% { opacity: 1; stroke-width: 12; }
+               0% { opacity: 0.7; stroke-width: 2; }
+               100% { opacity: 1; stroke-width: 5; }
              }
 
              .hud-pulse {
@@ -890,13 +891,24 @@ export function CTASection() {
            <div className="absolute inset-0 flex items-center justify-center z-50">
               <button 
                  onClick={handleConnect}
+                 onMouseEnter={() => setIsHovered(true)}
+                 onMouseLeave={() => setIsHovered(false)}
                  disabled={isConnecting}
-                 className={`group relative px-4 py-2 bg-transparent transition-all duration-300 cursor-pointer disabled:cursor-not-allowed ${isConnecting ? 'scale-110' : 'hover:scale-105'}`}
+                 className={`group relative flex flex-col items-center justify-center transition-all duration-300 cursor-pointer disabled:cursor-not-allowed ${isConnecting ? 'scale-110' : 'hover:scale-105'}`}
               >
-                 {/* Center Button Text - restored to better proportion */}
-                 <span className={`font-bold text-xs md:text-sm tracking-[0.2em] font-mono transition-all duration-300 ${isConnecting ? 'text-white ' : 'text-[#FF0000] drop-shadow-[0_0_5px_#FF0000] group-hover:text-white'}`}>
-                    {isConnecting ? 'OVERRIDE...' : 'ENTER PORTFOLIO'}
-                 </span>
+                 {/* Cyberpunk Core (Matches X Design) */}
+                 <div className="relative w-[180px] h-[180px] flex items-center justify-center">
+                   
+                   {/* Dragon Logo */}
+                   <img
+                     src="/dragon.svg"
+                     className={`relative z-10 w-[72px] h-[72px] object-contain filter drop-shadow(0 0 4px #FF0000) transition-all duration-300 ${isConnecting ? 'opacity-100 brightness-150 scale-110 drop-shadow(0 0 20px #FF0000)' : 'opacity-70 brightness-100 group-hover:opacity-100 group-hover:brightness-125 group-hover:scale-105 group-hover:drop-shadow(0 0 12px #FF0000)'}`}
+                     alt="Dragon Core"
+                   />
+                   
+                   {/* Invisible hit area for button to ensure it's easily clickable */}
+                   <div className="absolute inset-0 rounded-full bg-transparent" />
+                 </div>
                  
                  {/* Flash Overlay inside the text area */}
                  {isConnecting && (
