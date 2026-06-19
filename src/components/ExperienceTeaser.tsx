@@ -54,7 +54,7 @@ export function ExperienceTeaser() {
           className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter"
           style={{ fontFamily: "var(--font-orbitron)" }}
         >
-          CAREER <span className="text-[#FF0000]">CHRONICLE</span>
+          my <span className="text-[#FF0000]">experience</span>
         </h2>
       </div>
 
@@ -92,7 +92,7 @@ export function ExperienceTeaser() {
             <Link href="/experience" className="group block">
               <div className="w-full py-3 bg-[#FF0000]/10 border border-[#FF0000]/40 flex items-center justify-center gap-3 transition-all duration-300 hover:bg-[#FF0000] shadow-[0_0_10px_rgba(255,0,0,0.1)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]">
                 <span className="text-[#FF0000] group-hover:text-black font-black uppercase tracking-[0.4em] text-[9px] transition-colors">
-                  ACCESS_LOGS
+                  VIEW_EXPERIENCE
                 </span>
                 <ArrowUpRight className="w-4 h-4 text-[#FF0000] group-hover:text-black transition-colors" />
               </div>
@@ -179,7 +179,7 @@ export function ExperienceTeaser() {
         {/* ── System Footer ── */}
         <div className="p-1.5 bg-[#FF0000] text-black text-center">
           <span className="text-[7px] font-black tracking-[0.4em] uppercase">
-            LINK_STABLE // ARCHIVE_READY
+            2022 // 2026
           </span>
         </div>
       </div>

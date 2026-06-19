@@ -16,7 +16,7 @@ const MatrixRain = ({ color = "#FF2222" }) => {
 
     let animationFrameId: number;
     let timer: NodeJS.Timeout;
-    
+
     const resizeCanvas = () => {
       if (canvas.parentElement) {
         const width = canvas.parentElement.clientWidth;
@@ -28,15 +28,18 @@ const MatrixRain = ({ color = "#FF2222" }) => {
         canvas.height = 500;
       }
     };
-    
+
     resizeCanvas();
     timer = setTimeout(resizeCanvas, 150);
-    
+
     const fontSize = 11;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(0).map(() => Math.floor(Math.random() * (canvas.height / fontSize) - 15));
-    
-    const chars = "0101010101010101ABCDEF<>[]/\\_-+=#!@$%^&*ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺ";
+    const drops = Array(columns)
+      .fill(0)
+      .map(() => Math.floor(Math.random() * (canvas.height / fontSize) - 15));
+
+    const chars =
+      "0101010101010101ABCDEF<>[]/\\_-+=#!@$%^&*ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺ";
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -50,7 +53,10 @@ const MatrixRain = ({ color = "#FF2222" }) => {
 
           const y = yIndex * fontSize;
           const x = i * fontSize;
-          const text = chars[Math.floor((Math.random() * chars.length + yIndex) % chars.length)];
+          const text =
+            chars[
+              Math.floor((Math.random() * chars.length + yIndex) % chars.length)
+            ];
           const opacity = (trailLength - j) / trailLength;
 
           ctx.fillStyle = `rgba(255, 0, 0, ${opacity * 0.95})`;
@@ -76,7 +82,7 @@ const MatrixRain = ({ color = "#FF2222" }) => {
       const delta = timestamp - lastTime;
       if (delta > interval) {
         draw();
-        lastTime = timestamp - delta % interval;
+        lastTime = timestamp - (delta % interval);
       }
     };
 
@@ -91,13 +97,12 @@ const MatrixRain = ({ color = "#FF2222" }) => {
   }, [color]);
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="absolute inset-4 rounded-sm opacity-85 pointer-events-none z-[12]" 
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-4 rounded-sm opacity-85 pointer-events-none z-[12]"
     />
   );
 };
-
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const PROJECTS = [
@@ -110,8 +115,7 @@ const PROJECTS = [
       "VIRTUAL FITTING PROTOCOL. AI PROJECTION OF APPAREL ONTO SUBJECTS IN REAL-TIME.",
     status: "LIVE_ALPHA",
     tech: ["AI", "SUPABASE", "NEXT.JS"],
-    image:
-      "/LUMINA_SAMPLE.png",
+    image: "/LUMINA_SAMPLE.png",
   },
   {
     id: "0x-02",
@@ -122,8 +126,7 @@ const PROJECTS = [
       "AUTONOMOUS DECENTRALIZED EXCHANGE PROTOCOL. HIGH-FREQUENCY TOKEN SWAPS WITH MINIMAL SLIPPAGE.",
     status: "PROTOTYPE",
     tech: ["PHOTOSHOP", "FIGMA"],
-    image:
-      "/assets/clawx.png",
+    image: "/assets/clawx.png",
   },
   {
     id: "0x-03",
@@ -134,18 +137,29 @@ const PROJECTS = [
       "DIGITAL ASSET BROKER PLATFORM. STEALTH TRADING AND SECURE PEER-TO-PEER ASSET TRANSFERS.",
     status: "DEPLOYED",
     tech: ["FIGMA", "REACT.JS"],
-    image:
-      "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
+    image: "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
   },
 ];
 
 // ─── HUD Card Component ──────────────────────────────────────────────────────
-const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext, onPrev }: any) => {
+const HUDCard = ({
+  project,
+  isActive,
+  isPrev,
+  isNext,
+  onClick,
+  isMobile,
+  onNext,
+  onPrev,
+}: any) => {
   const [isHovered, setIsHovered] = useState(false);
   const isHoveredState = isHovered && !isActive;
   const isVisible = isActive || isPrev || isNext;
 
-  const handleDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    e: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo,
+  ) => {
     const swipeThreshold = 50;
     if (info.offset.x < -swipeThreshold) {
       onNext();
@@ -158,18 +172,42 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
     <motion.div
       initial={false}
       animate={{
-        scale: isActive ? 1 : isHoveredState ? 0.68 : (isMobile ? 0.75 : 0.62),
-        rotateY: isActive ? 0 : isNext ? (isMobile ? -25 : -45) : (isMobile ? 25 : 45),
+        scale: isActive ? 1 : isHoveredState ? 0.68 : isMobile ? 0.75 : 0.62,
+        rotateY: isActive
+          ? 0
+          : isNext
+            ? isMobile
+              ? -25
+              : -45
+            : isMobile
+              ? 25
+              : 45,
         rotateZ: isActive ? 0 : isPrev ? -4 : 4,
         skewY: isActive ? 0 : isPrev ? -2 : 2,
         z: isActive ? 150 : isHoveredState ? -100 : -350,
-        x: isPrev ? (isMobile ? "-45%" : "-75%") : isNext ? (isMobile ? "45%" : "75%") : "0%",
-        opacity: isActive ? 1 : !isVisible ? 0 : isHoveredState ? 0.8 : (isMobile ? 0.25 : 0.35),
+        x: isPrev
+          ? isMobile
+            ? "-45%"
+            : "-75%"
+          : isNext
+            ? isMobile
+              ? "45%"
+              : "75%"
+            : "0%",
+        opacity: isActive
+          ? 1
+          : !isVisible
+            ? 0
+            : isHoveredState
+              ? 0.8
+              : isMobile
+                ? 0.25
+                : 0.35,
         filter: isActive
           ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.15))"
           : isHoveredState
-          ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.1))"
-          : "none",
+            ? "drop-shadow(0 0 15px rgba(255, 0, 0, 0.1))"
+            : "none",
         zIndex: isActive ? 30 : isHoveredState ? 20 : 10,
       }}
       transition={{
@@ -184,7 +222,11 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`absolute w-[88%] md:w-full max-w-[350px] md:max-w-[500px] h-[360px] md:h-[500px] transition-all duration-500 ${
-        isActive ? "pointer-events-auto cursor-grab active:cursor-grabbing" : isVisible ? "pointer-events-auto cursor-pointer" : "pointer-events-none"
+        isActive
+          ? "pointer-events-auto cursor-grab active:cursor-grabbing"
+          : isVisible
+            ? "pointer-events-auto cursor-pointer"
+            : "pointer-events-none"
       }`}
       onClick={onClick}
     >
@@ -201,7 +243,9 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         {/* Inset Glass Border Layer */}
         <div
           className={`absolute inset-4 md:inset-6 border pointer-events-none rounded-sm transition-all duration-700 ${
-            isActive ? "border-[#FF0000]/15" : "border-[#FF0000]/5 group-hover:border-[#FF0000]/20"
+            isActive
+              ? "border-[#FF0000]/15"
+              : "border-[#FF0000]/5 group-hover:border-[#FF0000]/20"
           }`}
         />
 
@@ -228,7 +272,9 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         {/* ── TOP-LEFT HUD PIECE ── */}
         <div
           className={`absolute top-0 left-0 w-28 h-28 md:w-44 md:h-44 bg-gradient-to-br from-[#FF0000]/10 to-transparent border-t-2 border-l-2 rounded-tl-2xl z-20 backdrop-blur-[2px] transition-all duration-500 ${
-            isActive ? "border-[#FF0000]/50" : "border-[#FF0000]/20 group-hover:border-[#FF0000]/45"
+            isActive
+              ? "border-[#FF0000]/50"
+              : "border-[#FF0000]/20 group-hover:border-[#FF0000]/45"
           }`}
           style={{
             clipPath:
@@ -244,7 +290,9 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         {/* ── BOTTOM-RIGHT HUD PIECE ── */}
         <div
           className={`absolute bottom-0 right-0 w-24 h-24 md:w-36 md:h-36 bg-gradient-to-tl from-[#FF0000]/15 to-transparent border-b-2 border-r-2 rounded-br-2xl z-20 backdrop-blur-[2px] transition-all duration-500 ${
-            isActive ? "border-[#FF0000]/50" : "border-[#FF0000]/20 group-hover:border-[#FF0000]/45"
+            isActive
+              ? "border-[#FF0000]/50"
+              : "border-[#FF0000]/20 group-hover:border-[#FF0000]/45"
           }`}
           style={{
             clipPath:
@@ -290,9 +338,13 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         </div>
 
         {/* Big ID Number */}
-        <div className={`absolute top-4 right-6 md:top-6 md:right-8 z-30 transition-all duration-500 ${
-          isActive ? "opacity-100 translate-y-0 scale-100 delay-[300ms]" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
-        }`}>
+        <div
+          className={`absolute top-4 right-6 md:top-6 md:right-8 z-30 transition-all duration-500 ${
+            isActive
+              ? "opacity-100 translate-y-0 scale-100 delay-[300ms]"
+              : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
+          }`}
+        >
           <span
             className="text-[#FF0000] drop-shadow-[0_0_8px_rgba(255,0,0,0.4)] text-[12px] md:text-[15px] font-black tracking-wider leading-none"
             style={{ fontFamily: "var(--font-orbitron)" }}
@@ -303,17 +355,15 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         </div>
 
         {/* Title & Stats */}
-        <div className={`absolute bottom-8 left-6 md:bottom-12 md:left-12 pr-6 z-30 flex flex-col gap-1.5 md:gap-2 transition-all duration-500 ${
-          isActive ? "opacity-100 translate-y-0 delay-[300ms]" : "opacity-0 translate-y-4 pointer-events-none"
-        }`}>
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="h-3 md:h-4 w-[2px] bg-[#FF0000] animate-pulse" />
-            <span className="text-[#FF0000] font-mono text-[8px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] font-black uppercase">
-              DATA_STREAM: {project.type}
-            </span>
-          </div>
+        <div
+          className={`absolute bottom-8 left-6 md:bottom-12 md:left-12 pr-6 z-30 flex flex-col gap-1.5 md:gap-2 transition-all duration-500 ${
+            isActive
+              ? "opacity-100 translate-y-0 delay-[300ms]"
+              : "opacity-0 translate-y-4 pointer-events-none"
+          }`}
+        >
           <h3
-            className="text-white text-xl md:text-3xl font-black uppercase tracking-tighter"
+            className="text-[#FF0000] text-xl md:text-3xl font-black uppercase tracking-tighter"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
             {project.title}
@@ -325,12 +375,20 @@ const HUDCard = ({ project, isActive, isPrev, isNext, onClick, isMobile, onNext,
         </div>
 
         {/* Corner Decor Dots */}
-        <div className={`absolute top-3 left-3 md:top-4 md:left-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
-          isActive ? "opacity-100 delay-[300ms]" : "opacity-0 pointer-events-none"
-        }`} />
-        <div className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
-          isActive ? "opacity-100 delay-[300ms]" : "opacity-0 pointer-events-none"
-        }`} />
+        <div
+          className={`absolute top-3 left-3 md:top-4 md:left-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
+            isActive
+              ? "opacity-100 delay-[300ms]"
+              : "opacity-0 pointer-events-none"
+          }`}
+        />
+        <div
+          className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 w-2 h-2 md:w-3 md:h-3 border border-[#FF0000]/30 rounded-full z-40 transition-all duration-500 ${
+            isActive
+              ? "opacity-100 delay-[300ms]"
+              : "opacity-0 pointer-events-none"
+          }`}
+        />
       </div>
     </motion.div>
   );
@@ -393,7 +451,7 @@ export function SelectedWork() {
       </div>
 
       {/* 3D Stack Container */}
-      <div 
+      <div
         className="relative w-full max-w-[1200px] h-[450px] md:h-[550px] flex items-center justify-center perspective-[1000px] md:perspective-[1500px] [transform-style:preserve-3d]"
         style={{ transformStyle: "preserve-3d", touchAction: "pan-y" }}
       >
@@ -420,7 +478,6 @@ export function SelectedWork() {
             />
           );
         })}
-        
       </div>
 
       {/* Navigation & Progress */}
@@ -463,7 +520,7 @@ export function SelectedWork() {
         </div>
 
         {/* Dynamic Action Button */}
-        <AnimatePresence mode="wait">
+        {/* <AnimatePresence mode="wait">
           <motion.a
             key={PROJECTS[index].id}
             initial={{ opacity: 0, y: 15 }}
@@ -473,14 +530,16 @@ export function SelectedWork() {
             target="_blank"
             className="px-8 py-3 md:px-14 md:py-4 bg-[#FF0000]/5 border border-[#FF0000]/40 text-[#FF0000] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-[9px] md:text-[11px] hover:bg-[#FF0000] hover:text-black transition-all group flex items-center gap-3 md:gap-4 relative overflow-hidden touch-manipulation"
           >
+           
             <div className="absolute inset-0 bg-[#FF0000]/10 translate-x-[-100%] group-hover:translate-x-[0%] transition-transform duration-500" />
             <span className="relative z-10">DECRYPT_DATA_SOURCE</span>
             <ExternalLink
               size={14}
               className="relative z-10 group-hover:scale-110 transition-transform md:w-[16px] md:h-[16px]"
             />
+            
           </motion.a>
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
 
       {/* Terminal Overlay */}

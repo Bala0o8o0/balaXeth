@@ -485,10 +485,26 @@ export default function Home() {
                 {/* Social Icons Stack */}
                 <div className="grid grid-cols-2 place-items-center gap-y-3 sm:flex sm:w-full sm:justify-between sm:items-center mt-3 md:mt-6">
                   {[
-                    { icon: Github, label: "GITHUB", href: "https://github.com/Bala0o8o0" },
-                    { icon: Twitter, label: "X", href: "https://x.com/balaXeth" },
-                    { icon: Linkedin, label: "LINKEDIN", href: "https://www.linkedin.com/in/bala-murugan-a3ba20240/" },
-                    { icon: Instagram, label: "INSTAGRAM", href: "https://www.instagram.com/balaxeth" },
+                    {
+                      icon: Github,
+                      label: "GITHUB",
+                      href: "https://github.com/Bala0o8o0",
+                    },
+                    {
+                      icon: Twitter,
+                      label: "X",
+                      href: "https://x.com/balaXeth",
+                    },
+                    {
+                      icon: Linkedin,
+                      label: "LINKEDIN",
+                      href: "https://www.linkedin.com/in/bala-murugan-a3ba20240/",
+                    },
+                    {
+                      icon: Instagram,
+                      label: "INSTAGRAM",
+                      href: "https://www.instagram.com/balaxeth",
+                    },
                   ].map((Social, i) => (
                     <div
                       key={i}

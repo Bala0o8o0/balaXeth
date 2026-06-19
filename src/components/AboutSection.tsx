@@ -257,14 +257,14 @@ function CyberpunkPanel() {
             className="text-[#FF0000] text-[9px] font-mono tracking-widest uppercase"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
-            CORE_SYSTEM // ONLINE
+            ● TECH // ONLINE
           </div>
           <motion.div
             animate={{ opacity: [1, 0.3, 1] }}
             transition={{ duration: 1.2, repeat: Infinity }}
             className="text-[#FF0000]/60 text-[8px] font-mono"
           >
-            ● CALIBRATING_MATRIX
+            ● CALIBRATING_TECHNOLOGIES
           </motion.div>
         </div>
 
@@ -311,19 +311,21 @@ function CyberpunkPanel() {
           </span>
         </div>
         <div className="grid grid-cols-1 gap-4">
-          {["JAVASCRIPT", "TYPESCRIPT", "PYTHON", "HTML/CSS"].map((lang, i) => (
-            <div
-              key={lang}
-              className="flex items-center justify-between border-b border-[#FF0000]/10 pb-1 group/lang"
-            >
-              <span className="text-[#FF0000]/80 text-[10px] font-bold tracking-[0.2em] group-hover/lang:translate-x-1 transition-transform group-hover/lang:text-[#FF0000]">
-                {lang}
-              </span>
-              <span className="text-[#FF0000] text-[10px] font-mono opacity-60">
-                S_{String(i + 1).padStart(2, "0")}
-              </span>
-            </div>
-          ))}
+          {["● JAVASCRIPT", "● TYPESCRIPT", "● PYTHON", "● HTML/CSS"].map(
+            (lang, i) => (
+              <div
+                key={lang}
+                className="flex items-center justify-between border-b border-[#FF0000]/10 pb-1 group/lang"
+              >
+                <span className="text-[#FF0000]/80 text-[10px] font-bold tracking-[0.2em] group-hover/lang:translate-x-1 transition-transform group-hover/lang:text-[#FF0000]">
+                  {lang}
+                </span>
+                <span className="text-[#FF0000] text-[10px] font-mono opacity-60">
+                  S_{String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+            ),
+          )}
         </div>
       </div>
 
@@ -417,7 +419,7 @@ export function AboutSection() {
             </SciFiHUDCard>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <SciFiHUDCard title="CONTACT  // OVERRIDE">
+              <SciFiHUDCard title="CONTACT  //">
                 <p className="text-[#FF0000]  font-light  animate-pulse tracking-widest  text-[1px] md:text-sm mt-2 leading-relaxed drop-shadow-[0_0_8px_rgba(255,0,0,0.5)] text-center md:text-left">
                   TO BUILD THE FOUNDATION OF THE POST-MODERN WEB WITH APPLIED
                   A.I. AND UNCOMPROMISING DESIGN.
@@ -468,7 +470,7 @@ export function AboutSection() {
           {/* Right panel: Cyberpunk Viz */}
           <div className="lg:col-span-5 flex flex-col">
             <SciFiHUDCard
-              title="SYSTEM ANALYSIS // LIVE"
+              // title="SYSTEM ANALYSIS // LIVE"
               className="flex-1 flex flex-col h-full"
             >
               <CyberpunkPanel />

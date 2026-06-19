@@ -1,12 +1,40 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Activity, ArrowUpRight, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Twitter, Linkedin, Activity, ArrowUpRight, Mail, CheckCircle2, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export function Footer() {
     const [time, setTime] = useState<string>("");
+    const [email, setEmail] = useState("");
+    const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+    const handleTransmission = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+        
+        setStatus("sending");
+        try {
+            await fetch("https://formsubmit.co/ajax/balaxeth@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    message: "New transmission initiated from portfolio footer."
+                })
+            });
+            setStatus("success");
+            setEmail("");
+            setTimeout(() => setStatus("idle"), 5000);
+        } catch (error) {
+            setStatus("error");
+            setTimeout(() => setStatus("idle"), 5000);
+        }
+    };
 
     useEffect(() => {
         const updateTime = () => {
@@ -70,7 +98,7 @@ export function Footer() {
                         </p>
 
                         {/* Interactive "Email / Newsletter" box typical of premium sites */}
-                        <div className="flex flex-col gap-3 mt-2">
+                        <form onSubmit={handleTransmission} className="flex flex-col gap-3 mt-2 relative">
                             <span className="text-[9px] text-[#FF0000]/60 tracking-[0.3em] uppercase font-bold">Initiate Transmission</span>
                             <div className="flex items-center border border-[#FF0000]/20 bg-black max-w-sm focus-within:border-[#FF0000]/60 transition-colors group">
                                 <div className="pl-4 pr-3 text-[#FF0000]/50 group-focus-within:text-[#FF0000]">
@@ -78,14 +106,22 @@ export function Footer() {
                                 </div>
                                 <input 
                                     type="email" 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder="ENTER_EMAIL_ADDRESS..." 
                                     className="w-full bg-transparent text-[10px] tracking-widest text-white placeholder-white/20 focus:outline-none py-3.5"
+                                    required
+                                    disabled={status === "sending"}
                                 />
-                                <button className="px-5 py-3.5 bg-[#FF0000]/10 hover:bg-[#FF0000] text-[#FF0000] hover:text-black transition-all font-bold text-[10px] tracking-[0.2em] border-l border-[#FF0000]/20">
-                                    SEND
+                                <button 
+                                    type="submit" 
+                                    disabled={status === "sending"}
+                                    className="px-5 py-3.5 bg-[#FF0000]/10 hover:bg-[#FF0000] text-[#FF0000] hover:text-black transition-all font-bold text-[10px] tracking-[0.2em] border-l border-[#FF0000]/20 disabled:opacity-50"
+                                >
+                                    {status === "sending" ? "WAIT" : "SEND"}
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                     {/* Spacer for large screens */}
@@ -172,6 +208,41 @@ export function Footer() {
                 </div>
 
             </div>
+
+            {/* Transmission Status Popup */}
+            <AnimatePresence>
+                {status === "success" && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50, x: "-50%" }}
+                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                        exit={{ opacity: 0, y: 50, x: "-50%" }}
+                        className="fixed bottom-10 left-1/2 z-50 flex items-center gap-4 bg-black/90 backdrop-blur-md border border-[#FF0000] px-6 py-4 shadow-[0_0_30px_rgba(255,0,0,0.4)]"
+                    >
+                        <div className="relative flex items-center justify-center">
+                            <div className="absolute inset-0 bg-[#FF0000]/20 rounded-full animate-ping" />
+                            <CheckCircle2 size={24} className="text-[#FF0000] relative z-10" />
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-[12px] font-bold text-[#FF0000] tracking-[0.2em] uppercase">Transmission Sent</span>
+                            <span className="text-[10px] text-white/60 tracking-widest uppercase mt-1">Comm-link established. Protocol engaged.</span>
+                        </div>
+                    </motion.div>
+                )}
+                {status === "error" && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 50, x: "-50%" }}
+                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                        exit={{ opacity: 0, y: 50, x: "-50%" }}
+                        className="fixed bottom-10 left-1/2 z-50 flex items-center gap-4 bg-black/90 backdrop-blur-md border border-orange-500 px-6 py-4 shadow-[0_0_30px_rgba(249,115,22,0.4)]"
+                    >
+                        <AlertCircle size={24} className="text-orange-500" />
+                        <div className="flex flex-col">
+                            <span className="text-[12px] font-bold text-orange-500 tracking-[0.2em] uppercase">Transmission Failed</span>
+                            <span className="text-[10px] text-white/60 tracking-widest uppercase mt-1">Interference detected. Try again later.</span>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </footer>
     );
 }
