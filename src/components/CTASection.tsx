@@ -1076,9 +1076,9 @@ export function CTASection() {
   );
 
   return (
-    <section className="w-full py-16 md:py-24 px-4 bg-transparent flex flex-col justify-center items-center">
+    <section className="w-full py-8 md:py-24 px-4 bg-transparent flex flex-col justify-center items-center">
       {/* Section Title */}
-      <div className="mt-16 md:mt-24 mb-4 md:mb-6 flex flex-col items-center justify-center w-full z-50 px-4">
+      <div className="mt-4 md:mt-24 mb-4 md:mb-6 flex flex-col items-center justify-center w-full z-50 px-4">
         <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 w-full">
           <div className="w-8 md:w-16 h-[1px] bg-[#FF0000] shrink-0" />
           <span className="text-[#FF0000] font-mono text-[10px] md:text-sm tracking-[0.15em] md:tracking-[0.4em] font-bold uppercase drop-shadow-[0_0_8px_rgba(255,0,0,0.6)] text-center">
@@ -1095,7 +1095,7 @@ export function CTASection() {
       </div>
 
       {/* Hacker HUD Outer Container */}
-      <div className="relative w-full max-w-[1200px] min-h-[700px] md:min-h-[850px] bg-[#020000] flex justify-center items-center font-mono overflow-hidden group">
+      <div className="relative w-full max-w-[1200px] min-h-[350px] sm:min-h-[500px] md:min-h-[850px] bg-[#050505] flex justify-center items-center font-mono overflow-hidden group">
         <style>{`
              .flowing-line {
                stroke-dasharray: 80 1000;
@@ -1150,14 +1150,14 @@ export function CTASection() {
 
         {/* Very Subtle Microgrid Background (like the reference image) */}
         <div className="absolute inset-0 bg-microgrid pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020000_70%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)] pointer-events-none"></div>
 
         {/* Full Geometric SVG HUD */}
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none p-4 md:p-8">
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none p-4 md:p-8 overflow-hidden">
           {/* Keep viewBox large to handle translation */}
           <svg
             viewBox="-700 -450 1400 900"
-            className="w-full h-full max-w-[1200px] hud-pulse"
+            className="w-full h-full max-w-[1200px] min-w-[600px] md:min-w-0 hud-pulse"
           >
             <defs>
               <filter id="hudGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -1222,11 +1222,11 @@ export function CTASection() {
             className={`group relative flex flex-col items-center justify-center transition-all duration-300 cursor-pointer disabled:cursor-not-allowed ${isConnecting ? "scale-110" : "hover:scale-105"}`}
           >
             {/* Cyberpunk Core (Matches X Design) */}
-            <div className="relative w-[180px] h-[180px] flex items-center justify-center">
+            <div className="relative w-[120px] h-[120px] md:w-[180px] md:h-[180px] flex items-center justify-center">
               {/* Dragon Logo */}
               <img
                 src="/dragon.svg"
-                className={`relative z-10 w-[62px] h-[62px] object-contain filter drop-shadow(0 0 4px #FF0000) transition-all duration-300 ${isConnecting ? "opacity-100 brightness-150 scale-110 drop-shadow(0 0 20px #FF0000)" : "opacity-70 brightness-100 group-hover:opacity-100 group-hover:brightness-125 group-hover:scale-105 group-hover:drop-shadow(0 0 12px #FF0000)"}`}
+                className={`relative z-10 w-[42px] h-[42px] md:w-[62px] md:h-[62px] object-contain filter drop-shadow(0 0 4px #FF0000) transition-all duration-300 ${isConnecting ? "opacity-100 brightness-150 scale-110 drop-shadow(0 0 20px #FF0000)" : "opacity-70 brightness-100 group-hover:opacity-100 group-hover:brightness-125 group-hover:scale-105 group-hover:drop-shadow(0 0 12px #FF0000)"}`}
                 alt="Dragon Core"
               />
 

@@ -352,14 +352,11 @@ export default function Home() {
 
         {/* Profile Image - Interactive WebGL Particles */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 items-end justify-center pointer-events-none"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 items-end justify-center pointer-events-none w-[95vw] md:w-[min(1500px,95vw)] h-[350px] md:h-[550px] min-h-[60vh] md:min-h-[87vh]"
           data-scroll
           data-scroll-speed="0.15"
           style={{
-            display: mounted && window.innerWidth >= 768 ? "flex" : "none",
-            width: "min(1500px, 95vw)",
-            height: "550px", // Fixed window height to ensure safe layout and framing
-            minHeight: "87vh", // Ensures the image rises high across the screen
+            display: mounted ? "flex" : "none",
           }}
         >
           <motion.div

@@ -16,7 +16,7 @@ const EXPERIENCE_DATA = [
 
 export function ExperienceSection() {
     return (
-        <section className="relative w-full py-24 px-4 md:px-12 lg:px-24 bg-[#050000] z-10 overflow-hidden">
+        <section className="relative w-full py-24 px-4 md:px-12 lg:px-24 bg-[#050505] z-10 overflow-hidden">
             <div className="container mx-auto max-w-5xl relative z-10">
                 {/* Section Header */}
                 <div className="mb-12 md:mb-20 flex flex-col items-center px-4">
@@ -65,7 +65,7 @@ export function ExperienceSection() {
                                         }`}
                                 >
                                     {/* Timeline Node Point (centered on md+) */}
-                                    <div className="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 mt-1.5 md:mt-0 w-3 h-3 bg-[#050000] border-2 border-[#FF0000] rounded-full z-20 group-hover:scale-150 group-hover:bg-[#FF0000] group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,1)] transition-all duration-300" />
+                                    <div className="absolute left-0 md:left-1/2 transform -translate-x-[5px] md:-translate-x-1/2 mt-1.5 md:mt-0 w-3 h-3 bg-[#050505] border-2 border-[#FF0000] rounded-full z-20 group-hover:scale-150 group-hover:bg-[#FF0000] group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,1)] transition-all duration-300" />
 
                                     {/* Content Card */}
                                     <div className={`w-full md:w-[45%] pl-8 md:pl-0 ${isEven ? 'md:pr-12 text-left md:text-right' : 'md:pl-12 text-left'}`}>
@@ -82,7 +82,7 @@ export function ExperienceSection() {
                                             
                                             {/* Inner Content Container */}
                                             <div 
-                                                className={`relative z-10 w-full h-full bg-gradient-to-br from-[#0a0000] to-[#020000] p-6 md:p-8 flex flex-col ${isEven ? 'md:items-end' : 'md:items-start'}`}
+                                                className={`relative z-10 w-full h-full bg-gradient-to-br from-[#0a0a0a] to-[#050505] p-6 md:p-8 flex flex-col ${isEven ? 'md:items-end' : 'md:items-start'}`}
                                                 style={{ 
                                                     clipPath: isEven 
                                                         ? 'polygon(0 0, 100% 0, 100% calc(100% - 31px), calc(100% - 31px) 100%, 0 100%)' 

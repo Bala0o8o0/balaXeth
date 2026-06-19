@@ -420,7 +420,7 @@ export function SelectedWork() {
   }, [nextProject]);
 
   return (
-    <section className="relative w-full pt-28 pb-16 md:py-40 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#020000] z-10 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full pt-28 pb-16 md:py-40 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#050505] z-10 overflow-hidden flex flex-col items-center">
       {/* Background Matrix Grid */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
