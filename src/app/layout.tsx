@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${orbitron.variable} ${rajdhani.variable}`}
     >
-      <body className="antialiased bg-[#050505] text-white overflow-x-hidden">
+      <body className="antialiased bg-[#000000] text-white overflow-x-hidden">
         {children}
         <TargetCursor targetSelector="a, button, [role='button'], .cursor-target" />
         <HudSounds />

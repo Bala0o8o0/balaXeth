@@ -256,7 +256,7 @@ function CommandTerminal() {
     >
       {/* ── Inner HUD Container ── */}
       <div
-        className="bg-[#050505]/95 relative flex flex-col md:flex-row overflow-hidden backdrop-blur-lg"
+        className="bg-[#000000]/95 relative flex flex-col md:flex-row overflow-hidden backdrop-blur-lg"
         style={{
           clipPath:
             "polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
@@ -280,7 +280,7 @@ function CommandTerminal() {
         />
 
         {/* ── Left Column: Nav ── */}
-        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-auto md:h-[630px] bg-[#050505]/70">
+        <div className="w-full md:w-[35%] relative z-10 border-b md:border-b-0 md:border-r border-[#FF0000]/40 flex flex-col h-auto md:h-[630px] bg-[#000000]/70">
           {/* Top Header */}
           <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 justify-between bg-[#FF0000]/20 shrink-0">
             <div className="flex items-center gap-2">
@@ -314,7 +314,7 @@ function CommandTerminal() {
           </div>
 
           {/* Nav Items */}
-          <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto scrollbar-hide py-2 md:py-2 bg-[#050505]/60 gap-2 md:gap-0 px-2 md:px-0">
+          <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto scrollbar-hide py-2 md:py-2 bg-[#000000]/60 gap-2 md:gap-0 px-2 md:px-0">
             {EXPERTISE_ITEMS.map((item, idx) => {
               const isActive = activeIndex === idx;
               return (
@@ -357,7 +357,7 @@ function CommandTerminal() {
           </div>
 
           {/* Bottom decorative bar */}
-          <div className="hidden md:flex h-10 border-t border-[#FF0000]/40 items-center px-5 gap-3 bg-[#050505] mt-auto shrink-0">
+          <div className="hidden md:flex h-10 border-t border-[#FF0000]/40 items-center px-5 gap-3 bg-[#000000] mt-auto shrink-0">
             <div className="w-2.5 h-2.5 bg-[#FF0000] animate-pulse rounded-sm shadow-[0_0_12px_#FF0000]" />
             <span className="text-[#FF0000] text-[9px] tracking-[0.3em] font-black font-mono drop-shadow-[0_0_5px_rgba(255,0,0,0.5)]">
               SYS.INTEGRITY_SAFE
@@ -366,7 +366,7 @@ function CommandTerminal() {
         </div>
 
         {/* ── Right Column: Output ── */}
-        <div className="w-full md:w-[65%] relative z-10 bg-[#050505]/95 flex flex-col h-[640px] sm:h-[660px] md:h-[630px]">
+        <div className="w-full md:w-[65%] relative z-10 bg-[#000000]/95 flex flex-col h-[640px] sm:h-[660px] md:h-[630px]">
           {/* Top Bar Right: Telemetry Dashboard */}
           <div className="h-12 border-b border-[#FF0000]/40 flex items-center px-4 sm:px-6 md:px-8 justify-between bg-[#FF0000]/[0.05] relative z-10 shrink-0">
             <span className="text-[#FF0000] text-[10px] tracking-[0.3em] font-bold font-mono drop-shadow-[0_0_4px_rgba(255,0,0,0.4)]">
@@ -418,7 +418,7 @@ function CommandTerminal() {
           <div className="flex-1 relative flex flex-col overflow-hidden">
             {isBooting ? (
               // ── GUI Simulated Boot Loader ──
-              <div className="flex-1 p-6 md:p-10 relative flex flex-col items-center justify-center font-mono text-[10px] sm:text-xs text-[#FF0000]/80 bg-[#050505]/80">
+              <div className="flex-1 p-6 md:p-10 relative flex flex-col items-center justify-center font-mono text-[10px] sm:text-xs text-[#FF0000]/80 bg-[#000000]/80">
                 {/* Corner Bracket Decorators */}
                 <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-[#FF0000]/40" />
                 <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-[#FF0000]/40" />
@@ -478,7 +478,7 @@ function CommandTerminal() {
                   {/* Header Info */}
                   <div className="flex flex-row items-start gap-4 sm:gap-6 mb-6 shrink-0">
                     {/* ASCII Styled Icon Container */}
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 mt-0.5 group flex items-center justify-center bg-[#050505] font-mono">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 mt-0.5 group flex items-center justify-center bg-[#000000] font-mono">
                       
                       {/* Pure ASCII Borders */}
                       <div className="absolute inset-0 flex flex-col justify-between text-[#FF0000]/60 group-hover:text-[#FF0000] text-[10px] sm:text-xs leading-none pointer-events-none transition-colors duration-300">
@@ -869,7 +869,7 @@ function DragonNetworkVisualizer() {
                       "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
                   }}
                 >
-                  <div className="absolute inset-0 bg-[#050505]/90" />
+                  <div className="absolute inset-0 bg-[#000000]/90" />
                   <div
                     className="absolute inset-0 opacity-[0.03]"
                     style={{
@@ -921,7 +921,7 @@ function DragonNetworkVisualizer() {
               }}
             >
               <div
-                className="absolute inset-[2px] bg-[#050505] overflow-hidden"
+                className="absolute inset-[2px] bg-[#000000] overflow-hidden"
                 style={{
                   clipPath:
                     "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
@@ -952,7 +952,7 @@ function DragonNetworkVisualizer() {
 // ─── Main Section ─────────────────────────────────────────────────────────────
 export function ExpertiseSection() {
   return (
-    <section className="relative w-full py-32 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#050505] z-10 overflow-hidden">
+    <section className="relative w-full py-32 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#000000] z-10 overflow-hidden">
       <div
         className="absolute inset-0 z-0 opacity-[0.03]"
         style={{

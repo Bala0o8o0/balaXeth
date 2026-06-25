@@ -366,7 +366,7 @@ export function AboutSection() {
       id="about"
       className="relative w-full min-h-screen bg-transparent py-10 md:py-16 px-4 md:px-12 lg:px-24 flex items-center z-10 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[#050505]/60 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[#000000]/60 pointer-events-none z-0" />
 
       <div className="container mx-auto relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">

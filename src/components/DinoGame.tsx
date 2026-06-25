@@ -134,7 +134,7 @@ function drawPixelArt(ctx: CanvasRenderingContext2D, art: string[], x: number, y
         ctx.fillRect(x + col * scale, y + row * scale, scale, scale);
       } else if (art[row][col] === '0') {
         // Transparent / Background color eye
-        ctx.fillStyle = '#050505';
+        ctx.fillStyle = '#000000';
         ctx.fillRect(x + col * scale, y + row * scale, scale, scale);
         ctx.fillStyle = '#FF0000';
       }
@@ -408,7 +408,7 @@ export default function DinoGame() {
     const s = state.current;
     
     // Full screen background
-    ctx.fillStyle = '#050505';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
@@ -495,7 +495,7 @@ export default function DinoGame() {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-[#050505] overflow-hidden">
+    <div className="fixed inset-0 w-full h-full bg-[#000000] overflow-hidden">
       <Link href="/">
         <div className="absolute top-4 left-4 w-48 h-12 z-50 cursor-pointer" />
       </Link>

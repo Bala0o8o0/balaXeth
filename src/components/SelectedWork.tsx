@@ -236,7 +236,7 @@ const HUDCard = ({
           className={`absolute inset-2 md:inset-4 transition-all duration-700 rounded-sm border ${
             isActive
               ? "bg-black/90 border-[#FF0000]/35 shadow-[0_0_60px_rgba(0,0,0,0.95)]"
-              : "bg-[#050505]/35 backdrop-blur-[8px] border-[#FF0000]/15 shadow-[inset_0_0_15px_rgba(255,0,0,0.05),_0_0_30px_rgba(255,0,0,0.5)] group-hover:bg-[#050505]/45 group-hover:border-[#FF0000]/30 group-hover:shadow-[inset_0_0_25px_rgba(255,0,0,0.1),_0_0_45px_rgba(255,0,0,0.15)]"
+              : "bg-[#000000]/35 backdrop-blur-[8px] border-[#FF0000]/15 shadow-[inset_0_0_15px_rgba(255,0,0,0.05),_0_0_30px_rgba(255,0,0,0.5)] group-hover:bg-[#000000]/45 group-hover:border-[#FF0000]/30 group-hover:shadow-[inset_0_0_25px_rgba(255,0,0,0.1),_0_0_45px_rgba(255,0,0,0.15)]"
           }`}
         />
 
@@ -420,7 +420,7 @@ export function SelectedWork() {
   }, [nextProject]);
 
   return (
-    <section className="relative w-full pt-28 pb-16 md:py-40 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#050505] z-10 overflow-hidden flex flex-col items-center">
+    <section className="relative w-full pt-28 pb-16 md:py-40 px-6 sm:px-8 md:px-12 lg:px-24 bg-[#000000] z-10 overflow-hidden flex flex-col items-center">
       {/* Background Matrix Grid */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

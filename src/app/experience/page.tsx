@@ -15,7 +15,7 @@ const ParticleBackground = dynamic(
 
 export default function ExperiencePage() {
   return (
-    <main className="bg-[#050505] min-h-screen text-white font-sans selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
+    <main className="bg-[#000000] min-h-screen text-white font-sans selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
       <ParticleBackground />
       
       {/* Navigation Header */}

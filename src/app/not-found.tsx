@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <main className="w-screen h-screen overflow-hidden bg-[#050505]">
+    <main className="w-screen h-screen overflow-hidden bg-[#000000]">
       <DinoGame />
     </main>
   );

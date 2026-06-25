@@ -440,7 +440,7 @@ export function CTASectionLandscape() {
   }, []);
 
   return (
-    <section className="relative w-full py-24 px-4 md:px-12 bg-[#050505] flex justify-center items-center font-mono overflow-hidden">
+    <section className="relative w-full py-24 px-4 md:px-12 bg-[#000000] flex justify-center items-center font-mono overflow-hidden">
       {/* Landscape HUD Frame */}
       <div className="relative w-full max-w-[1200px] min-h-[500px] md:min-h-[550px] bg-[#0d0000] border-2 border-[#FF0000] shadow-[0_0_50px_rgba(255,0,0,0.2),inset_0_0_30px_rgba(255,0,0,0.2)] overflow-hidden flex flex-col md:flex-row group">
         {/* HUD Grid Background */}
@@ -590,7 +590,7 @@ export function CTASectionChip() {
   };
 
   return (
-    <section className="relative w-full py-24 px-4 md:px-12 bg-[#050505] flex justify-center items-center font-mono overflow-hidden min-h-[800px]">
+    <section className="relative w-full py-24 px-4 md:px-12 bg-[#000000] flex justify-center items-center font-mono overflow-hidden min-h-[800px]">
       {/* Circuit Board Background Grid */}
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
@@ -1095,7 +1095,7 @@ export function CTASection() {
       </div>
 
       {/* Hacker HUD Outer Container */}
-      <div className="relative w-full max-w-[1200px] min-h-[350px] sm:min-h-[500px] md:min-h-[850px] bg-[#050505] flex justify-center items-center font-mono overflow-hidden group">
+      <div className="relative w-full max-w-[1200px] min-h-[350px] sm:min-h-[500px] md:min-h-[850px] bg-[#000000] flex justify-center items-center font-mono overflow-hidden group">
         <style>{`
              .flowing-line {
                stroke-dasharray: 80 1000;
@@ -1150,7 +1150,7 @@ export function CTASection() {
 
         {/* Very Subtle Microgrid Background (like the reference image) */}
         <div className="absolute inset-0 bg-microgrid pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_70%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_70%)] pointer-events-none"></div>
 
         {/* Full Geometric SVG HUD */}
         <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none p-4 md:p-8 overflow-hidden">

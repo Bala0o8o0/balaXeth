@@ -55,7 +55,7 @@ export function Footer() {
     }, []);
 
     return (
-        <footer className="relative w-full pt-20 pb-8 px-6 md:px-12 lg:px-20 bg-[#050505] border-t border-[#FF0000]/10 overflow-hidden font-mono selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
+        <footer className="relative w-full pt-20 pb-8 px-6 md:px-12 lg:px-20 bg-[#000000] border-t border-[#FF0000]/10 overflow-hidden font-mono selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
             
             {/* Massive Background Typography Watermark */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none opacity-[0.02] select-none overflow-hidden">

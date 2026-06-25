@@ -36,7 +36,7 @@ const ParticleBackground = dynamic(
 
 // ─── Sci-Fi Scramble Heading ──────────────────j─────────────────────────────
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
-const TARGET = "⚡PRODUCT DEVELOPER";
+const TARGET = "PRODUCT DEVELOPER";
 
 function ScrambleHeading() {
   const [display, setDisplay] = useState("##################");
@@ -94,7 +94,7 @@ function ScrambleHeading() {
       </motion.div>
 
       {/* Main Scramble Text */}
-      <h2 className="text-[#FF0000]  sm:text-xl md:text-2xl lg:text-[20px] font-extralight uppercase leading-tight tracking-[0.3em]">
+      <h2 className="text-[#0f0c0c]  sm:text-xl md:text-2xl lg:text-[20px] font-extralight uppercase leading-tight tracking-[0.3em]">
         {display.split("").map((ch, i) => (
           <span
             key={i}
@@ -141,14 +141,26 @@ function ScrambleHeading() {
 // ───────────────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  // ════════════════════════════════════════════════
+  //  HERO IMAGE SIZE — CHANGE ONLY THESE TWO LINES
+  const HERO_IMAGE_HEIGHT_MOBILE = "560px"; // 📱 mobile height
+  const HERO_IMAGE_HEIGHT_DESKTOP = "590px"; // 🖥️ desktop height (768px+)
+  // ════════════════════════════════════════════════
+
   const [mounted, setMounted] = useState(false);
   const [isFireEnabled, setIsFireEnabled] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
+
   useEffect(() => {
     setMounted(true);
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
   return (
-    <main className="bg-[#050505] min-h-screen text-white font-sans overflow-x-hidden selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
+    <main className="bg-[#000000] min-h-screen text-white font-sans overflow-x-hidden selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
       <Preloader />
       {/* <ParticleBackground /> */}
 
@@ -350,13 +362,20 @@ export default function Home() {
           </motion.h1>
         </div>
 
-        {/* Profile Image - Interactive WebGL Particles */}
+        {/* ============================================================
+          PROFILE IMAGE — To resize: edit the `height` in the style prop below.
+          clamp(MIN, PREFERRED, MAX) — safe and responsive.
+        ============================================================ */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 items-end justify-center pointer-events-none w-[95vw] md:w-[min(1500px,95vw)] h-[350px] md:h-[550px] min-h-[60vh] md:min-h-[87vh]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 flex items-end justify-center pointer-events-none"
           data-scroll
           data-scroll-speed="0.15"
           style={{
             display: mounted ? "flex" : "none",
+            width: "min(1500px, 95vw)",
+            height: isDesktop
+              ? HERO_IMAGE_HEIGHT_DESKTOP
+              : HERO_IMAGE_HEIGHT_MOBILE,
           }}
         >
           <motion.div
@@ -366,11 +385,7 @@ export default function Home() {
             transition={{ duration: 1.5, delay: 0.7 }}
             className="w-full h-full relative pointer-events-auto origin-bottom"
           >
-            {/* desktopScale=1.0 guarantees zero internal clipping of your head. */}
-            <ProfileLiquidShader
-              desktopScale={1.0}
-              isAnimationEnabled={isFireEnabled}
-            />
+            <ProfileLiquidShader isAnimationEnabled={isFireEnabled} />
           </motion.div>
         </div>
 
@@ -395,7 +410,7 @@ export default function Home() {
                 {/* Card Content Area */}
                 <div
                   id="resume-card-node"
-                  className="bg-[#050505] rounded-xl md:rounded-2xl p-2 md:p-5 flex flex-col gap-2 md:gap-4 relative z-10 overflow-hidden"
+                  className="bg-[#000000] rounded-xl md:rounded-2xl p-2 md:p-5 flex flex-col gap-2 md:gap-4 relative z-10 overflow-hidden"
                 >
                   {/* Background Subtle Red Glow */}
                   <div className="absolute -right-8 -bottom-8 w-16 h-16 bg-[#FF0000]/5 rounded-full blur-2xl group-hover:bg-[#FF0000]/10 transition-all duration-700" />
@@ -403,7 +418,7 @@ export default function Home() {
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 text-[#FF0000] relative z-10">
                     {/* Spider Core Icon (Static) */}
                     <div className="relative w-7 h-7 md:w-12 md:h-12 rounded-full flex items-center justify-center p-0.5 md:p-1 border border-[#FF0000]/30 shrink-0">
-                      <div className="w-full h-full rounded-full bg-[#050505] flex items-center justify-center overflow-hidden border border-[#FF0000]/20">
+                      <div className="w-full h-full rounded-full bg-[#000000] flex items-center justify-center overflow-hidden border border-[#FF0000]/20">
                         <motion.span
                           className="text-lg md:text-2xl select-none leading-none"
                           animate={{

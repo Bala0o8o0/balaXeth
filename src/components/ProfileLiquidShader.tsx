@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef, useState, useEffect, Suspense, useMemo } from "react";
+import { useRef, Suspense, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
+// ─────────────────────────────────────────────────────────────────
+//  SHADER CODE  (don't touch unless you know GLSL)
+// ─────────────────────────────────────────────────────────────────
 const vertexShader = `
   varying vec2 vUv;
   void main() {
@@ -47,20 +50,21 @@ const fragmentShader = `
   void main() {
     vec4 texColor = texture2D(uTexture, vUv);
     
-    // Remove the fuzzy anti-aliased edge where the white halo lives
-    // by tightening the alpha channel threshold. 
-    // Anything below 0.6 alpha becomes completely transparent.
+    // Tighten alpha to remove white halo/fringe around the image edges
     texColor.a = smoothstep(0.6, 0.8, texColor.a);
     if(texColor.a <= 0.0) discard;
 
-    // Discard any residual pure white pixels near the edge
+    // Discard residual pure-white pixels near the edge
     if(texColor.r > 0.8 && texColor.g > 0.8 && texColor.b > 0.8 && texColor.a < 0.9) {
         discard;
     }
+
+    // Red gradient tint from bottom to top
     vec3 redTint = vec3(1.0, 0.0, 0.0);
     float gradientStrength = (1.0 - vUv.y) * 0.7;
     texColor.rgb = mix(texColor.rgb, texColor.rgb * redTint, gradientStrength);
 
+    // Electric red dissolve edge effect
     vec2 center = vec2(0.5, 0.5);
     vec2 offset = vUv - center;
     float angle = (atan(offset.y, offset.x) / 6.28318) + 0.5; 
@@ -70,21 +74,26 @@ const fragmentShader = `
     float electricEdge = smoothstep(0.95, 0.98, wave);
     float core = smoothstep(0.98, 1.0, wave);
     vec3 electricColor = (uEdgeColor * electricEdge * 5.0 + uEdgeColor * core * 10.0) * uEnableAnimation;
+
     gl_FragColor = vec4(texColor.rgb + electricColor, texColor.a);
   }
 `;
 
-function DissolveImage({ url, scale = 1.0, isAnimationEnabled = true }: { url: string; scale?: number; isAnimationEnabled?: boolean }) {
+// ─────────────────────────────────────────────────────────────────
+//  INTERNAL: Renders the image as a Three.js plane that fills the canvas.
+//  The canvas fills 100% of its parent container — so resize the
+//  container in page.tsx, not this file.
+// ─────────────────────────────────────────────────────────────────
+function DissolveImage({ isAnimationEnabled }: { isAnimationEnabled: boolean }) {
     const meshRef = useRef<THREE.Mesh>(null);
-    const texture = useTexture(url);
+    const texture = useTexture("/assets/bala 1.png");
     const { viewport } = useThree();
 
     const img = texture.image as HTMLImageElement | undefined;
     const aspect = img ? img.width / img.height : 1;
 
-    // Use scale=1.0 to fit perfectly in the viewport without any clipping.
-    // If you want the head to be bigger, increase the CSS height of the container in page.tsx!
-    const height = viewport.height * scale;
+    // Fills the canvas exactly — no clipping, no extra padding.
+    const height = viewport.height;
     const width = height * aspect;
 
     const uniforms = useMemo(() => ({
@@ -115,31 +124,24 @@ function DissolveImage({ url, scale = 1.0, isAnimationEnabled = true }: { url: s
     );
 }
 
+// ─────────────────────────────────────────────────────────────────
+//  EXPORTED COMPONENT
+//
+//  ⚠️  To change the image size, go to page.tsx and find the
+//      "PROFILE IMAGE — Change size here" comment block.
+//      Edit the `height` value in the style prop there.
+// ─────────────────────────────────────────────────────────────────
 export default function ProfileLiquidShader({
-    desktopScale = 1.0, 
-    mobileScale = 1.0,
-    isAnimationEnabled = true
+    isAnimationEnabled = true,
 }: {
-    desktopScale?: number;
-    mobileScale?: number;
     isAnimationEnabled?: boolean;
 }) {
-    const [isDesktop, setIsDesktop] = useState(false);
-    useEffect(() => {
-        const check = () => setIsDesktop(window.innerWidth >= 768);
-        check();
-        window.addEventListener("resize", check);
-        return () => window.removeEventListener("resize", check);
-    }, []);
-
-    const currentScale = isDesktop ? desktopScale : mobileScale;
-
     return (
         <div className="w-full h-full relative z-40 pointer-events-auto cursor-crosshair">
             <Canvas camera={{ position: [0, 0, 5], fov: 52 }}>
                 <ambientLight intensity={1} />
                 <Suspense fallback={null}>
-                    <DissolveImage url="/assets/bala 1.png" scale={currentScale} isAnimationEnabled={isAnimationEnabled} />
+                    <DissolveImage isAnimationEnabled={isAnimationEnabled} />
                 </Suspense>
             </Canvas>
         </div>

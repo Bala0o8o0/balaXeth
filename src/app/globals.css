@@ -4,7 +4,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-orbitron: var(--font-orbitron), ui-sans-serif, system-ui;
   --color-brand-red: #FF0000;
-  --color-background: #050505;
+  --color-background: #000000;
   --color-foreground: #ffffff;
 
   @keyframes scan {

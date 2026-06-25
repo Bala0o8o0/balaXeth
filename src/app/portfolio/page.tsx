@@ -405,8 +405,8 @@ const HeroWaves = () => {
       />
 
       {/* Vignette to blend edges */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505] opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-[#000000] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#000000] via-transparent to-[#000000] opacity-90" />
     </div>
   );
 };
@@ -622,7 +622,7 @@ export default function Portfolio2Page() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white relative overflow-x-hidden selection:bg-[#FF0000] selection:text-black">
+    <main className="min-h-screen bg-[#000000] text-white relative overflow-x-hidden selection:bg-[#FF0000] selection:text-black">
       {/* Progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-[#FF0000] z-[100] origin-left"
@@ -634,7 +634,7 @@ export default function Portfolio2Page() {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-[#050505] border-b border-[#FF0000]/15"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#000000] border-b border-[#FF0000]/15"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-center justify-between text-[11px] font-mono">
           <div className="flex items-center gap-6">
@@ -819,7 +819,7 @@ export default function Portfolio2Page() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative bg-[#050505] p-1 border-t-2 border-[#FF0000]/60 shadow-[0_10px_30px_rgba(255,0,0,0.1)]"
+            className="relative bg-[#000000] p-1 border-t-2 border-[#FF0000]/60 shadow-[0_10px_30px_rgba(255,0,0,0.1)]"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
