@@ -20,7 +20,7 @@ export function CyberScanner({ className = "" }: { className?: string }) {
             {blocks.map((delay, i) => (
                 <motion.div
                     key={i}
-                    className="h-full flex-1 bg-[#FF0000] shadow-[0_0_5px_#FF0000]"
+                    className="h-full flex-1 bg-[#ffd400] shadow-[0_0_5px_#ffd400]"
                     animate={{ opacity: [0.1, 0.9, 0.1], height: ["40%", "100%", "40%"] }}
                     transition={{
                         duration: 0.8 + Math.random() * 0.4,
@@ -33,7 +33,7 @@ export function CyberScanner({ className = "" }: { className?: string }) {
 
             {/* Sweeping laser over the barcode */}
             <motion.div
-                className="absolute top-0 bottom-0 w-[10%] bg-[#FF0000] shadow-[0_0_10px_#FF0000,0_0_20px_#FF0000] z-10 mix-blend-screen"
+                className="absolute top-0 bottom-0 w-[10%] bg-[#ffd400] shadow-[0_0_10px_#ffd400,0_0_20px_#ffd400] z-10 mix-blend-screen"
                 animate={{ left: ["-10%", "110%"] }}
                 transition={{ duration: 6.0, repeat: Infinity, ease: "linear" }}
             />

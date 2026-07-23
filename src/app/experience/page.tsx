@@ -15,23 +15,23 @@ const ParticleBackground = dynamic(
 
 export default function ExperiencePage() {
   return (
-    <main className="bg-[#000000] min-h-screen text-white font-sans selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
+    <main className="bg-[#000000] min-h-screen text-white font-sans selection:bg-[#ffd400]/30 selection:text-[#ffd400]">
       <ParticleBackground />
       
       {/* Navigation Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-[#FF0000]/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-[#ffd400]/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link 
             href="/" 
-            className="group flex items-center gap-2 text-[#FF0000] font-mono text-xs tracking-widest uppercase hover:opacity-80 transition-all"
+            className="group flex items-center gap-2 text-[#ffd400] font-mono text-xs tracking-widest uppercase hover:opacity-80 transition-all"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>RETURN_TO_BASE</span>
           </Link>
           
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-[#FF0000] rounded-full animate-pulse" />
-            <span className="text-[#FF0000] font-mono text-[10px] tracking-[0.2em] uppercase">
+            <div className="w-2 h-2 bg-[#ffd400] rounded-full animate-pulse" />
+            <span className="text-[#ffd400] font-mono text-[10px] tracking-[0.2em] uppercase">
               SECURE_ARCHIVE // 0x44F
             </span>
           </div>
@@ -46,9 +46,9 @@ export default function ExperiencePage() {
       </div>
 
       {/* Footer-like status bar for the log page */}
-      <footer className="py-10 border-t border-[#FF0000]/10 bg-black/40">
+      <footer className="py-10 border-t border-[#ffd400]/10 bg-black/40">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-[#FF0000]/40 font-mono text-[10px] tracking-widest uppercase">
+          <p className="text-[#ffd400]/40 font-mono text-[10px] tracking-widest uppercase">
             End of encrypted logs // System version 2.4.1
           </p>
         </div>

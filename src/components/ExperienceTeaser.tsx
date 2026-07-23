@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Signal, BatteryFull, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import CyberTelemetry from "./CyberTelemetry";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 /**
  * UI/UX Pro Max - High-End Technical HUD
@@ -29,7 +31,7 @@ function PixelNoise() {
             repeat: Infinity,
             delay: Math.random() * 2,
           }}
-          className="absolute w-1 h-1 bg-[#FF0000]"
+          className="absolute w-1 h-1 bg-white"
         />
       ))}
     </div>
@@ -37,6 +39,16 @@ function PixelNoise() {
 }
 
 export function ExperienceTeaser() {
+  const [isConnecting, setIsConnecting] = useState(false);
+  const router = useRouter();
+
+  const handleConnect = () => {
+    setIsConnecting(true);
+    setTimeout(() => {
+      router.push("/experience");
+    }, 1500);
+  };
+
   return (
     <section className="relative w-full py-12 md:py-20 px-6 md:px-12 lg:px-24 bg-transparent z-10 flex flex-col items-center justify-center overflow-hidden">
       {/* Background Ambience Removed for Brightness */}
@@ -44,81 +56,81 @@ export function ExperienceTeaser() {
       {/* ── Section Title ── */}
       <div className="mb-8 text-center space-y-2">
         <div className="flex items-center justify-center gap-3">
-          <div className="w-8 h-px bg-[#FF0000]" />
-          <span className="text-[#FF0000] font-mono text-[10px] md:text-xs tracking-[0.4em] md:tracking-[0.6em] font-black uppercase">
-            SYSTEM_HISTORY
+          <div className="w-8 h-px bg-[#ffd400]" />
+          <span className="text-[#ffd400] font-mono text-[10px] md:text-xs tracking-[0.4em] md:tracking-[0.6em] font-black uppercase">
+            
           </span>
-          <div className="w-8 h-px bg-[#FF0000]" />
+          <div className="w-8 h-px bg-[#ffd400]" />
         </div>
         <h2
           className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter"
           style={{ fontFamily: "var(--font-orbitron)" }}
         >
-          my <span className="text-[#FF0000]">experience</span>
+          my <span className="text-[#ffd400]">experience</span>
         </h2>
       </div>
 
-      <div className="w-full max-w-2xl relative border border-[#FF0000]/40 bg-black/90 shadow-[0_0_30px_rgba(255,0,0,0.15)] overflow-hidden">
+      <div className="w-full max-w-6xl relative border border-[#ffd400]/40 bg-black/90 shadow-[0_0_30px_rgba(255, 212, 0,0.15)] overflow-hidden">
         {/* ── Top Technical Header ── */}
-        <div className="grid grid-cols-2 border-b border-[#FF0000]/20 bg-[#FF0000]/5">
-          <div className="p-3 border-r border-[#FF0000]/20 flex items-center">
+        <div className="grid grid-cols-2 border-b border-[#ffd400]/20 bg-[#ffd400]/5">
+          <div className="p-3 border-r border-[#ffd400]/20 flex items-center">
             <span
               className="text-white font-black text-xs tracking-widest"
               style={{ fontFamily: "var(--font-orbitron)" }}
             >
-              B4L4_ARCHIVE
+              PROFILE
             </span>
           </div>
           <div className="p-3 flex items-center justify-end gap-4">
-            <Signal className="w-3 h-3 text-[#FF0000] opacity-50" />
-            <BatteryFull className="w-3 h-3 text-[#FF0000] opacity-50" />
+            <Signal className="w-3 h-3 text-[#ffd400] opacity-50" />
+            <BatteryFull className="w-3 h-3 text-[#ffd400] opacity-50" />
           </div>
         </div>
 
         {/* ── Main Data Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left: Bio Data + CTA */}
-          <div className="border-r border-[#FF0000]/20 p-5 space-y-6 flex flex-col justify-center">
+          <div className="border-r border-[#ffd400]/20 p-5 space-y-6 flex flex-col justify-center">
             <div className="space-y-1">
               <span className="text-white/40 text-[8px] font-mono uppercase tracking-widest">
-                Ident_ID
+                Name
               </span>
               <div className="text-white font-mono text-[10px] font-bold tracking-widest">
-                BALA_MURUGAN_XP
+                BALA MURUGAN
               </div>
             </div>
 
             {/* ── CTA BUTTON (Now below the ID) ── */}
-            <Link href="/experience" className="group block">
-              <div className="w-full py-3 bg-[#FF0000]/10 border border-[#FF0000]/40 flex items-center justify-center gap-3 transition-all duration-300 hover:bg-[#FF0000] shadow-[0_0_10px_rgba(255,0,0,0.1)] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]">
-                <span className="text-[#FF0000] group-hover:text-black font-black uppercase tracking-[0.4em] text-[9px] transition-colors">
-                  VIEW_EXPERIENCE
+            <button onClick={handleConnect} disabled={isConnecting} className="group block w-full text-left">
+              <div className={`w-full py-3 ${isConnecting ? "bg-[#ffd400] border-white" : "bg-[#ffd400]/10 border-[#ffd400]/40 hover:bg-[#ffd400]"} border flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_0_10px_rgba(255, 212, 0,0.1)] hover:shadow-[0_0_20px_rgba(255, 212, 0,0.4)]`}>
+                <span className={`${isConnecting ? "text-white animate-pulse" : "text-[#ffd400] group-hover:text-black"} font-black uppercase tracking-[0.4em] text-[9px] transition-colors`}>
+                  {isConnecting ? "LOADING..." : "VIEW EXPERIENCE"}
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-[#FF0000] group-hover:text-black transition-colors" />
+                {!isConnecting && <ArrowUpRight className="w-4 h-4 text-[#ffd400] group-hover:text-black transition-colors" />}
               </div>
-            </Link>
+            </button>
 
             {/* Cyber Telemetry Status Panel */}
-            <div className="h-16 w-full relative border border-[#FF0000]/20 bg-[#FF0000]/5 overflow-hidden">
+            <div className="h-16 w-full relative border border-[#ffd400]/20 bg-[#ffd400]/5 overflow-hidden">
               <CyberTelemetry />
             </div>
 
             <div className="flex justify-between items-center text-[9px] font-mono">
               <span className="text-white/30 uppercase tracking-widest">
-                Link_State
+                Status
               </span>
-              <span className="text-[#FF0000] font-bold">SECURED</span>
+              <span className="text-[#ffd400] font-bold">AVAILABLE</span>
             </div>
           </div>
 
           {/* Right: The Spider Scan */}
-          <div className="relative p-5 bg-[#080000] flex items-center justify-center min-h-[220px]">
+          <div className="relative p-5 bg-black flex items-center justify-center min-h-[220px]">
             {/* Technical Grid */}
             <div
               className="absolute inset-0 opacity-10 pointer-events-none"
               style={{
                 backgroundImage:
-                  "linear-gradient(#FF0000 1px, transparent 1px), linear-gradient(90deg, #FF0000 1px, transparent 1px)",
+                  "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
                 backgroundSize: "20px 20px",
               }}
             />
@@ -144,26 +156,26 @@ export function ExperienceTeaser() {
                 scale: [1, 1.05, 1],
               }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute z-20 border border-[#980202] w-44 h-24"
+              className="absolute z-20 border border-white w-44 h-24"
             />
 
-            <div className="absolute top-2 right-4 text-[7px] font-mono text-[#FF0000]/40 uppercase tracking-widest">
-              Scan_Type: Bio_Core
+            <div className="absolute top-2 right-4 text-[7px] font-mono text-white/40 uppercase tracking-widest">
+              Profile Image
             </div>
           </div>
         </div>
 
         {/* ── Status Table ── */}
-        <div className="border-t border-[#FF0000]/20 p-5 bg-[#FF0000]/2">
+        <div className="border-t border-[#ffd400]/20 p-5 bg-[#ffd400]/2">
           <div className="space-y-2">
             {[
               { label: "NAME", value: "BALA MURUGAN" },
-              { label: "FUNCTION", value: "AI DEVELOPER" },
-              { label: "STATUS", value: "OPERATIONAL" },
+              { label: "ROLE", value: "AI DEVELOPER" },
+              { label: "STATUS", value: "ACTIVE" },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex justify-between items-center py-1 border-b border-[#FF0000]/10 last:border-0"
+                className="flex justify-between items-center py-1 border-b border-[#ffd400]/10 last:border-0"
               >
                 <span className="text-white/40 text-[9px] font-bold tracking-widest uppercase">
                   {item.label}
@@ -176,13 +188,81 @@ export function ExperienceTeaser() {
           </div>
         </div>
 
-        {/* ── System Footer ── */}
-        <div className="p-1.5 bg-[#FF0000] text-black text-center">
+        <div className="p-1.5 bg-[#ffd400] text-black text-center">
           <span className="text-[7px] font-black tracking-[0.4em] uppercase">
-            2022 // 2026
+            2022 - 2026
           </span>
         </div>
       </div>
+
+      {/* Glitch Overlay Transition */}
+      <AnimatePresence>
+        {isConnecting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center bg-[#ffd400] overflow-hidden"
+          >
+             <motion.div
+               animate={{
+                 x: [-10, 10, -5, 5, 0],
+                 y: [5, -5, 10, -10, 0],
+                 opacity: [0.8, 1, 0.5, 0.9, 1],
+                 scale: [1.02, 0.98, 1.05, 0.95, 1]
+               }}
+               transition={{ duration: 0.15, repeat: Infinity, repeatType: "mirror" }}
+               className="absolute inset-0 bg-transparent opacity-40 mix-blend-multiply"
+               style={{
+                 backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%)"
+               }}
+             />
+             
+             {/* Scanlines (Darker for red background) */}
+             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.2)_1px,transparent_1px)] bg-[size:4px_4px] mix-blend-multiply opacity-50" />
+             
+             {/* Glitching Dragon Logo */}
+             <motion.div
+               animate={{ 
+                 x: [-15, 15, -5, 20, -10, 5],
+                 y: [-5, 5, -2, 8, -6, 2],
+                 filter: ["hue-rotate(0deg)", "hue-rotate(90deg)", "hue-rotate(180deg)", "hue-rotate(270deg)"],
+                 scale: [1, 1.1, 0.95, 1.15, 0.9, 1.05],
+                 skewX: [0, 10, -10, 15, -5, 0]
+               }}
+               transition={{ duration: 0.15, repeat: Infinity, ease: "linear" }}
+               className="relative z-10 mix-blend-normal flex items-center justify-center"
+               style={{ filter: "drop-shadow(5px 0 0 #00FFFF) drop-shadow(-5px 0 0 #FF00FF)" }}
+             >
+               <img
+                 src="/assets/dragon_logo.png"
+                 alt="Glitch Dragon Logo"
+                 className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] object-contain brightness-0 drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+               />
+             </motion.div>
+             
+             {/* Random glitch lines */}
+             <motion.div
+               animate={{ 
+                 top: ["10%", "40%", "80%", "20%", "90%"], 
+                 height: ["2px", "15px", "4px", "25px", "8px"],
+                 opacity: [0.3, 0.8, 0.2, 0.9, 0.5]
+               }}
+               transition={{ duration: 0.1, repeat: Infinity }}
+               className="absolute left-0 w-full bg-white mix-blend-overlay"
+             />
+             <motion.div
+               animate={{ 
+                 top: ["80%", "20%", "50%", "90%", "10%"], 
+                 height: ["5px", "2px", "12px", "3px", "20px"],
+                 opacity: [0.5, 0.2, 0.7, 0.4, 0.8]
+               }}
+               transition={{ duration: 0.12, repeat: Infinity }}
+               className="absolute left-0 w-full bg-black mix-blend-overlay"
+             />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

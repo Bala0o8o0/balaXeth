@@ -63,10 +63,10 @@ export default function CyberTelemetry() {
     // ── Hex Decrypter Variables ──
     const addresses = ["0x4E8A", "0x5A1F", "0x63B2", "0x7F0E", "0x8D29", "0x91CA"];
     const hexLines: HexLine[] = [
-      { address: "0x4E8A", bytes: ["A1", "3F", "99", "C2"], status: "DEC", color: "rgba(255, 0, 0, 0.4)" },
+      { address: "0x4E8A", bytes: ["A1", "3F", "99", "C2"], status: "DEC", color: "rgba(255, 212, 0, 0.4)" },
       { address: "0x5A1F", bytes: ["02", "FF", "D2", "4B"], status: "OK ", color: "rgba(255, 255, 255, 0.7)" },
-      { address: "0x63B2", bytes: ["FE", "1A", "88", "C0"], status: "SYS", color: "rgba(255, 0, 0, 0.4)" },
-      { address: "0x7F0E", bytes: ["90", "C1", "E4", "F8"], status: "ERR", color: "#FF0000" }
+      { address: "0x63B2", bytes: ["FE", "1A", "88", "C0"], status: "", color: "rgba(255, 212, 0, 0.4)" },
+      { address: "0x7F0E", bytes: ["90", "C1", "E4", "F8"], status: "ERR", color: "#ffd400" }
     ];
 
     // ── Graph Variables ──
@@ -83,7 +83,7 @@ export default function CyberTelemetry() {
       ctx.fillRect(0, 0, width, height);
 
       // Grid Pattern Background
-      ctx.strokeStyle = "rgba(255, 0, 0, 0.03)";
+      ctx.strokeStyle = "rgba(255, 212, 0, 0.03)";
       ctx.lineWidth = 1;
       const gridSize = 10;
       for (let x = 0; x < width; x += gridSize) {
@@ -110,7 +110,7 @@ export default function CyberTelemetry() {
         const radarRadius = 22;
 
         // Draw radar bounds
-        ctx.strokeStyle = "rgba(255, 0, 0, 0.15)";
+        ctx.strokeStyle = "rgba(255, 212, 0, 0.15)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(radarX, radarY, radarRadius, 0, Math.PI * 2);
@@ -121,7 +121,7 @@ export default function CyberTelemetry() {
         ctx.stroke();
 
         // Crosshairs
-        ctx.strokeStyle = "rgba(255, 0, 0, 0.1)";
+        ctx.strokeStyle = "rgba(255, 212, 0, 0.1)";
         ctx.beginPath();
         ctx.moveTo(radarX - radarRadius - 3, radarY);
         ctx.lineTo(radarX + radarRadius + 3, radarY);
@@ -137,8 +137,8 @@ export default function CyberTelemetry() {
           radarX, radarY, 0,
           radarX, radarY, radarRadius
         );
-        gradient.addColorStop(0, "rgba(255, 0, 0, 0.15)");
-        gradient.addColorStop(1, "rgba(255, 0, 0, 0.0)");
+        gradient.addColorStop(0, "rgba(255, 212, 0, 0.15)");
+        gradient.addColorStop(1, "rgba(255, 212, 0, 0.0)");
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -155,7 +155,7 @@ export default function CyberTelemetry() {
         ctx.fill();
 
         // Sweep leading line
-        ctx.strokeStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.strokeStyle = "rgba(255, 212, 0, 0.4)";
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(radarX, radarY);
@@ -182,17 +182,17 @@ export default function CyberTelemetry() {
           }
 
           if (blip.intensity > 0) {
-            ctx.shadowColor = "#FF0000";
+            ctx.shadowColor = "#ffd400";
             ctx.shadowBlur = 6 * blip.intensity;
 
             // Blip center
-            ctx.fillStyle = `rgba(255, 0, 0, ${blip.intensity})`;
+            ctx.fillStyle = `rgba(255, 212, 0, ${blip.intensity})`;
             ctx.beginPath();
             ctx.arc(blipX, blipY, 2, 0, Math.PI * 2);
             ctx.fill();
 
             // Blip ring
-            ctx.strokeStyle = `rgba(255, 0, 0, ${blip.intensity * 0.3})`;
+            ctx.strokeStyle = `rgba(255, 212, 0, ${blip.intensity * 0.3})`;
             ctx.beginPath();
             ctx.arc(blipX, blipY, 5 * (1 - blip.intensity + 0.2), 0, Math.PI * 2);
             ctx.stroke();
@@ -217,8 +217,8 @@ export default function CyberTelemetry() {
 
         // Randomly flicker state
         if (Math.random() < 0.2) {
-          hexLines[lineIdx].status = Math.random() > 0.5 ? "DEC" : "SYS";
-          hexLines[lineIdx].color = Math.random() > 0.5 ? "rgba(255, 0, 0, 0.4)" : "rgba(255, 255, 255, 0.5)";
+          hexLines[lineIdx].status = Math.random() > 0.5 ? "DEC" : "";
+          hexLines[lineIdx].color = Math.random() > 0.5 ? "rgba(255, 212, 0, 0.4)" : "rgba(255, 255, 255, 0.5)";
         }
       }
 
@@ -228,7 +228,7 @@ export default function CyberTelemetry() {
         ctx.font = "8px Courier New, monospace";
 
         // Address
-        ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
+        ctx.fillStyle = "rgba(255, 212, 0, 0.3)";
         ctx.fillText(line.address, hexX, y);
 
         // Bytes
@@ -238,11 +238,11 @@ export default function CyberTelemetry() {
 
         // Status Label (e.g. OK, DEC)
         if (line.status === "ERR") {
-          ctx.fillStyle = "#FF0000";
+          ctx.fillStyle = "#ffd400";
         } else if (line.status === "OK ") {
           ctx.fillStyle = "#FF4444";
         } else {
-          ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+          ctx.fillStyle = "rgba(255, 212, 0, 0.4)";
         }
         ctx.fillText(`[${line.status}]`, hexX + 90, y);
       });
@@ -255,17 +255,17 @@ export default function CyberTelemetry() {
         const graphY = (height - graphHeight) / 2;
 
         // Draw graph background border
-        ctx.strokeStyle = "rgba(255, 0, 0, 0.1)";
+        ctx.strokeStyle = "rgba(255, 212, 0, 0.1)";
         ctx.strokeRect(graphX, graphY, graphWidth, graphHeight);
 
         // Title
-        ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.fillStyle = "rgba(255, 212, 0, 0.4)";
         ctx.font = "7px Courier New, monospace";
         ctx.fillText("SIGNAL_FREQ", graphX, graphY - 3);
 
         // Status
         const netLoad = 65 + Math.sin(frame * 0.03) * 15 + Math.random() * 2;
-        ctx.fillStyle = "#FF0000";
+        ctx.fillStyle = "#ffd400";
         ctx.textAlign = "right";
         ctx.fillText(`${Math.round(netLoad)}%`, graphX + graphWidth, graphY - 3);
         ctx.textAlign = "left"; // reset
@@ -296,17 +296,17 @@ export default function CyberTelemetry() {
         });
 
         // Stroke
-        ctx.strokeStyle = "#FF0000";
+        ctx.strokeStyle = "#ffd400";
         ctx.lineWidth = 1;
-        ctx.shadowColor = "rgba(255, 0, 0, 0.5)";
+        ctx.shadowColor = "rgba(255, 212, 0, 0.5)";
         ctx.shadowBlur = 3;
         ctx.stroke();
         ctx.shadowBlur = 0; // reset
 
         // Gradient fill below wave
         const fillGrad = ctx.createLinearGradient(graphX, graphY, graphX, graphY + graphHeight);
-        fillGrad.addColorStop(0, "rgba(255, 0, 0, 0.15)");
-        fillGrad.addColorStop(1, "rgba(255, 0, 0, 0.0)");
+        fillGrad.addColorStop(0, "rgba(255, 212, 0, 0.15)");
+        fillGrad.addColorStop(1, "rgba(255, 212, 0, 0.0)");
 
         ctx.lineTo(graphX + graphWidth, graphY + graphHeight);
         ctx.lineTo(graphX, graphY + graphHeight);
@@ -316,7 +316,7 @@ export default function CyberTelemetry() {
       }
 
       // ── CRT CRT scanlines overlay ──
-      ctx.fillStyle = "rgba(255, 0, 0, 0.04)";
+      ctx.fillStyle = "rgba(255, 212, 0, 0.04)";
       for (let y = 0; y < height; y += 4) {
         ctx.fillRect(0, y, width, 2);
       }

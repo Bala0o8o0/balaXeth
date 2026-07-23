@@ -55,7 +55,7 @@ export function Footer() {
     }, []);
 
     return (
-        <footer className="relative w-full pt-20 pb-8 px-6 md:px-12 lg:px-20 bg-[#000000] border-t border-[#FF0000]/10 overflow-hidden font-mono selection:bg-[#FF0000]/30 selection:text-[#FF0000]">
+        <footer className="relative w-full pt-20 pb-8 px-6 md:px-12 lg:px-20 bg-[#000000] border-t border-[#ffd400]/10 overflow-hidden font-mono selection:bg-[#ffd400]/30 selection:text-[#ffd400]">
             
             {/* Massive Background Typography Watermark */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none opacity-[0.02] select-none overflow-hidden">
@@ -65,7 +65,7 @@ export function Footer() {
             </div>
 
             {/* Glowing Accent Line */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FF0000]/50 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ffd400]/50 to-transparent" />
 
             <div className="relative z-10 max-w-7xl mx-auto flex flex-col gap-16">
                 
@@ -75,21 +75,19 @@ export function Footer() {
                     {/* Brand & Bio (Col span 5) */}
                     <div className="lg:col-span-5 flex flex-col gap-8">
                         <div className="flex items-center gap-5">
-                            <div className="relative w-16 h-16 bg-black border border-[#FF0000]/30 rounded-lg flex items-center justify-center p-2 shadow-[0_0_15px_rgba(255,0,0,0.1)] group hover:border-[#FF0000]/60 transition-colors">
-                                <div className="absolute inset-0 bg-[#FF0000]/5 rounded-lg" />
-                                <Image
+                            <div className="relative w-16 h-16 bg-black border border-[#ffd400]/30 rounded-lg flex items-center justify-center p-2 shadow-[0_0_15px_rgba(255, 212, 0,0.1)] group hover:border-[#ffd400]/60 transition-colors">
+                                <div className="absolute inset-0 bg-[#ffd400]/5 rounded-lg" />
+                                <img
                                     src="/assets/dragon_logo.png"
                                     alt="Dragon Insignia"
-                                    fill
-                                    sizes="64px"
-                                    className="object-contain p-2 opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,0.8)] transition-all"
+                                    className="absolute inset-0 w-full h-full object-contain p-2 opacity-90 group-hover:opacity-100 group-hover:drop-shadow-[0_0_10px_rgba(255, 212, 0,0.8)] transition-all"
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <h2 className="text-4xl font-black text-white tracking-[0.2em] uppercase leading-none" style={{ fontFamily: "var(--font-orbitron)" }}>
                                     BALA
                                 </h2>
-                                <span className="text-[10px] text-[#FF0000] tracking-[0.3em] uppercase mt-2">SYS_ARCHITECT</span>
+                                <span className="text-[10px] text-[#ffd400] tracking-[0.3em] uppercase mt-2">ARCHITECT</span>
                             </div>
                         </div>
 
@@ -99,9 +97,9 @@ export function Footer() {
 
                         {/* Interactive "Email / Newsletter" box typical of premium sites */}
                         <form onSubmit={handleTransmission} className="flex flex-col gap-3 mt-2 relative">
-                            <span className="text-[9px] text-[#FF0000]/60 tracking-[0.3em] uppercase font-bold">Initiate Transmission</span>
-                            <div className="flex items-center border border-[#FF0000]/20 bg-black max-w-sm focus-within:border-[#FF0000]/60 transition-colors group">
-                                <div className="pl-4 pr-3 text-[#FF0000]/50 group-focus-within:text-[#FF0000]">
+                            <span className="text-[9px] text-[#ffd400]/60 tracking-[0.3em] uppercase font-bold">Initiate Transmission</span>
+                            <div className="flex items-center border border-[#ffd400]/20 bg-black max-w-sm focus-within:border-[#ffd400]/60 transition-colors group">
+                                <div className="pl-4 pr-3 text-[#ffd400]/50 group-focus-within:text-[#ffd400]">
                                     <Mail size={14} />
                                 </div>
                                 <input 
@@ -116,7 +114,7 @@ export function Footer() {
                                 <button 
                                     type="submit" 
                                     disabled={status === "sending"}
-                                    className="px-5 py-3.5 bg-[#FF0000]/10 hover:bg-[#FF0000] text-[#FF0000] hover:text-black transition-all font-bold text-[10px] tracking-[0.2em] border-l border-[#FF0000]/20 disabled:opacity-50"
+                                    className="px-5 py-3.5 bg-[#ffd400]/10 hover:bg-[#ffd400] text-[#ffd400] hover:text-black transition-all font-bold text-[10px] tracking-[0.2em] border-l border-[#ffd400]/20 disabled:opacity-50"
                                 >
                                     {status === "sending" ? "WAIT" : "SEND"}
                                 </button>
@@ -131,12 +129,12 @@ export function Footer() {
                     <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-8">
                         {/* Sitemap */}
                         <div className="flex flex-col gap-6">
-                            <h3 className="text-[10px] font-bold text-[#FF0000] tracking-[0.3em] uppercase border-b border-[#FF0000]/20 pb-2">Index</h3>
+                            <h3 className="text-[10px] font-bold text-[#ffd400] tracking-[0.3em] uppercase border-b border-[#ffd400]/20 pb-2">Index</h3>
                             <ul className="flex flex-col gap-4">
                                 {['Home', 'Experience', 'Portfolio', 'Contact'].map((item) => (
                                     <li key={item}>
                                         <a href={`#${item.toLowerCase()}`} className="group flex items-center gap-3 text-[11px] text-white/50 hover:text-white transition-colors tracking-widest uppercase">
-                                            <span className="w-1.5 h-1.5 border border-[#FF0000]/30 group-hover:bg-[#FF0000] transition-colors" />
+                                            <span className="w-1.5 h-1.5 border border-[#ffd400]/30 group-hover:bg-[#ffd400] transition-colors" />
                                             {item}
                                         </a>
                                     </li>
@@ -146,7 +144,7 @@ export function Footer() {
 
                         {/* Socials */}
                         <div className="flex flex-col gap-6">
-                            <h3 className="text-[10px] font-bold text-[#FF0000] tracking-[0.3em] uppercase border-b border-[#FF0000]/20 pb-2">Network</h3>
+                            <h3 className="text-[10px] font-bold text-[#ffd400] tracking-[0.3em] uppercase border-b border-[#ffd400]/20 pb-2">Network</h3>
                             <ul className="flex flex-col gap-4">
                                 {[
                                     { name: 'GitHub', icon: Github, url: '#' },
@@ -155,9 +153,9 @@ export function Footer() {
                                 ].map((social) => (
                                     <li key={social.name}>
                                         <a href={social.url} className="group flex items-center gap-3 text-[11px] text-white/50 hover:text-white transition-colors tracking-widest uppercase">
-                                            <social.icon size={12} className="text-[#FF0000]/50 group-hover:text-[#FF0000] transition-colors" />
+                                            <social.icon size={12} className="text-[#ffd400]/50 group-hover:text-[#ffd400] transition-colors" />
                                             {social.name}
-                                            <ArrowUpRight size={10} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-[#FF0000]" />
+                                            <ArrowUpRight size={10} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-[#ffd400]" />
                                         </a>
                                     </li>
                                 ))}
@@ -166,13 +164,13 @@ export function Footer() {
 
                         {/* Legal / Extra */}
                         <div className="flex flex-col gap-6 sm:col-span-1 col-span-2">
-                            <h3 className="text-[10px] font-bold text-[#FF0000] tracking-[0.3em] uppercase border-b border-[#FF0000]/20 pb-2">System</h3>
+                            <h3 className="text-[10px] font-bold text-[#ffd400] tracking-[0.3em] uppercase border-b border-[#ffd400]/20 pb-2">System</h3>
                             <ul className="flex flex-row sm:flex-col gap-10 sm:gap-6">
                                 <li className="flex flex-col gap-2">
                                     <span className="text-[9px] text-white/40 tracking-widest uppercase">Status</span>
-                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FF0000]/10 border border-[#FF0000]/20 w-fit">
-                                        <div className="w-1.5 h-1.5 bg-[#FF0000] rounded-full animate-pulse shadow-[0_0_8px_#FF0000]" />
-                                        <span className="text-[9px] text-[#FF0000] font-bold tracking-[0.2em] leading-none">ONLINE</span>
+                                    <div className="flex items-center gap-2 px-3 py-1.5 bg-[#ffd400]/10 border border-[#ffd400]/20 w-fit">
+                                        <div className="w-1.5 h-1.5 bg-[#ffd400] rounded-full animate-pulse shadow-[0_0_8px_#ffd400]" />
+                                        <span className="text-[9px] text-[#ffd400] font-bold tracking-[0.2em] leading-none">ONLINE</span>
                                     </div>
                                 </li>
                                 <li className="flex flex-col gap-2">
@@ -198,10 +196,10 @@ export function Footer() {
 
                     <div className="flex items-center gap-6 text-[9px] text-white/30 tracking-[0.2em] uppercase">
                         <div className="flex items-center gap-2">
-                            <Activity size={10} className="text-[#FF0000]/50" />
-                            <span>SYS_LATENCY: 14ms</span>
+                            <Activity size={10} className="text-[#ffd400]/50" />
+                            <span>LATENCY: 14ms</span>
                         </div>
-                        <a href="#top" className="hover:text-[#FF0000] transition-colors flex items-center gap-1">
+                        <a href="#top" className="hover:text-[#ffd400] transition-colors flex items-center gap-1">
                             BACK_TO_TOP <ArrowUpRight size={10} />
                         </a>
                     </div>
@@ -216,14 +214,14 @@ export function Footer() {
                         initial={{ opacity: 0, y: 50, x: "-50%" }}
                         animate={{ opacity: 1, y: 0, x: "-50%" }}
                         exit={{ opacity: 0, y: 50, x: "-50%" }}
-                        className="fixed bottom-10 left-1/2 z-50 flex items-center gap-4 bg-black/90 backdrop-blur-md border border-[#FF0000] px-6 py-4 shadow-[0_0_30px_rgba(255,0,0,0.4)]"
+                        className="fixed bottom-10 left-1/2 z-50 flex items-center gap-4 bg-black/90 backdrop-blur-md border border-[#ffd400] px-6 py-4 shadow-[0_0_30px_rgba(255, 212, 0,0.4)]"
                     >
                         <div className="relative flex items-center justify-center">
-                            <div className="absolute inset-0 bg-[#FF0000]/20 rounded-full animate-ping" />
-                            <CheckCircle2 size={24} className="text-[#FF0000] relative z-10" />
+                            <div className="absolute inset-0 bg-[#ffd400]/20 rounded-full animate-ping" />
+                            <CheckCircle2 size={24} className="text-[#ffd400] relative z-10" />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[12px] font-bold text-[#FF0000] tracking-[0.2em] uppercase">Transmission Sent</span>
+                            <span className="text-[12px] font-bold text-[#ffd400] tracking-[0.2em] uppercase">Transmission Sent</span>
                             <span className="text-[10px] text-white/60 tracking-widest uppercase mt-1">Comm-link established. Protocol engaged.</span>
                         </div>
                     </motion.div>

@@ -63,44 +63,7 @@ export default function HudSounds() {
       }
     };
 
-    // Subtle data-scroll tick
-    const playScrollSound = () => {
-      if (!audioCtxRef.current) return;
-      const ctx = audioCtxRef.current;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = "triangle";
-      // Slight randomization of pitch for each scroll tick, higher base pitch for sci-fi feel
-      osc.frequency.setValueAtTime(300 + Math.random() * 100, ctx.currentTime);
-
-      gain.gain.setValueAtTime(0, ctx.currentTime);
-      // Significantly increased gain so the scroll tick is clearly audible
-      gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.01);
-      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.04);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.04);
-    };
-
     // --- Event Listeners ---
-    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-    let lastScrollTime = 0;
-
-    const handleScroll = () => {
-      initAudio();
-
-      const now = Date.now();
-      // Throttle scroll sounds to avoid overwhelming audio
-      if (now - lastScrollTime > 50) {
-        playScrollSound();
-        lastScrollTime = now;
-      }
-    };
-
     const handleClick = (e: MouseEvent) => {
       initAudio();
       playClickSound();
@@ -122,22 +85,10 @@ export default function HudSounds() {
     };
 
     // Attach listeners
-    // We attach to document for scroll if body is not scrollable, or window
-    // Added wheel and touchmove to capture scroll intent even if window scroll isn't firing
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-      capture: true,
-    });
-    window.addEventListener("wheel", handleScroll, { passive: true });
-    window.addEventListener("touchmove", handleScroll, { passive: true });
-
     window.addEventListener("click", handleClick, { capture: true });
     window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll, { capture: true });
-      window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
       window.removeEventListener("click", handleClick, { capture: true });
       window.removeEventListener("mouseover", handleMouseOver);
       if (audioCtxRef.current && audioCtxRef.current.state !== "closed") {

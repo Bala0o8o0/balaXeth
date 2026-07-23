@@ -16,7 +16,7 @@ export function HoloWave({ className = "" }: { className?: string }) {
                 return (
                     <motion.div
                         key={i}
-                        className="flex-1 bg-[#FF0000] rounded-sm"
+                        className="flex-1 bg-[#ffd400] rounded-sm"
                         animate={{ height: [`${20 * randomScale}%`, `${maxH}%`, `${20 * randomScale}%`] }}
                         transition={{
                             duration: 1.2,

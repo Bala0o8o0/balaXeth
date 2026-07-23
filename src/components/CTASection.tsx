@@ -1,9 +1,10 @@
-// "use client";
+"use client";
 
 import { useRef, useMemo, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
 import {
@@ -144,7 +145,7 @@ function MorphingMatrix() {
       {/* Extremely bright red for aggressive Bloom effect */}
       <pointsMaterial
         size={0.06}
-        color="#FF0000"
+        color="#ffd400"
         transparent
         opacity={0.6}
         blending={THREE.AdditiveBlending}
@@ -196,7 +197,7 @@ function HUDScanline() {
       <motion.div
         animate={{ y: ["-100%", "300%"] }}
         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-        className="w-full h-[1px] bg-[#FF0000]/30 shadow-[0_0_15px_rgba(255,0,0,0.8),0_0_30px_rgba(255,0,0,0.5)]"
+        className="w-full h-[1px] bg-[#ffd400]/30 shadow-[0_0_15px_rgba(255, 212, 0,0.8),0_0_30px_rgba(255, 212, 0,0.5)]"
       />
       {/* Dark banding overlay */}
       <div
@@ -231,19 +232,19 @@ export function CTASectionOld() {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="inline-flex items-center justify-center gap-4 mb-10 border border-[#FF0000]/30 bg-[#FF0000]/[0.02] px-4 py-1 backdrop-blur-sm pointer-events-auto"
+          className="inline-flex items-center justify-center gap-4 mb-10 border border-[#ffd400]/30 bg-[#ffd400]/[0.02] px-4 py-1 backdrop-blur-sm pointer-events-auto"
           style={{
             clipPath: "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
           }}
         >
           <div className="flex gap-1">
-            <div className="w-1 h-3 bg-[#FF0000] animate-[pulse_0.5s_infinite]" />
-            <div className="w-1 h-3 bg-[#FF0000]/40" />
-            <div className="w-1 h-3 bg-[#FF0000]/20" />
+            <div className="w-1 h-3 bg-[#ffd400] animate-[pulse_0.5s_infinite]" />
+            <div className="w-1 h-3 bg-[#ffd400]/40" />
+            <div className="w-1 h-3 bg-[#ffd400]/20" />
           </div>
           <span className="font-mono text-[10px] md:text-xs tracking-[0.3em] font-bold">
-            <span className="text-white">TERMINAL //</span>{" "}
-            <span className="text-[#FF0000]">ACCESS_GRANTED</span>
+            <span className="text-white"></span>{" "}
+            <span className="text-[#ffd400]">WELCOME</span>
           </span>
         </motion.div>
 
@@ -259,7 +260,7 @@ export function CTASectionOld() {
           <span className="text-[#ffb3b3] relative inline-block mt-2 sm:mt-3 tracking-widest sm:tracking-[0.1em] md:tracking-[0.15em]">
             EXPLORE MY
           </span>
-          <span className="text-[#FF0000] relative inline-block mt-2 sm:mt-3 tracking-widest sm:tracking-[0.1em] md:tracking-[0.15em]">
+          <span className="text-[#ffd400] relative inline-block mt-2 sm:mt-3 tracking-widest sm:tracking-[0.1em] md:tracking-[0.15em]">
             Portfolio
           </span>
         </motion.h2>
@@ -270,7 +271,7 @@ export function CTASectionOld() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="font-mono text-[10px] sm:text-xs text-[#FF0000]/60 max-w-xl mx-auto mb-6 sm:mb-8 relative z-20 pointer-events-auto"
+          className="font-mono text-[10px] sm:text-xs text-[#ffd400]/60 max-w-xl mx-auto mb-6 sm:mb-8 relative z-20 pointer-events-auto"
         >
           <p className="text-white/40 leading-relaxed font-sans text-sm sm:text-base tracking-wide text-center px-2">
             Dive into a curated archive of systems and applications — every node
@@ -325,50 +326,50 @@ export function CTASectionOld() {
                   <path
                     d="M26 6 L274 6 L294 32 L274 58 L26 58 L6 32 Z"
                     fill="url(#btn-fill)"
-                    stroke="#FF0000"
+                    stroke="#ffd400"
                     strokeWidth="1.5"
                     strokeOpacity="0.5"
                     className="transition-colors duration-300 group-hover:fill-[#2a0000]"
                   />
 
                   {/* Outer Drop Shadow Group for Neon glow effects */}
-                  <g className="drop-shadow-[0_0_8px_rgba(255,0,0,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(255,0,0,1)] transition-all duration-300">
+                  <g className="drop-shadow-[0_0_8px_rgba(255, 212, 0,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(255, 212, 0,1)] transition-all duration-300">
                     {/* Top Glowing Rail */}
                     <path
                       d="M40 2 L260 2"
-                      stroke="#FF0000"
+                      stroke="#ffd400"
                       strokeWidth="3"
                       strokeLinecap="round"
-                      className="group-hover:stroke-[#FF0000] transition-colors duration-300"
+                      className="group-hover:stroke-[#ffd400] transition-colors duration-300"
                     />
 
                     {/* Bottom Glowing Rail */}
                     <path
                       d="M40 62 L260 62"
-                      stroke="#FF0000"
+                      stroke="#ffd400"
                       strokeWidth="3"
                       strokeLinecap="round"
-                      className="group-hover:stroke-[#FF0000] transition-colors duration-300"
+                      className="group-hover:stroke-[#ffd400] transition-colors duration-300"
                     />
 
                     {/* Left Arrow Bracket */}
                     <path
                       d="M18 11 L3 32 L18 53"
-                      stroke="#FF0000"
+                      stroke="#ffd400"
                       strokeWidth="3"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="group-hover:stroke-[#FF0000] transition-colors duration-300"
+                      className="group-hover:stroke-[#ffd400] transition-colors duration-300"
                     />
 
                     {/* Right Arrow Bracket */}
                     <path
                       d="M282 11 L297 32 L282 53"
-                      stroke="#FF0000"
+                      stroke="#ffd400"
                       strokeWidth="3"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="group-hover:stroke-[#FF0000] transition-colors duration-300"
+                      className="group-hover:stroke-[#ffd400] transition-colors duration-300"
                     />
                   </g>
                 </svg>
@@ -376,7 +377,7 @@ export function CTASectionOld() {
 
               {/* Text */}
               <span
-                className="relative z-10 text-[#FF0000] text-[16px] font-bold tracking-[0.3em] uppercase drop-shadow-[0_0_5px_rgba(255,0,0,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(255,0,0,1)] transition-all duration-300 mt-[2px]"
+                className="relative z-10 text-[#ffd400] text-[16px] font-bold tracking-[0.3em] uppercase drop-shadow-[0_0_5px_rgba(255, 212, 0,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(255, 212, 0,1)] transition-all duration-300 mt-[2px]"
                 style={{ fontFamily: "var(--font-orbitron)" }}
               >
                 VIEW PROJECTS
@@ -385,7 +386,7 @@ export function CTASectionOld() {
           </div>
 
           {/* Access Text */}
-          <div className="mt-8 text-[8px] tracking-[0.5em] text-[#FF0000]/40 uppercase text-center font-mono">
+          <div className="mt-8 text-[8px] tracking-[0.5em] text-[#ffd400]/40 uppercase text-center font-mono">
             // SECURE_LINK_FOUND.EXE //
           </div>
         </motion.div>
@@ -396,7 +397,7 @@ export function CTASectionOld() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.2 }}
-          className="mt-20 border-t border-[#FF0000]/30 pt-4 flex gap-8 font-mono text-[8px] sm:text-[10px] text-[#FF0000]/40 tracking-widest uppercase justify-center w-full max-w-sm pointer-events-auto mx-auto text-center"
+          className="mt-20 border-t border-[#ffd400]/30 pt-4 flex gap-8 font-mono text-[8px] sm:text-[10px] text-[#ffd400]/40 tracking-widest uppercase justify-center w-full max-w-sm pointer-events-auto mx-auto text-center"
         >
           <div className="flex flex-col gap-1 items-center">
             <span>CONNECTION // SECURE</span>
@@ -442,19 +443,19 @@ export function CTASectionLandscape() {
   return (
     <section className="relative w-full py-24 px-4 md:px-12 bg-[#000000] flex justify-center items-center font-mono overflow-hidden">
       {/* Landscape HUD Frame */}
-      <div className="relative w-full max-w-[1200px] min-h-[500px] md:min-h-[550px] bg-[#0d0000] border-2 border-[#FF0000] shadow-[0_0_50px_rgba(255,0,0,0.2),inset_0_0_30px_rgba(255,0,0,0.2)] overflow-hidden flex flex-col md:flex-row group">
+      <div className="relative w-full max-w-[1200px] min-h-[500px] md:min-h-[550px] bg-[#0d0000] border-2 border-[#ffd400] shadow-[0_0_50px_rgba(255, 212, 0,0.2),inset_0_0_30px_rgba(255, 212, 0,0.2)] overflow-hidden flex flex-col md:flex-row group">
         {/* HUD Grid Background */}
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(#FF0000 1px, transparent 1px), linear-gradient(90deg, #FF0000 1px, transparent 1px)",
+              "linear-gradient(#ffd400 1px, transparent 1px), linear-gradient(90deg, #ffd400 1px, transparent 1px)",
             backgroundSize: "50px 50px",
           }}
         ></div>
 
         {/* Scanline Overlay */}
-        <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.05] mix-blend-overlay bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#FF0000_2px,#FF0000_4px)]"></div>
+        <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.05] mix-blend-overlay bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#ffd400_2px,#ffd400_4px)]"></div>
 
         {/* 3D Hologram Area (Right Side on Desktop, Top on Mobile) */}
         <div className="absolute top-0 right-0 w-full md:w-[65%] h-[350px] md:h-full pointer-events-none opacity-100 mix-blend-screen overflow-hidden flex items-center justify-center">
@@ -468,10 +469,10 @@ export function CTASectionLandscape() {
         {/* Content Overlay (Left Side) */}
         <div className="relative z-20 w-full md:w-[50%] h-full flex flex-col justify-between p-6 md:p-14 pt-[300px] md:pt-14 bg-gradient-to-t md:bg-gradient-to-r from-[#0d0000] via-[#0d0000]/90 to-transparent">
           {/* Top HUD Info */}
-          <div className="flex justify-between text-[#FF0000] text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-8">
+          <div className="flex justify-between text-[#ffd400] text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-8">
             <div className="flex flex-col gap-1">
-              <span className="text-white font-bold bg-[#FF0000] px-2 py-0.5 text-black inline-block w-max">
-                SYS_STATUS: ONLINE
+              <span className="text-white font-bold bg-[#ffd400] px-2 py-0.5 text-black inline-block w-max">
+                STATUS: ONLINE
               </span>
               <span>{time || "00:00:00"}</span>
               <span>TGT_LOCK: ACTIVE</span>
@@ -479,7 +480,7 @@ export function CTASectionLandscape() {
             <div className="flex flex-col gap-1 text-right md:hidden lg:flex">
               <span>SECTOR // 7G</span>
               <span className="text-white font-bold drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
-                ACCESS: GRANTED
+                WELCOME
               </span>
             </div>
           </div>
@@ -493,7 +494,7 @@ export function CTASectionLandscape() {
               </span>
             </div>
             <h2
-              className="text-[#FF0000] font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tighter leading-[0.8] mb-6 drop-shadow-[0_0_20px_rgba(255,0,0,0.6)]"
+              className="text-[#ffd400] font-bold text-6xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tighter leading-[0.8] mb-6 drop-shadow-[0_0_20px_rgba(255, 212, 0,0.6)]"
               style={{ fontFamily: "var(--font-orbitron)" }}
             >
               PORT
@@ -510,27 +511,27 @@ export function CTASectionLandscape() {
           <div className="mt-auto relative w-max">
             <button
               onClick={() => (window.location.href = "/portfolio")}
-              className="group relative flex items-center justify-between gap-8 px-8 py-5 bg-[#1a0000] border-2 border-[#FF0000] hover:border-white transition-all duration-300 overflow-hidden z-50 pointer-events-auto cursor-pointer shadow-[0_0_15px_rgba(255,0,0,0.5)]"
+              className="group relative flex items-center justify-between gap-8 px-8 py-5 bg-[#1a0000] border-2 border-[#ffd400] hover:border-white transition-all duration-300 overflow-hidden z-50 pointer-events-auto cursor-pointer shadow-[0_0_15px_rgba(255, 212, 0,0.5)]"
             >
               <div className="absolute inset-0 w-0 bg-white transition-all duration-500 ease-in-out group-hover:w-full z-0"></div>
-              <span className="relative z-10 text-[#FF0000] group-hover:text-black font-bold text-sm sm:text-base tracking-[0.3em] font-mono whitespace-nowrap">
+              <span className="relative z-10 text-[#ffd400] group-hover:text-black font-bold text-sm sm:text-base tracking-[0.3em] font-mono whitespace-nowrap">
                 INITIATE_VIEW
               </span>
-              <span className="relative z-10 text-white group-hover:text-[#FF0000] font-bold text-xl">
+              <span className="relative z-10 text-white group-hover:text-[#ffd400] font-bold text-xl">
                 &#8594;
               </span>
             </button>
 
             {/* Decorative target box around button */}
-            <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-white pointer-events-none transition-all duration-300 group-hover:border-[#FF0000]"></div>
-            <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-white pointer-events-none transition-all duration-300 group-hover:border-[#FF0000]"></div>
+            <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-white pointer-events-none transition-all duration-300 group-hover:border-[#ffd400]"></div>
+            <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-white pointer-events-none transition-all duration-300 group-hover:border-[#ffd400]"></div>
           </div>
         </div>
 
         {/* HUD Decorative Elements */}
         <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-white m-4 pointer-events-none opacity-80"></div>
-        <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[#FF0000] m-4 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-[#FF0000] m-4 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-[#ffd400] m-4 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-[#ffd400] m-4 pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-white m-4 pointer-events-none opacity-80"></div>
 
         {/* Vertical Data Bar Right */}
@@ -539,36 +540,36 @@ export function CTASectionLandscape() {
             COORD_DATA
           </div>
           <div className="w-full h-1/2 flex flex-col gap-1.5 mt-auto mb-12 justify-center items-end">
-            <div className="w-[80%] h-[2px] bg-[#FF0000]"></div>
+            <div className="w-[80%] h-[2px] bg-[#ffd400]"></div>
             <div className="w-[100%] h-[3px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-            <div className="w-[60%] h-[5px] bg-[#FF0000]"></div>
-            <div className="w-[40%] h-[2px] bg-[#FF0000]"></div>
-            <div className="w-[90%] h-[12px] bg-[#FF0000]"></div>
+            <div className="w-[60%] h-[5px] bg-[#ffd400]"></div>
+            <div className="w-[40%] h-[2px] bg-[#ffd400]"></div>
+            <div className="w-[90%] h-[12px] bg-[#ffd400]"></div>
             <div className="w-[70%] h-[3px] bg-white"></div>
-            <div className="w-[100%] h-[16px] bg-[#FF0000]"></div>
+            <div className="w-[100%] h-[16px] bg-[#ffd400]"></div>
             <div className="w-[50%] h-[2px] bg-white"></div>
           </div>
-          <div className="text-white text-[12px] font-bold bg-[#FF0000] px-2 py-1 text-black">
+          <div className="text-white text-[12px] font-bold bg-[#ffd400] px-2 py-1 text-black">
             100%
           </div>
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="absolute bottom-0 left-8 right-8 h-8 border-t-2 border-[#FF0000] flex items-center justify-between text-[#FF0000] text-[8px] sm:text-[10px] tracking-[0.2em] px-4 bg-[#1a0000]/80 backdrop-blur-md z-20">
+        <div className="absolute bottom-0 left-8 right-8 h-8 border-t-2 border-[#ffd400] flex items-center justify-between text-[#ffd400] text-[8px] sm:text-[10px] tracking-[0.2em] px-4 bg-[#1a0000]/80 backdrop-blur-md z-20">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 font-bold">
               <div className="w-2 h-2 bg-white animate-pulse shadow-[0_0_5px_rgba(255,255,255,1)]"></div>{" "}
               UPLINK STABLE
             </span>
-            <span className="hidden sm:inline text-[#FF0000]/50">|</span>
+            <span className="hidden sm:inline text-[#ffd400]/50">|</span>
             <span className="hidden sm:inline font-bold">
               DATA_STREAM: ENCRYPTED
             </span>
-            <span className="hidden lg:inline text-[#FF0000]/50">|</span>
+            <span className="hidden lg:inline text-[#ffd400]/50">|</span>
             <span className="hidden lg:inline text-white">PROXY_NODE_0X8F</span>
           </div>
           <div className="text-white font-bold tracking-[0.4em]">
-            SYS_V2.4_ACTV
+            V2.4_ACTIVE
           </div>
         </div>
       </div>
@@ -615,7 +616,7 @@ export function CTASectionChip() {
       >
         <defs>
           <linearGradient id="neonRed" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ff0000" stopOpacity="1" />
+            <stop offset="0%" stopColor="#ffd400" stopOpacity="1" />
             <stop offset="100%" stopColor="#ff4444" stopOpacity="1" />
           </linearGradient>
           <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -722,7 +723,7 @@ export function CTASectionChip() {
           cy="50%"
           r={isConnecting ? "600" : "0"}
           fill="none"
-          stroke="#FF0000"
+          stroke="#ffd400"
           strokeWidth={isConnecting ? "0" : "20"}
           style={{
             transition: "all 1s ease-out 0.5s",
@@ -734,14 +735,14 @@ export function CTASectionChip() {
 
       {/* Central CPU Microchip */}
       <div
-        className={`relative z-20 w-full max-w-[500px] bg-[#0a0000] border-4 ${isConnecting ? "border-[#FF0000] shadow-[0_0_80px_rgba(255,0,0,0.9)] scale-105" : "border-[#440000] shadow-[0_0_20px_rgba(255,0,0,0.2)] hover:border-[#880000]"} transition-all duration-700 flex flex-col items-center p-8 md:p-12 backdrop-blur-md`}
+        className={`relative z-20 w-full max-w-[500px] bg-[#0a0000] border-4 ${isConnecting ? "border-[#ffd400] shadow-[0_0_80px_rgba(255, 212, 0,0.9)] scale-105" : "border-[#440000] shadow-[0_0_20px_rgba(255, 212, 0,0.2)] hover:border-[#880000]"} transition-all duration-700 flex flex-col items-center p-8 md:p-12 backdrop-blur-md`}
       >
         {/* Chip Pins (Top & Bottom) */}
         <div className="absolute -top-4 left-4 right-4 flex justify-between px-4 z-[-1]">
           {[...Array(8)].map((_, i) => (
             <div
               key={`top-${i}`}
-              className={`w-4 h-6 ${isConnecting ? "bg-[#FF0000] shadow-[0_0_15px_#FF0000]" : "bg-[#440000]"} rounded-t-sm transition-colors duration-300 delay-${i * 100}`}
+              className={`w-4 h-6 ${isConnecting ? "bg-[#ffd400] shadow-[0_0_15px_#ffd400]" : "bg-[#440000]"} rounded-t-sm transition-colors duration-300 delay-${i * 100}`}
             ></div>
           ))}
         </div>
@@ -749,7 +750,7 @@ export function CTASectionChip() {
           {[...Array(8)].map((_, i) => (
             <div
               key={`bot-${i}`}
-              className={`w-4 h-6 ${isConnecting ? "bg-[#FF0000] shadow-[0_0_15px_#FF0000]" : "bg-[#440000]"} rounded-b-sm transition-colors duration-300 delay-${i * 100}`}
+              className={`w-4 h-6 ${isConnecting ? "bg-[#ffd400] shadow-[0_0_15px_#ffd400]" : "bg-[#440000]"} rounded-b-sm transition-colors duration-300 delay-${i * 100}`}
             ></div>
           ))}
         </div>
@@ -758,7 +759,7 @@ export function CTASectionChip() {
           {[...Array(6)].map((_, i) => (
             <div
               key={`left-${i}`}
-              className={`h-4 w-6 ${isConnecting ? "bg-[#FF0000] shadow-[0_0_15px_#FF0000]" : "bg-[#440000]"} rounded-l-sm transition-colors duration-300 delay-${i * 100}`}
+              className={`h-4 w-6 ${isConnecting ? "bg-[#ffd400] shadow-[0_0_15px_#ffd400]" : "bg-[#440000]"} rounded-l-sm transition-colors duration-300 delay-${i * 100}`}
             ></div>
           ))}
         </div>
@@ -766,29 +767,29 @@ export function CTASectionChip() {
           {[...Array(6)].map((_, i) => (
             <div
               key={`right-${i}`}
-              className={`h-4 w-6 ${isConnecting ? "bg-[#FF0000] shadow-[0_0_15px_#FF0000]" : "bg-[#440000]"} rounded-r-sm transition-colors duration-300 delay-${i * 100}`}
+              className={`h-4 w-6 ${isConnecting ? "bg-[#ffd400] shadow-[0_0_15px_#ffd400]" : "bg-[#440000]"} rounded-r-sm transition-colors duration-300 delay-${i * 100}`}
             ></div>
           ))}
         </div>
 
         {/* Inner Chip Content */}
-        <div className="w-full text-center mb-8 border-b-2 border-[#FF0000]/30 pb-6 relative">
+        <div className="w-full text-center mb-8 border-b-2 border-[#ffd400]/30 pb-6 relative">
           {/* Spinning core element */}
           <div className="absolute top-0 right-0 w-8 h-8">
             <div
-              className={`w-full h-full border-2 border-[#FF0000] border-t-transparent rounded-full ${isConnecting ? "animate-spin" : ""}`}
+              className={`w-full h-full border-2 border-[#ffd400] border-t-transparent rounded-full ${isConnecting ? "animate-spin" : ""}`}
               style={{ animationDuration: "0.2s" }}
             ></div>
             <div
-              className={`absolute inset-[6px] ${isConnecting ? "bg-[#FF0000] shadow-[0_0_15px_#FF0000]" : "bg-[#440000]"} rounded-full transition-colors duration-500`}
+              className={`absolute inset-[6px] ${isConnecting ? "bg-[#ffd400] shadow-[0_0_15px_#ffd400]" : "bg-[#440000]"} rounded-full transition-colors duration-500`}
             ></div>
           </div>
 
           <h2
-            className={`text-[#FF0000] font-bold text-4xl sm:text-5xl tracking-tighter leading-none mb-2 transition-all duration-500 ${isConnecting ? "drop-shadow-[0_0_20px_rgba(255,0,0,1)] text-white" : "drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"}`}
+            className={`text-[#ffd400] font-bold text-4xl sm:text-5xl tracking-tighter leading-none mb-2 transition-all duration-500 ${isConnecting ? "drop-shadow-[0_0_20px_rgba(255, 212, 0,1)] text-white" : "drop-shadow-[0_0_10px_rgba(255, 212, 0,0.8)]"}`}
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
-            BALA_SYS
+            
           </h2>
           <div className="text-white text-xs tracking-[0.4em] font-bold uppercase">
             Micro_Architecture
@@ -799,9 +800,9 @@ export function CTASectionChip() {
         <div className="w-full grid grid-cols-2 gap-4 mb-10 text-left">
           <div className="bg-[#1a0000] p-3 border border-[#330000] relative overflow-hidden">
             <div
-              className={`absolute inset-0 bg-[#FF0000]/20 transition-transform duration-500 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
+              className={`absolute inset-0 bg-[#ffd400]/20 transition-transform duration-500 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
             ></div>
-            <div className="text-[#FF0000] text-[8px] tracking-[0.2em] mb-1 relative z-10">
+            <div className="text-[#ffd400] text-[8px] tracking-[0.2em] mb-1 relative z-10">
               STATUS
             </div>
             <div
@@ -812,9 +813,9 @@ export function CTASectionChip() {
           </div>
           <div className="bg-[#1a0000] p-3 border border-[#330000] relative overflow-hidden">
             <div
-              className={`absolute inset-0 bg-[#FF0000]/20 transition-transform duration-500 delay-100 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
+              className={`absolute inset-0 bg-[#ffd400]/20 transition-transform duration-500 delay-100 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
             ></div>
-            <div className="text-[#FF0000] text-[8px] tracking-[0.2em] mb-1 relative z-10">
+            <div className="text-[#ffd400] text-[8px] tracking-[0.2em] mb-1 relative z-10">
               NODE
             </div>
             <div
@@ -825,9 +826,9 @@ export function CTASectionChip() {
           </div>
           <div className="bg-[#1a0000] p-3 border border-[#330000] relative overflow-hidden">
             <div
-              className={`absolute inset-0 bg-[#FF0000]/20 transition-transform duration-500 delay-200 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
+              className={`absolute inset-0 bg-[#ffd400]/20 transition-transform duration-500 delay-200 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
             ></div>
-            <div className="text-[#FF0000] text-[8px] tracking-[0.2em] mb-1 relative z-10">
+            <div className="text-[#ffd400] text-[8px] tracking-[0.2em] mb-1 relative z-10">
               SEC_LEVEL
             </div>
             <div
@@ -838,9 +839,9 @@ export function CTASectionChip() {
           </div>
           <div className="bg-[#1a0000] p-3 border border-[#330000] relative overflow-hidden">
             <div
-              className={`absolute inset-0 bg-[#FF0000]/20 transition-transform duration-500 delay-300 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
+              className={`absolute inset-0 bg-[#ffd400]/20 transition-transform duration-500 delay-300 ${isConnecting ? "translate-x-0" : "-translate-x-full"}`}
             ></div>
-            <div className="text-[#FF0000] text-[8px] tracking-[0.2em] mb-1 relative z-10">
+            <div className="text-[#ffd400] text-[8px] tracking-[0.2em] mb-1 relative z-10">
               UPLINK
             </div>
             <div
@@ -855,20 +856,20 @@ export function CTASectionChip() {
         <button
           onClick={handleConnect}
           disabled={isConnecting}
-          className={`group relative w-full py-5 bg-transparent border-2 ${isConnecting ? "border-white bg-[#FF0000] shadow-[0_0_40px_rgba(255,0,0,1)]" : "border-[#FF0000] hover:bg-[#FF0000]/20 hover:shadow-[0_0_25px_rgba(255,0,0,0.8)] hover:scale-[1.02]"} transition-all duration-300 overflow-hidden cursor-pointer disabled:cursor-not-allowed`}
+          className={`group relative w-full py-5 bg-transparent border-2 ${isConnecting ? "border-white bg-[#ffd400] shadow-[0_0_40px_rgba(255, 212, 0,1)]" : "border-[#ffd400] hover:bg-[#ffd400]/20 hover:shadow-[0_0_25px_rgba(255, 212, 0,0.8)] hover:scale-[1.02]"} transition-all duration-300 overflow-hidden cursor-pointer disabled:cursor-not-allowed`}
         >
           {/* Scanline hover effect */}
-          <div className="absolute inset-0 w-full h-full bg-[linear-gradient(transparent_50%,rgba(255,0,0,0.2)_50%)] bg-[length:100%_4px] opacity-0 group-hover:opacity-100 pointer-events-none"></div>
+          <div className="absolute inset-0 w-full h-full bg-[linear-gradient(transparent_50%,rgba(255, 212, 0,0.2)_50%)] bg-[length:100%_4px] opacity-0 group-hover:opacity-100 pointer-events-none"></div>
 
           {/* Button Text */}
           <div className="relative z-10 flex items-center justify-center gap-4">
             <div
-              className={`w-2 h-2 ${isConnecting ? "bg-white shadow-[0_0_15px_#fff] animate-ping" : "bg-[#FF0000]"} rounded-full transition-colors duration-300`}
+              className={`w-2 h-2 ${isConnecting ? "bg-white shadow-[0_0_15px_#fff] animate-ping" : "bg-[#ffd400]"} rounded-full transition-colors duration-300`}
             ></div>
             <span
-              className={`font-bold text-sm md:text-base tracking-[0.3em] font-mono transition-colors duration-300 ${isConnecting ? "text-white drop-shadow-[0_0_8px_#fff]" : "text-[#FF0000] group-hover:text-white"}`}
+              className={`font-bold text-sm md:text-base tracking-[0.3em] font-mono transition-colors duration-300 ${isConnecting ? "text-white drop-shadow-[0_0_8px_#fff]" : "text-[#ffd400] group-hover:text-white"}`}
             >
-              {isConnecting ? "ESTABLISHING_LINK..." : "ACCESS_PORTFOLIO"}
+              {isConnecting ? "LOADING..." : "VIEW PORTFOLIO"}
             </span>
           </div>
         </button>
@@ -880,14 +881,55 @@ export function CTASectionChip() {
 // ============================================================================
 // NEW DESIGN COMPONENT (GEOMETRIC SCI-FI HUD)
 // ============================================================================
+function PortfolioHeadingVisualizer() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 3.5, 8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.85, 1], [1, 0.85, 0, 0]);
+
+  return (
+    <div ref={containerRef} className="relative w-full h-[180vh] z-50">
+      <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden px-4">
+        <motion.div
+          style={{ scale, opacity }}
+          className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto pointer-events-none mt-4 md:mt-24 mb-4 md:mb-6"
+        >
+          {/* Subtitle Line */}
+          <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 w-full">
+            <div className="w-8 md:w-16 h-[1px] bg-[#ffd400] shrink-0" />
+            <span className="text-[#ffd400] font-mono text-[10px] md:text-sm tracking-[0.15em] md:tracking-[0.4em] font-bold uppercase drop-shadow-[0_0_8px_rgba(255, 212, 0,0.6)] text-center">
+              B4L4
+            </span>
+            <div className="w-8 md:w-16 h-[1px] bg-[#ffd400] shrink-0" />
+          </div>
+
+          {/* Main Section Title */}
+          <h2
+            className="text-white text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-wide text-center drop-shadow-[0_0_15px_rgba(255, 212, 0,0.3)]"
+            style={{ fontFamily: "var(--font-orbitron)" }}
+          >
+            PORT<span className="text-[#ffd400]">FOLIO</span>
+          </h2>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
 export function CTASection() {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
 
   const handleConnect = () => {
     setIsConnecting(true);
     setTimeout(() => {
-      window.location.href = "/portfolio";
+      router.push("/portfolio");
     }, 1500);
   };
 
@@ -899,13 +941,13 @@ export function CTASection() {
         {/* Clamp rails perfectly hugging the main arm (Y=40) */}
         <path
           d="M 20 38 L 40 38"
-          stroke="#FF0000"
+          stroke="#ffd400"
           strokeWidth="1.5"
           fill="none"
         />
         <path
           d="M 20 42 L 40 42"
-          stroke="#FF0000"
+          stroke="#ffd400"
           strokeWidth="1.5"
           fill="none"
         />
@@ -913,7 +955,7 @@ export function CTASection() {
         {/* Vertical mechanical grill lines */}
         <path
           d="M 24 35 L 24 45 M 28 35 L 28 45 M 32 35 L 32 45 M 36 35 L 36 45"
-          stroke="#FF0000"
+          stroke="#ffd400"
           strokeWidth="0.5"
           fill="none"
           opacity="0.6"
@@ -922,7 +964,7 @@ export function CTASection() {
         {/* Angled data line branching upwards from the clamp */}
         <path
           d="M 40 38 L 48 30 L 65 30"
-          stroke="#FF0000"
+          stroke="#ffd400"
           strokeWidth="1"
           fill="none"
           opacity="0.8"
@@ -931,21 +973,39 @@ export function CTASection() {
           cx="65"
           cy="30"
           r="1.5"
-          fill="#FF0000"
-          className="animate-pulse shadow-[0_0_5px_#FF0000]"
+          fill="#ffd400"
+          className="animate-pulse shadow-[0_0_5px_#ffd400]"
         />
 
         {/* Tiny tech nodes resting on the branch */}
-        <rect x="48" y="26" width="4" height="2" fill="#FF0000" opacity="0.7" />
-        <rect x="54" y="26" width="2" height="2" fill="#FF0000" opacity="0.7" />
+        <rect x="48" y="26" width="4" height="2" fill="#ffd400" opacity="0.7" />
+        <rect x="54" y="26" width="2" height="2" fill="#ffd400" opacity="0.7" />
       </g>
       {/* Diagonal Main Arm - HORIZONTAL ENTRY TO CIRCLE CORE */}
       <path
         d="M -90 0 L -60 0 L -20 40 L 80 40 L 100 40 L 150 90 L 450 390 L 480 390"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         fill="none"
         opacity="0.4"
+        className="hud-pulse"
+      />
+      {/* Dynamic Data Nodes on Main Arm */}
+      <circle
+        cx="80"
+        cy="40"
+        r="2"
+        fill="#ffd400"
+        className="animate-ping opacity-50"
+      />
+      <circle cx="-20" cy="40" r="1.5" fill="#ffd400" />
+      {/* Double line detail for thicker, mechanical feel */}
+      <path
+        d="M -55 -2 L -18 35"
+        stroke="#ffd400"
+        strokeWidth="0.5"
+        fill="none"
+        opacity="0.5"
       />
 
       {/* Node Connector */}
@@ -953,14 +1013,14 @@ export function CTASection() {
         cx="-90"
         cy="0"
         r="4"
-        fill="#FF0000"
-        className="animate-pulse shadow-[0_0_10px_#FF0000]"
+        fill="#ffd400"
+        className="animate-pulse shadow-[0_0_10px_#ffd400]"
       />
       <circle
         cx="-90"
         cy="0"
         r="8"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         fill="none"
         opacity="0.7"
@@ -971,7 +1031,7 @@ export function CTASection() {
         width="6"
         height="6"
         fill="none"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         opacity="0.5"
         transform="rotate(45 -90 0)"
@@ -980,14 +1040,14 @@ export function CTASection() {
       {/* Diagonal Secondary Arm */}
       <path
         d="M 70 60 L 90 60 L 140 110 L 380 350"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         fill="none"
         opacity="0.6"
       />
       <path
         d="M 90 80 L 110 80 L 160 130 L 360 330"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         strokeDasharray="5 5"
         fill="none"
@@ -997,20 +1057,20 @@ export function CTASection() {
       {/* Inner Tech Details */}
       <path
         d="M 90 20 L 120 20 L 160 60"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         fill="none"
       />
       <path
         d="M 180 40 L 250 40"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="2"
         fill="none"
         opacity="0.9"
       />
       <path
         d="M 180 55 L 230 55"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         strokeDasharray="4 4"
         fill="none"
@@ -1020,14 +1080,14 @@ export function CTASection() {
       {/* Vertical Block Accents */}
       <path
         d="M -10 90 L -10 250"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1.5"
         fill="none"
         opacity="0.9"
       />
       <path
         d="M 10 110 L 10 210"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="1"
         strokeDasharray="4 4"
         fill="none"
@@ -1035,25 +1095,25 @@ export function CTASection() {
       />
       <path
         d="M 25 120 L 25 150"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="3"
         fill="none"
         opacity="0.5"
       />
-      <circle cx="-10" cy="70" r="3" fill="#FF0000" />
-      <circle cx="-10" cy="270" r="3" fill="#FF0000" />
+      <circle cx="-10" cy="70" r="3" fill="#ffd400" />
+      <circle cx="-10" cy="270" r="3" fill="#ffd400" />
 
       {/* Outer framing corners */}
       <path
         d="M 480 360 L 480 390 L 450 390"
-        stroke="#FF0000"
+        stroke="#ffd400"
         strokeWidth="3"
         fill="none"
         opacity="0.7"
       />
 
       {/* Dot Grid Accents */}
-      <g fill="#FF0000" opacity="0.4">
+      <g fill="#ffd400" opacity="0.4">
         <circle cx="200" cy="150" r="1.5" />
         <circle cx="215" cy="150" r="1.5" />
         <circle cx="230" cy="150" r="1.5" />
@@ -1068,7 +1128,7 @@ export function CTASection() {
       {/* Animated Flowing Line - FLOWS HORIZONTALLY INTO CIRCLE CORE */}
       <path
         d="M 480 390 L 450 390 L 150 90 L 100 40 L 80 40 L -20 40 L -60 0 L -90 0"
-        stroke="#FF0000"
+        stroke="#ffd400"
         fill="none"
         className={`flowing-line ${isConnecting ? "electric-surge" : ""} ${isHovered ? "speed-surge" : ""}`}
       />
@@ -1076,23 +1136,9 @@ export function CTASection() {
   );
 
   return (
-    <section className="w-full py-8 md:py-24 px-4 bg-transparent flex flex-col justify-center items-center">
+    <section className="w-full pb-8 pt-0 md:pb-24 px-4 bg-transparent flex flex-col justify-center items-center">
       {/* Section Title */}
-      <div className="mt-4 md:mt-24 mb-4 md:mb-6 flex flex-col items-center justify-center w-full z-50 px-4">
-        <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 w-full">
-          <div className="w-8 md:w-16 h-[1px] bg-[#FF0000] shrink-0" />
-          <span className="text-[#FF0000] font-mono text-[10px] md:text-sm tracking-[0.15em] md:tracking-[0.4em] font-bold uppercase drop-shadow-[0_0_8px_rgba(255,0,0,0.6)] text-center">
-            B4L4
-          </span>
-          <div className="w-8 md:w-16 h-[1px] bg-[#FF0000] shrink-0" />
-        </div>
-        <h2
-          className="text-white text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-wide text-center drop-shadow-[0_0_15px_rgba(255,0,0,0.3)]"
-          style={{ fontFamily: "var(--font-orbitron)" }}
-        >
-          PORT<span className="text-[#FF0000]">FOLIO</span>
-        </h2>
-      </div>
+      <PortfolioHeadingVisualizer />
 
       {/* Hacker HUD Outer Container */}
       <div className="relative w-full max-w-[1200px] min-h-[350px] sm:min-h-[500px] md:min-h-[850px] bg-[#000000] flex justify-center items-center font-mono overflow-hidden group">
@@ -1109,8 +1155,8 @@ export function CTASection() {
                animation: flowAnim 1.5s linear infinite !important;
                stroke-dasharray: 100 600;
                stroke-width: 2;
-               stroke: #FF0000;
-               filter: drop-shadow(0 0 2px #FF0000);
+               stroke: #ffd400;
+               filter: drop-shadow(0 0 2px #ffd400);
              }
              @keyframes flowAnim {
                to { stroke-dashoffset: 0; }
@@ -1118,7 +1164,7 @@ export function CTASection() {
 
              /* Electric Surge Animation on Click (SUPER BRIGHT PURE RED remains) */
              .electric-surge {
-               stroke: #FF0000 !important;
+               stroke: #ffd400 !important;
                stroke-width: 4 !important;
                stroke-dasharray: 400 400 !important;
                
@@ -1143,7 +1189,7 @@ export function CTASection() {
              }
 
              .bg-microgrid {
-               background-image: radial-gradient(rgba(255, 0, 0, 0.2) 1px, transparent 1px);
+               background-image: radial-gradient(rgba(255, 212, 0, 0.2) 1px, transparent 1px);
                background-size: 30px 30px;
              }
            `}</style>
@@ -1180,28 +1226,28 @@ export function CTASection() {
               {/* Central Wide Rectangle Framing - adjusted width to match translate(130) */}
               <path
                 d="M -150 -70 L 150 -70"
-                stroke="#FF0000"
+                stroke="#ffd400"
                 strokeWidth="1"
                 opacity="0.4"
                 fill="none"
               />
               <path
                 d="M -150 70 L 150 70"
-                stroke="#FF0000"
+                stroke="#ffd400"
                 strokeWidth="1"
                 opacity="0.4"
                 fill="none"
               />
               <path
                 d="M -80 -85 L 80 -85"
-                stroke="#FF0000"
+                stroke="#ffd400"
                 strokeWidth="3"
                 fill="none"
                 opacity="0.8"
               />
               <path
                 d="M -80 85 L 80 85"
-                stroke="#FF0000"
+                stroke="#ffd400"
                 strokeWidth="3"
                 fill="none"
                 opacity="0.8"
@@ -1223,11 +1269,11 @@ export function CTASection() {
           >
             {/* Cyberpunk Core (Matches X Design) */}
             <div className="relative w-[120px] h-[120px] md:w-[180px] md:h-[180px] flex items-center justify-center">
-              {/* Dragon Logo */}
+              {/* Cyberpunk Cpu Core */}
               <img
-                src="/dragon.svg"
-                className={`relative z-10 w-[42px] h-[42px] md:w-[62px] md:h-[62px] object-contain filter drop-shadow(0 0 4px #FF0000) transition-all duration-300 ${isConnecting ? "opacity-100 brightness-150 scale-110 drop-shadow(0 0 20px #FF0000)" : "opacity-70 brightness-100 group-hover:opacity-100 group-hover:brightness-125 group-hover:scale-105 group-hover:drop-shadow(0 0 12px #FF0000)"}`}
+                src="/assets/dragon_logo.png"
                 alt="Dragon Core"
+                className={`relative z-10 w-[42px] h-[42px] md:w-[62px] md:h-[62px] object-contain filter drop-shadow-[0_0_4px_#ffd400] transition-all duration-300 ${isConnecting ? "opacity-100 scale-125 drop-shadow-[0_0_20px_#ffd400]" : "opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_#ffd400]"}`}
               />
 
               {/* Invisible hit area for button to ensure it's easily clickable */}
@@ -1237,9 +1283,9 @@ export function CTASection() {
             {/* High-Tech Circular Flash Overlay */}
             {isConnecting && (
               <>
-                <div className="absolute inset-0 bg-[#FF0000]/20 animate-ping rounded-full pointer-events-none shadow-[0_0_30px_#FF0000]"></div>
+                <div className="absolute inset-0 bg-[#ffd400]/20 animate-ping rounded-full pointer-events-none shadow-[0_0_30px_#ffd400]"></div>
                 <div
-                  className="absolute inset-4 border border-[#FF0000]/60 animate-ping rounded-full pointer-events-none"
+                  className="absolute inset-4 border border-[#ffd400]/60 animate-ping rounded-full pointer-events-none"
                   style={{ animationDelay: "0.2s" }}
                 ></div>
               </>
@@ -1247,6 +1293,75 @@ export function CTASection() {
           </button>
         </div>
       </div>
+
+      {/* Glitch Overlay Transition */}
+      <AnimatePresence>
+        {isConnecting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center bg-[#ffd400] overflow-hidden"
+          >
+             <motion.div
+               animate={{
+                 x: [-10, 10, -5, 5, 0],
+                 y: [5, -5, 10, -10, 0],
+                 opacity: [0.8, 1, 0.5, 0.9, 1],
+                 scale: [1.02, 0.98, 1.05, 0.95, 1]
+               }}
+               transition={{ duration: 0.15, repeat: Infinity, repeatType: "mirror" }}
+               className="absolute inset-0 bg-transparent opacity-40 mix-blend-multiply"
+               style={{
+                 backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')"
+               }}
+             />
+             
+             {/* Scanlines (Darker for red background) */}
+             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.2)_1px,transparent_1px)] bg-[size:4px_4px] mix-blend-multiply opacity-50" />
+             
+             {/* Glitching Dragon Logo */}
+             <motion.div
+               animate={{ 
+                 x: [-15, 15, -5, 20, -10, 5],
+                 y: [-5, 5, -2, 8, -6, 2],
+                 filter: ["hue-rotate(0deg)", "hue-rotate(90deg)", "hue-rotate(180deg)", "hue-rotate(270deg)"],
+                 scale: [1, 1.1, 0.95, 1.15, 0.9, 1.05],
+                 skewX: [0, 10, -10, 15, -5, 0]
+               }}
+               transition={{ duration: 0.15, repeat: Infinity, ease: "linear" }}
+               className="relative z-10 mix-blend-normal flex items-center justify-center"
+               style={{ filter: "drop-shadow(5px 0 0 #00FFFF) drop-shadow(-5px 0 0 #FF00FF)" }}
+             >
+               <img
+                 src="/assets/dragon_logo.png"
+                 alt="Glitch Dragon Logo"
+                 className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] object-contain brightness-0 drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+               />
+             </motion.div>
+             
+             {/* Random glitch lines */}
+             <motion.div
+               animate={{ 
+                 top: ["10%", "40%", "80%", "20%", "90%"], 
+                 height: ["2px", "15px", "4px", "25px", "8px"],
+                 opacity: [0.3, 0.8, 0.2, 0.9, 0.5]
+               }}
+               transition={{ duration: 0.1, repeat: Infinity }}
+               className="absolute left-0 w-full bg-white mix-blend-overlay"
+             />
+             <motion.div
+               animate={{ 
+                 top: ["80%", "20%", "50%", "90%", "10%"], 
+                 height: ["5px", "2px", "12px", "3px", "20px"],
+                 opacity: [0.5, 0.2, 0.7, 0.4, 0.8]
+               }}
+               transition={{ duration: 0.12, repeat: Infinity }}
+               className="absolute left-0 w-full bg-black mix-blend-overlay"
+             />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

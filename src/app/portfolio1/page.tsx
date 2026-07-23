@@ -46,7 +46,7 @@ function useAlienAudio() {
         src.stop(t + dur);
     };
 
-    // BOOT: System hardware initialize — heavy mechanical clunk + data crunch
+    // Loading portfolio data...
     const playBoot = async () => {
         try {
             const ctx = await getCtx();
@@ -285,10 +285,10 @@ const PORTFOLIO_PROJECTS = [
 // Tech Box 
 function TechBox({ label }: { label: string }) {
     return (
-        <div className="relative flex-1 px-2 py-3 border border-[#FF0000]/40 bg-black hover:bg-[#FF0000]/10 transition-colors flex justify-center items-center cursor-pointer group shadow-[0_0_10px_rgba(255,0,0,0)] hover:shadow-[0_0_15px_rgba(255,0,0,0.5)]">
-            <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t-2 border-l-2 border-[#FF0000]" />
-            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b-2 border-r-2 border-[#FF0000]" />
-            <span className="text-[10px] tracking-[0.2em] font-bold font-mono uppercase truncate text-[#FF0000] group-hover:text-[#FF0000]">{label}</span>
+        <div className="relative flex-1 px-2 py-3 border border-[#ffd400]/40 bg-black hover:bg-[#ffd400]/10 transition-colors flex justify-center items-center cursor-pointer group shadow-[0_0_10px_rgba(255, 212, 0,0)] hover:shadow-[0_0_15px_rgba(255, 212, 0,0.5)]">
+            <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t-2 border-l-2 border-[#ffd400]" />
+            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b-2 border-r-2 border-[#ffd400]" />
+            <span className="text-[10px] tracking-[0.2em] font-bold font-mono uppercase truncate text-[#ffd400] group-hover:text-[#ffd400]">{label}</span>
         </div>
     );
 }
@@ -296,9 +296,9 @@ function TechBox({ label }: { label: string }) {
 // Data Row
 function DataRow({ label, value }: { label: string, value: string }) {
     return (
-        <div className="flex justify-between items-center py-2 border-b border-[#FF0000]/20 text-[10px] sm:text-xs">
-            <span className="text-[#FF0000]/70 font-black tracking-widest uppercase font-mono">&gt; {label}</span>
-            <span className="text-[#FF0000] font-bold tracking-widest uppercase">{value}</span>
+        <div className="flex justify-between items-center py-2 border-b border-[#ffd400]/20 text-[10px] sm:text-xs">
+            <span className="text-[#ffd400]/70 font-black tracking-widest uppercase font-mono">&gt; {label}</span>
+            <span className="text-[#ffd400] font-bold tracking-widest uppercase">{value}</span>
         </div>
     );
 }
@@ -318,13 +318,13 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
         >
 
             {/* THE ONE UNIFIED CARD */}
-            <div className="relative bg-black border border-[#FF0000]/60 group">
+            <div className="relative bg-black border border-[#ffd400]/60 group">
 
                 {/* Outer corner brackets */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#FF0000] z-20" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#FF0000] z-20" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#FF0000] z-20" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#FF0000] z-20" />
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#ffd400] z-20" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#ffd400] z-20" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#ffd400] z-20" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#ffd400] z-20" />
 
                 {/* ── TOP: Big project image ── */}
                 <div
@@ -335,22 +335,22 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
                     {/* Ruler ticks */}
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 pl-1 z-10">
                         {[...Array(5)].map((_, i) => (
-                            <div key={i} className="h-[1px] bg-[#FF0000]/40" style={{ width: i === 2 ? '14px' : '7px' }} />
+                            <div key={i} className="h-[1px] bg-[#ffd400]/40" style={{ width: i === 2 ? '14px' : '7px' }} />
                         ))}
                     </div>
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 pr-1 z-10">
                         {[...Array(5)].map((_, i) => (
-                            <div key={i} className="h-[1px] bg-[#FF0000]/40" style={{ width: i === 2 ? '14px' : '7px' }} />
+                            <div key={i} className="h-[1px] bg-[#ffd400]/40" style={{ width: i === 2 ? '14px' : '7px' }} />
                         ))}
                     </div>
 
                     {/* Center reticle */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
                         <div className="relative w-14 h-14">
-                            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#FF0000]/15" />
-                            <div className="absolute top-0 left-1/2 w-[1px] h-full bg-[#FF0000]/15" />
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border border-[#FF0000]/30 flex justify-center items-center">
-                                <div className="w-1.5 h-1.5 bg-[#FF0000]/50 rounded-full animate-ping" />
+                            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-[#ffd400]/15" />
+                            <div className="absolute top-0 left-1/2 w-[1px] h-full bg-[#ffd400]/15" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full border border-[#ffd400]/30 flex justify-center items-center">
+                                <div className="w-1.5 h-1.5 bg-[#ffd400]/50 rounded-full animate-ping" />
                             </div>
                         </div>
                     </div>
@@ -362,47 +362,47 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
                     />
 
                     {/* Red dim tint overlay — visible by default, disappears on hover */}
-                    <div className="absolute inset-0 bg-[#FF0000]/30 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-700 pointer-events-none z-10" />
+                    <div className="absolute inset-0 bg-[#ffd400]/30 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-700 pointer-events-none z-10" />
 
                     {/* Red vignette border glow — fades out on hover */}
-                    <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(255,0,0,0.5)] group-hover:shadow-[inset_0_0_0px_rgba(255,0,0,0)] transition-all duration-700 pointer-events-none z-10" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(255, 212, 0,0.5)] group-hover:shadow-[inset_0_0_0px_rgba(255, 212, 0,0)] transition-all duration-700 pointer-events-none z-10" />
 
                     {/* Scan line — visible by default, hides on hover (inverted) */}
-                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255,0,0,0.15),transparent)] opacity-100 group-hover:opacity-0 animate-[scan_3s_linear_infinite] pointer-events-none z-10 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(255, 212, 0,0.15),transparent)] opacity-100 group-hover:opacity-0 animate-[scan_3s_linear_infinite] pointer-events-none z-10 transition-opacity duration-500" />
 
 
                     {/* Bottom HUD overlay on the image */}
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 py-2 flex justify-between items-end z-10">
-                        <span className="text-[#FF0000] text-[9px] font-mono tracking-[0.2em] uppercase">TACTICAL_VIEW</span>
-                        <span className="text-[#FF0000]/50 text-[9px] font-mono tracking-widest">SIG: 100%</span>
+                        <span className="text-[#ffd400] text-[9px] font-mono tracking-[0.2em] uppercase">TACTICAL_VIEW</span>
+                        <span className="text-[#ffd400]/50 text-[9px] font-mono tracking-widest">SIG: 100%</span>
                     </div>
                 </div>
 
                 {/* ── INNER DIVIDER: image / HUD strip ── */}
-                <div className="w-full flex items-center border-t border-[#FF0000]/50">
+                <div className="w-full flex items-center border-t border-[#ffd400]/50">
                     <div className="flex-1 h-[1px]" />
-                    <div className="px-3 py-[2px] border-x border-[#FF0000]/30 bg-[#FF0000]/5">
-                        <span className="text-[#FF0000]/40 text-[8px] font-mono tracking-[0.3em] uppercase">SYS_DATA</span>
+                    <div className="px-3 py-[2px] border-x border-[#ffd400]/30 bg-[#ffd400]/5">
+                        <span className="text-[#ffd400]/40 text-[8px] font-mono tracking-[0.3em] uppercase"></span>
                     </div>
                     <div className="flex-1 h-[1px]" />
                 </div>
 
                 {/* ── BOTTOM: HUD strip with stats + embedded RADAR ── */}
-                <div className="flex items-stretch divide-x divide-[#FF0000]/30">
+                <div className="flex items-stretch divide-x divide-[#ffd400]/30">
 
                     {/* Telemetry info columns */}
-                    <div className="flex-1 flex divide-x divide-[#FF0000]/20">
+                    <div className="flex-1 flex divide-x divide-[#ffd400]/20">
                         <div className="flex flex-col justify-center gap-0.5 px-3 py-3">
-                            <span className="text-[#FF0000]/40 text-[8px] tracking-[0.25em] font-mono uppercase">STATUS</span>
-                            <span className="text-[#FF0000] text-[10px] font-bold font-mono tracking-wider">LIVE_FEED</span>
+                            <span className="text-[#ffd400]/40 text-[8px] tracking-[0.25em] font-mono uppercase">STATUS</span>
+                            <span className="text-[#ffd400] text-[10px] font-bold font-mono tracking-wider">LIVE_FEED</span>
                         </div>
                         <div className="hidden sm:flex flex-col justify-center gap-0.5 px-3 py-3">
-                            <span className="text-[#FF0000]/40 text-[8px] tracking-[0.25em] font-mono uppercase">RES</span>
-                            <span className="text-[#FF0000] text-[10px] font-bold font-mono tracking-wider">4K·60FPS</span>
+                            <span className="text-[#ffd400]/40 text-[8px] tracking-[0.25em] font-mono uppercase">RES</span>
+                            <span className="text-[#ffd400] text-[10px] font-bold font-mono tracking-wider">4K·60FPS</span>
                         </div>
                         <div className="hidden md:flex flex-col justify-center gap-0.5 px-3 py-3">
-                            <span className="text-[#FF0000]/40 text-[8px] tracking-[0.25em] font-mono uppercase">MODE</span>
-                            <span className="text-[#FF0000] text-[10px] font-bold font-mono tracking-wider">TACTICAL</span>
+                            <span className="text-[#ffd400]/40 text-[8px] tracking-[0.25em] font-mono uppercase">MODE</span>
+                            <span className="text-[#ffd400] text-[10px] font-bold font-mono tracking-wider">TACTICAL</span>
                         </div>
                     </div>
 
@@ -434,7 +434,7 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
                                     x1="70" y1="40"
                                     x2={70 + 32 * Math.cos(a * Math.PI / 180)}
                                     y2={40 + 20 * Math.sin(a * Math.PI / 180)}
-                                    stroke="#FF0000" strokeWidth="0.4" opacity="0.2"
+                                    stroke="#ffd400" strokeWidth="0.4" opacity="0.2"
                                     strokeDasharray="3 4"
                                     className="data-line"
                                     style={{ animationDelay: `${i * 0.2}s` }}
@@ -443,39 +443,39 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
 
                             {/* Outer orbit ellipse — tilted Z */}
                             <ellipse cx="70" cy="40" rx="38" ry="10"
-                                fill="none" stroke="#FF0000" strokeWidth="0.7" opacity="0.25"
+                                fill="none" stroke="#ffd400" strokeWidth="0.7" opacity="0.25"
                                 className="ring-z"
                             />
                             {/* Middle orbit ellipse — tilted X */}
                             <ellipse cx="70" cy="40" rx="10" ry="28"
-                                fill="none" stroke="#FF0000" strokeWidth="0.7" opacity="0.3"
+                                fill="none" stroke="#ffd400" strokeWidth="0.7" opacity="0.3"
                                 className="ring-x"
                             />
                             {/* Inner orbit ellipse — tilted Y */}
                             <ellipse cx="70" cy="40" rx="22" ry="18"
-                                fill="none" stroke="#FF0000" strokeWidth="0.5" opacity="0.2"
+                                fill="none" stroke="#ffd400" strokeWidth="0.5" opacity="0.2"
                                 strokeDasharray="3 3"
                                 className="ring-y"
                             />
 
                             {/* Orbiting node 1 — outer ring */}
-                            <circle cx="108" cy="40" r="3" fill="#FF0000" className="node-pulse" style={{ animationDelay: '0s' }} />
+                            <circle cx="108" cy="40" r="3" fill="#ffd400" className="node-pulse" style={{ animationDelay: '0s' }} />
                             {/* Orbiting node 2 — inner ring */}
-                            <circle cx="70" cy="12" r="2.5" fill="#FF0000" className="node-pulse" style={{ animationDelay: '0.7s' }} />
+                            <circle cx="70" cy="12" r="2.5" fill="#ffd400" className="node-pulse" style={{ animationDelay: '0.7s' }} />
                             {/* Orbiting node 3 — mid ring */}
-                            <circle cx="48" cy="58" r="2" fill="#FF0000" className="node-pulse" style={{ animationDelay: '1.3s' }} />
+                            <circle cx="48" cy="58" r="2" fill="#ffd400" className="node-pulse" style={{ animationDelay: '1.3s' }} />
 
                             {/* Core glow rings */}
-                            <circle cx="70" cy="40" r="9" fill="none" stroke="#FF0000" strokeWidth="0.5" opacity="0.4" className="core-glow" />
-                            <circle cx="70" cy="40" r="5" fill="none" stroke="#FF0000" strokeWidth="1" opacity="0.6" className="core-glow" style={{ animationDelay: '0.5s' }} />
+                            <circle cx="70" cy="40" r="9" fill="none" stroke="#ffd400" strokeWidth="0.5" opacity="0.4" className="core-glow" />
+                            <circle cx="70" cy="40" r="5" fill="none" stroke="#ffd400" strokeWidth="1" opacity="0.6" className="core-glow" style={{ animationDelay: '0.5s' }} />
                             {/* Core dot */}
-                            <circle cx="70" cy="40" r="2.5" fill="#FF0000" opacity="0.9" />
+                            <circle cx="70" cy="40" r="2.5" fill="#ffd400" opacity="0.9" />
 
                             {/* Corner alien script marks */}
-                            <text x="4" y="10" fill="#FF0000" fontSize="4" opacity="0.4" fontFamily="monospace">ΔX.09</text>
-                            <text x="4" y="76" fill="#FF0000" fontSize="4" opacity="0.4" fontFamily="monospace">ΩZ.77</text>
-                            <text x="110" y="10" fill="#FF0000" fontSize="4" opacity="0.4" fontFamily="monospace">ΓY.33</text>
-                            <text x="108" y="76" fill="#FF0000" fontSize="4" opacity="0.4" fontFamily="monospace">ΦR.01</text>
+                            <text x="4" y="10" fill="#ffd400" fontSize="4" opacity="0.4" fontFamily="monospace">ΔX.09</text>
+                            <text x="4" y="76" fill="#ffd400" fontSize="4" opacity="0.4" fontFamily="monospace">ΩZ.77</text>
+                            <text x="110" y="10" fill="#ffd400" fontSize="4" opacity="0.4" fontFamily="monospace">ΓY.33</text>
+                            <text x="108" y="76" fill="#ffd400" fontSize="4" opacity="0.4" fontFamily="monospace">ΦR.01</text>
                         </svg>
                     </div>
                 </div>
@@ -483,11 +483,11 @@ function CyberpunkImageCard({ imgSrc, onImageHover }: { imgSrc: string, onImageH
 
             {/* Bottom closing bar */}
             <div className="flex items-center">
-                <div className="h-[1px] flex-1 bg-[#FF0000]/20" />
-                <div className="border border-[#FF0000]/30 border-t-0 px-4 py-1 bg-black">
-                    <span className="text-[#FF0000]/30 text-[9px] font-mono tracking-widest">// END_STREAM</span>
+                <div className="h-[1px] flex-1 bg-[#ffd400]/20" />
+                <div className="border border-[#ffd400]/30 border-t-0 px-4 py-1 bg-black">
+                    <span className="text-[#ffd400]/30 text-[9px] font-mono tracking-widest">// END_STREAM</span>
                 </div>
-                <div className="h-[1px] flex-1 bg-[#FF0000]/20" />
+                <div className="h-[1px] flex-1 bg-[#ffd400]/20" />
             </div>
         </motion.div>
     );
@@ -515,7 +515,7 @@ export default function HUDPortfolioPage() {
     }, []);
 
     return (
-        <main className="min-h-screen bg-[#000000] text-[#FF0000] font-sans selection:bg-[#FF0000] selection:text-black pb-20 relative overflow-x-hidden">
+        <main className="min-h-screen bg-[#000000] text-[#ffd400] font-sans selection:bg-[#ffd400] selection:text-black pb-20 relative overflow-x-hidden">
             
             {/* Extremely Thin Space-Age Scrollbar */}
             <style dangerouslySetInnerHTML={{__html: `
@@ -529,8 +529,8 @@ export default function HUDPortfolioPage() {
                     background: #440000;
                 }
                 ::-webkit-scrollbar-thumb:hover {
-                    background: #FF0000;
-                    box-shadow: 0 0 10px #FF0000;
+                    background: #ffd400;
+                    box-shadow: 0 0 10px #ffd400;
                 }
                 @keyframes scanline {
                     0% { transform: translateY(-100%); }
@@ -553,7 +553,7 @@ export default function HUDPortfolioPage() {
                     left: 0;
                     width: 100%;
                     height: 2px;
-                    background: rgba(255, 0, 0, 0.1);
+                    background: rgba(255, 212, 0, 0.1);
                     z-index: 100;
                     pointer-events: none;
                     animation: scanline 8s linear infinite;
@@ -603,26 +603,26 @@ export default function HUDPortfolioPage() {
             </div>
 
             {/* Top Navigation */}
-            <header className="relative w-full px-4 md:px-8 py-4 flex justify-between items-center z-50 border-b border-[#FF0000]/40 bg-black/80 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 text-[#FF0000] tracking-[0.3em] font-black text-xs sm:text-sm hover:text-red-400 transition-colors group">
+            <header className="relative w-full px-4 md:px-8 py-4 flex justify-between items-center z-50 border-b border-[#ffd400]/40 bg-black/80 backdrop-blur-md">
+                <Link href="/" className="flex items-center gap-2 text-[#ffd400] tracking-[0.3em] font-black text-xs sm:text-sm hover:text-red-400 transition-colors group">
                      <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
-                     SYSTEM.EXIT()
+                     CLOSE
                 </Link>
                 
                 <div className="hidden md:flex flex-1 justify-center relative group cursor-default">
-                    <div className="border border-[#FF0000]/50 px-8 py-2 bg-[#FF0000]/5 flex items-center justify-center relative shadow-[0_0_15px_rgba(255,0,0,0.2)]">
-                        <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#FF0000]" />
-                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#FF0000]" />
-                        <span className="text-[#FF0000] text-xs font-black tracking-[0.4em] font-mono">
-                            SYS.PORTFOLIO_DB
+                    <div className="border border-[#ffd400]/50 px-8 py-2 bg-[#ffd400]/5 flex items-center justify-center relative shadow-[0_0_15px_rgba(255, 212, 0,0.2)]">
+                        <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#ffd400]" />
+                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#ffd400]" />
+                        <span className="text-[#ffd400] text-xs font-black tracking-[0.4em] font-mono">
+                            PORTFOLIO_DB
                         </span>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                     <div className="flex items-center gap-2 border border-[#FF0000]/40 bg-black px-4 py-1.5 relative">
-                         <div className="w-2 h-2 bg-[#FF0000] animate-pulse shadow-[0_0_10px_#FF0000]" />
-                         <span className="text-[10px] font-bold tracking-[0.2em] font-mono text-[#FF0000]">LINK_ACTIVE</span>
+                     <div className="flex items-center gap-2 border border-[#ffd400]/40 bg-black px-4 py-1.5 relative">
+                         <div className="w-2 h-2 bg-[#ffd400] animate-pulse shadow-[0_0_10px_#ffd400]" />
+                         <span className="text-[10px] font-bold tracking-[0.2em] font-mono text-[#ffd400]">LINK_ACTIVE</span>
                      </div>
                 </div>
             </header>
@@ -633,8 +633,8 @@ export default function HUDPortfolioPage() {
                 {/* ── MOBILE ONLY: Horizontal chip project selector ── */}
                 <div className="lg:hidden col-span-1 order-1 px-0 pt-2 pb-1">
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-[#FF0000] font-black tracking-[0.3em] text-sm font-mono">TARGET_LIST</span>
-                        <span className="text-[#FF0000]/60 text-[9px] tracking-widest font-mono">[{PORTFOLIO_PROJECTS.length}_ENTRIES]</span>
+                        <span className="text-[#ffd400] font-black tracking-[0.3em] text-sm font-mono">TARGET_LIST</span>
+                        <span className="text-[#ffd400]/60 text-[9px] tracking-widest font-mono">[{PORTFOLIO_PROJECTS.length}_ENTRIES]</span>
                     </div>
                     <div className="flex gap-2 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
                         {PORTFOLIO_PROJECTS.map((p, i) => (
@@ -643,24 +643,24 @@ export default function HUDPortfolioPage() {
                                 onClick={() => { setSelectedIndex(i); playSelect(); }}
                                 className={`shrink-0 px-3 py-2 border font-mono text-[10px] tracking-[0.2em] uppercase font-bold transition-all ${
                                     selectedIndex === i
-                                    ? 'border-[#FF0000] bg-[#FF0000]/15 text-[#FF3333] shadow-[0_0_10px_rgba(255,0,0,0.3)]'
-                                    : 'border-[#FF0000]/30 bg-black text-[#FF0000]/60'
+                                    ? 'border-[#ffd400] bg-[#ffd400]/15 text-[#ffdf33] shadow-[0_0_10px_rgba(255, 212, 0,0.3)]'
+                                    : 'border-[#ffd400]/30 bg-black text-[#ffd400]/60'
                                 }`}
                             >
-                                <span className="text-[#FF0000]/40 mr-1">{String(i + 1).padStart(2, '0')}</span>
+                                <span className="text-[#ffd400]/40 mr-1">{String(i + 1).padStart(2, '0')}</span>
                                 {p.shortName}
                             </button>
                         ))}
                     </div>
                     {/* Active indicator bar */}
-                    <div className="h-[1px] bg-gradient-to-r from-[#FF0000]/60 via-[#FF0000]/20 to-transparent" />
+                    <div className="h-[1px] bg-gradient-to-r from-[#ffd400]/60 via-[#ffd400]/20 to-transparent" />
                 </div>
 
                 {/* ---------------- LEFT COL: ROSTER LIST (desktop only) ---------------- */}
                 <div className="hidden lg:flex lg:col-span-3 flex-col order-2 lg:order-1 lg:h-screen lg:sticky lg:top-0 lg:pt-4">
-                    <div className="border-b border-[#FF0000]/50 pb-2 mb-4 flex justify-between items-end shrink-0">
-                        <h2 className="text-[#FF0000] font-black tracking-[0.3em] text-sm sm:text-base">TARGET_LIST</h2>
-                        <span className="text-[#FF0000]/60 text-[10px] tracking-widest font-mono">[{PORTFOLIO_PROJECTS.length}_ENTRIES]</span>
+                    <div className="border-b border-[#ffd400]/50 pb-2 mb-4 flex justify-between items-end shrink-0">
+                        <h2 className="text-[#ffd400] font-black tracking-[0.3em] text-sm sm:text-base">TARGET_LIST</h2>
+                        <span className="text-[#ffd400]/60 text-[10px] tracking-widest font-mono">[{PORTFOLIO_PROJECTS.length}_ENTRIES]</span>
                     </div>
                     <div className="flex flex-col gap-2 max-h-[600px] overflow-y-auto pr-1"
                         style={{ scrollbarWidth: 'thin', scrollbarColor: '#440000 #000' }}
@@ -672,15 +672,15 @@ export default function HUDPortfolioPage() {
                                 onMouseEnter={playHover}
                                 className={`w-full text-left p-3 sm:p-4 transition-all relative font-mono flex items-center border ${
                                     selectedIndex === i 
-                                    ? 'bg-[#FF0000]/10 border-[#FF0000] shadow-[0_0_15px_rgba(255,0,0,0.4)]' 
-                                    : 'bg-black border-transparent hover:border-[#FF0000]/50'
+                                    ? 'bg-[#ffd400]/10 border-[#ffd400] shadow-[0_0_15px_rgba(255, 212, 0,0.4)]' 
+                                    : 'bg-black border-transparent hover:border-[#ffd400]/50'
                                 }`}
                             >
-                                {selectedIndex === i && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#FF0000]" />}
-                                <span className={`text-[10px] sm:text-xs tracking-widest w-12 shrink-0 pl-2 ${selectedIndex === i ? 'text-[#FF3333] font-bold' : 'text-[#FF0000]/40'}`}>
+                                {selectedIndex === i && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffd400]" />}
+                                <span className={`text-[10px] sm:text-xs tracking-widest w-12 shrink-0 pl-2 ${selectedIndex === i ? 'text-[#ffdf33] font-bold' : 'text-[#ffd400]/40'}`}>
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
-                                <span className={`text-xs sm:text-sm tracking-[0.2em] font-black truncate w-full ${selectedIndex === i ? 'text-[#FF3333] drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]' : 'text-[#FF0000]/80'}`}>
+                                <span className={`text-xs sm:text-sm tracking-[0.2em] font-black truncate w-full ${selectedIndex === i ? 'text-[#ffdf33] drop-shadow-[0_0_8px_rgba(255, 212, 0,0.8)]' : 'text-[#ffd400]/80'}`}>
                                     {p.shortName}
                                 </span>
                             </button>
@@ -700,29 +700,29 @@ export default function HUDPortfolioPage() {
                             className="w-full flex flex-col items-center"
                         >
                             {/* Project Title */}
-                            <div className="glitch-title text-lg sm:text-xl lg:text-xl font-black tracking-[0.2em] text-[#FF0000] text-center uppercase leading-tight" style={{ fontFamily: "var(--font-orbitron)" }}>
+                            <div className="glitch-title text-lg sm:text-xl lg:text-xl font-black tracking-[0.2em] text-[#ffd400] text-center uppercase leading-tight" style={{ fontFamily: "var(--font-orbitron)" }}>
                                 <span className="gt-main">{selectedProject.title}</span>
                                 <span className="gt-top" aria-hidden>{selectedProject.title}</span>
                                 <span className="gt-bot" aria-hidden>{selectedProject.title}</span>
                             </div>
                             <div className="flex items-center gap-4 mt-2 mb-0">
-                                <span className="h-[1px] w-12 bg-[#FF0000]/50" />
-                                <p className="text-[#FF0000]/80 tracking-[0.4em] font-bold text-[10px] sm:text-xs uppercase font-mono bg-black border border-[#FF0000]/30 px-4 py-1">
+                                <span className="h-[1px] w-12 bg-[#ffd400]/50" />
+                                <p className="text-[#ffd400]/80 tracking-[0.4em] font-bold text-[10px] sm:text-xs uppercase font-mono bg-black border border-[#ffd400]/30 px-4 py-1">
                                     [ ID: {selectedProject.id} ]
                                 </p>
-                                <span className="h-[1px] w-12 bg-[#FF0000]/50" />
+                                <span className="h-[1px] w-12 bg-[#ffd400]/50" />
                             </div>
                             {/* Unified Image + Docked Radar */}
                             <CyberpunkImageCard imgSrc={selectedProject.imgSrc} onImageHover={playImageHover} />
 
                             {/* Description Box below */}
-                            <div className="w-full max-w-4xl mb-8 bg-black border border-[#FF0000]/40 p-5 sm:p-6 relative">
-                                <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#FF0000]" />
-                                <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#FF0000]" />
-                                <h3 className="text-[#FF3333] font-bold text-xs tracking-[0.3em] font-mono border-b border-[#FF0000]/30 pb-2 mb-4 uppercase flex items-center gap-2">
-                                    <div className="w-1.5 h-1.5 bg-[#FF0000] animate-pulse shadow-[0_0_8px_#FF0000]" /> OVERVIEW_LOG
+                            <div className="w-full max-w-4xl mb-8 bg-black border border-[#ffd400]/40 p-5 sm:p-6 relative">
+                                <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#ffd400]" />
+                                <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#ffd400]" />
+                                <h3 className="text-[#ffdf33] font-bold text-xs tracking-[0.3em] font-mono border-b border-[#ffd400]/30 pb-2 mb-4 uppercase flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-[#ffd400] animate-pulse shadow-[0_0_8px_#ffd400]" /> OVERVIEW_LOG
                                 </h3>
-                                <p className="text-[#FF3333]/80 text-xs sm:text-sm leading-loose font-mono tracking-widest">
+                                <p className="text-[#ffdf33]/80 text-xs sm:text-sm leading-loose font-mono tracking-widest">
                                     {selectedProject.description}
                                 </p>
                             </div>
@@ -745,31 +745,31 @@ export default function HUDPortfolioPage() {
                             {/* ── MODULE_LOADOUT HUD PANEL (TOP) ── */}
                             <div className="relative bg-black overflow-hidden">
                                 {/* Top edge HUD bar */}
-                                <div className="h-[2px] bg-gradient-to-r from-[#FF0000] via-[#FF0000]/50 to-transparent" />
+                                <div className="h-[2px] bg-gradient-to-r from-[#ffd400] via-[#ffd400]/50 to-transparent" />
                                 
                                 {/* Corner bracket decorations */}
-                                <div className="absolute top-[2px] left-0 w-4 h-4 border-l-2 border-t-2 border-[#FF0000]" />
-                                <div className="absolute top-[2px] right-0 w-4 h-4 border-r-2 border-t-2 border-[#FF0000]" />
+                                <div className="absolute top-[2px] left-0 w-4 h-4 border-l-2 border-t-2 border-[#ffd400]" />
+                                <div className="absolute top-[2px] right-0 w-4 h-4 border-r-2 border-t-2 border-[#ffd400]" />
 
                                 {/* Header */}
                                 <div className="px-5 pt-4 pb-2 flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <div className="flex flex-col gap-[3px]">
-                                            <div className="w-3 h-[1px] bg-[#FF0000]" />
-                                            <div className="w-5 h-[1px] bg-[#FF0000]" />
-                                            <div className="w-2 h-[1px] bg-[#FF0000]" />
+                                            <div className="w-3 h-[1px] bg-[#ffd400]" />
+                                            <div className="w-5 h-[1px] bg-[#ffd400]" />
+                                            <div className="w-2 h-[1px] bg-[#ffd400]" />
                                         </div>
-                                        <span className="text-[#FF0000] text-[10px] font-mono tracking-[0.45em] uppercase font-black">MODULE_LOADOUT</span>
+                                        <span className="text-[#ffd400] text-[10px] font-mono tracking-[0.45em] uppercase font-black">MODULE_LOADOUT</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF0000] animate-ping opacity-75" />
-                                        <span className="text-[#FF0000]/50 text-[8px] font-mono">{selectedProject.tech.length}x_ACTIVE</span>
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#ffd400] animate-ping opacity-75" />
+                                        <span className="text-[#ffd400]/50 text-[8px] font-mono">{selectedProject.tech.length}x_ACTIVE</span>
                                     </div>
                                 </div>
 
                                 {/* Divider with signal blip */}
-                                <div className="mx-4 h-[1px] bg-[#FF0000]/20 relative overflow-hidden">
-                                    <div className="absolute h-full w-4 bg-[#FF0000]/60" 
+                                <div className="mx-4 h-[1px] bg-[#ffd400]/20 relative overflow-hidden">
+                                    <div className="absolute h-full w-4 bg-[#ffd400]/60" 
                                          style={{animation: 'slideRight 2s linear infinite'}} />
                                 </div>
 
@@ -778,58 +778,58 @@ export default function HUDPortfolioPage() {
                                     {selectedProject.tech.map((tech, index) => (
                                         <div
                                             key={index}
-                                            className="group/module relative flex flex-col gap-0.5 px-3 py-2 border-l-2 border-[#FF0000]/20 hover:border-[#FF0000] bg-transparent hover:bg-[#FF0000]/5 transition-all duration-150 cursor-default overflow-hidden"
+                                            className="group/module relative flex flex-col gap-0.5 px-3 py-2 border-l-2 border-[#ffd400]/20 hover:border-[#ffd400] bg-transparent hover:bg-[#ffd400]/5 transition-all duration-150 cursor-default overflow-hidden"
                                         >
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-2">
-                                                    <span className="text-[#FF0000]/30 text-[8px] font-mono">[{String(index).padStart(2,'0')}]</span>
-                                                    <span className="text-[#FF3333] text-[11px] font-mono font-bold tracking-[0.25em] uppercase">{tech}</span>
+                                                    <span className="text-[#ffd400]/30 text-[8px] font-mono">[{String(index).padStart(2,'0')}]</span>
+                                                    <span className="text-[#ffdf33] text-[11px] font-mono font-bold tracking-[0.25em] uppercase">{tech}</span>
                                                 </div>
                                                 <div className="flex items-center gap-1">
                                                     {[1,2,3,4].map(b => (
                                                         <div key={b} 
-                                                            className={`w-[3px] bg-[#FF0000] transition-opacity ${b <= 3 ? 'opacity-70' : 'opacity-20'}`} 
+                                                            className={`w-[3px] bg-[#ffd400] transition-opacity ${b <= 3 ? 'opacity-70' : 'opacity-20'}`} 
                                                             style={{height: `${b * 3}px`, alignSelf: 'flex-end'}} 
                                                         />
                                                     ))}
                                                 </div>
                                             </div>
-                                            <div className="h-[1px] w-full bg-[#FF0000]/10 relative overflow-hidden">
+                                            <div className="h-[1px] w-full bg-[#ffd400]/10 relative overflow-hidden">
                                                 <div 
-                                                    className="absolute h-full bg-[#FF0000]/40 group-hover/module:bg-[#FF0000]/70 transition-all duration-500"
+                                                    className="absolute h-full bg-[#ffd400]/40 group-hover/module:bg-[#ffd400]/70 transition-all duration-500"
                                                     style={{width: `${65 + (index * 11) % 35}%`}}
                                                 />
                                             </div>
-                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FF0000]/8 to-transparent -translate-x-full group-hover/module:translate-x-full transition-transform duration-700 pointer-events-none" />
+                                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ffd400]/8 to-transparent -translate-x-full group-hover/module:translate-x-full transition-transform duration-700 pointer-events-none" />
                                         </div>
                                     ))}
                                 </div>
 
                                 {/* Bottom edge */}
-                                <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[#FF0000]" />
-                                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[#FF0000]" />
-                                <div className="h-[2px] bg-gradient-to-r from-transparent via-[#FF0000]/50 to-[#FF0000]" />
+                                <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[#ffd400]" />
+                                <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[#ffd400]" />
+                                <div className="h-[2px] bg-gradient-to-r from-transparent via-[#ffd400]/50 to-[#ffd400]" />
                             </div>
 
-                            {/* ── SYSTEM_PROFILE HUD PANEL (BOTTOM) ── */}
-                            <div className="relative group/sys border-l-4 border-[#FF0000] bg-black overflow-hidden">
+                            {/* ── PROJECT_DETAILS HUD PANEL (BOTTOM) ── */}
+                            <div className="relative group/sys border-l-4 border-[#ffd400] bg-black overflow-hidden">
                                 {/* Scanline Texture Overlay */}
                                 <div className="absolute inset-0 pointer-events-none opacity-10" 
-                                     style={{ backgroundImage: 'repeating-linear-gradient(0deg, #FF0000, #FF0000 1px, transparent 1px, transparent 2px)', backgroundSize: '100% 2px' }} 
+                                     style={{ backgroundImage: 'repeating-linear-gradient(0deg, #ffd400, #ffd400 1px, transparent 1px, transparent 2px)', backgroundSize: '100% 2px' }} 
                                 />
                                 
                                 {/* HUD Header with Decals */}
-                                <div className="flex items-center justify-between px-4 py-2 bg-[#FF0000]/5 border-b border-[#FF0000]/20 relative">
+                                <div className="flex items-center justify-between px-4 py-2 bg-[#ffd400]/5 border-b border-[#ffd400]/20 relative">
                                     <div className="flex items-center gap-3">
                                         <div className="flex flex-col gap-0.5">
-                                            <div className="w-4 h-[1px] bg-[#FF0000]" />
-                                            <div className="w-2 h-[1px] bg-[#FF0000]" />
+                                            <div className="w-4 h-[1px] bg-[#ffd400]" />
+                                            <div className="w-2 h-[1px] bg-[#ffd400]" />
                                         </div>
-                                        <span className="text-[#FF0000] text-[10px] font-mono tracking-[0.4em] uppercase font-black">
-                                            SYSTEM_PROFILE
+                                        <span className="text-[#ffd400] text-[10px] font-mono tracking-[0.4em] uppercase font-black">
+                                            PROJECT_DETAILS
                                         </span>
                                     </div>
-                                    <div className="text-[#FF0000]/40 text-[8px] font-mono flex flex-col items-end">
+                                    <div className="text-[#ffd400]/40 text-[8px] font-mono flex flex-col items-end">
                                         <span>LOC // CORE_01</span>
                                         <span className="animate-pulse">RUNNING...</span>
                                     </div>
@@ -841,28 +841,28 @@ export default function HUDPortfolioPage() {
                                         { k: 'PR_YEAR', v: selectedProject.year, status: 'STABLE' },
                                         { k: 'AUTH_RANK', v: selectedProject.role, status: 'VERIFIED' },
                                         { k: 'UNIT_CLASS', v: selectedProject.type, status: 'ACTIVE' },
-                                        { k: 'SYS_STATE', v: selectedProject.status, status: 'NOMINAL' },
+                                        { k: 'STATE', v: selectedProject.status, status: 'NOMINAL' },
                                     ].map(({ k, v, status }) => (
                                         <div key={k} className="flex flex-col gap-0.5 relative group/row">
                                             <div className="flex justify-between items-end">
-                                                <span className="text-[#FF0000]/60 text-[8px] font-mono tracking-widest uppercase">{k}</span>
-                                                <span className="text-[#FF0000]/40 text-[7px] font-mono">[{status}]</span>
+                                                <span className="text-[#ffd400]/60 text-[8px] font-mono tracking-widest uppercase">{k}</span>
+                                                <span className="text-[#ffd400]/40 text-[7px] font-mono">[{status}]</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="h-3 w-1 bg-[#FF0000]/60" />
-                                                <span className="text-[#FF3333] text-xs font-mono font-bold tracking-[0.1em] uppercase">
+                                                <div className="h-3 w-1 bg-[#ffd400]/60" />
+                                                <span className="text-[#ffdf33] text-xs font-mono font-bold tracking-[0.1em] uppercase">
                                                     {v}
                                                 </span>
                                             </div>
                                             {/* Accent line that grows on panel hover */}
-                                            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#FF0000]/20 group-hover/sys:w-full transition-all duration-700" />
+                                            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#ffd400]/20 group-hover/sys:w-full transition-all duration-700" />
                                         </div>
                                     ))}
                                 </div>
 
                                 {/* Faceted Corner Decals */}
                                 <div className="absolute top-0 right-0 w-8 h-8 pointer-events-none">
-                                    <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[#FF0000]" />
+                                    <div className="absolute top-2 right-2 w-2 h-2 border-t border-r border-[#ffd400]" />
                                 </div>
                             </div>
                             </div>{/* end 2-col HUD grid */}
@@ -870,7 +870,7 @@ export default function HUDPortfolioPage() {
                             {/* Execution Button */}
                             <div className="pb-8 lg:pb-12">
                                 <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="w-full block group outline-none" onMouseEnter={playHover}>
-                                    <button className="relative w-full py-3 bg-black border border-[#FF0000]/70 text-[#FF0000] hover:bg-[#FF0000] hover:text-black transition-all duration-300 flex items-center justify-center gap-2 group">
+                                    <button className="relative w-full py-3 bg-black border border-[#ffd400]/70 text-[#ffd400] hover:bg-[#ffd400] hover:text-black transition-all duration-300 flex items-center justify-center gap-2 group">
                                         <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-current" />
                                         <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-current" />
                                         <ExternalLink size={12} className="group-hover:scale-110 transition-transform shrink-0" />
