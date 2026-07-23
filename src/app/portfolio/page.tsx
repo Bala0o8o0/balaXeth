@@ -12,6 +12,9 @@ import {
   Activity,
 } from "lucide-react";
 
+import { ExperienceTeaser, PixelNoise } from "@/components/ExperienceTeaser";
+import Image from "next/image";
+
 // ─── Project Data ───────────────────────────────────────────────
 const PORTFOLIO_PROJECTS = [
   {
@@ -399,7 +402,7 @@ const HeroWaves = () => {
         transition={{ duration: 2 }}
         className="absolute inset-0"
         style={{
-          backgroundImage: `linear-gradient(rgba(255, 0, 0, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 0, 0, 0.2) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255, 212, 0, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 212, 0, 0.2) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
         }}
       />
@@ -442,30 +445,30 @@ function ProjectCard({
       >
         {/* ── Outer Chassis ── */}
         <div
-          className="relative flex flex-col bg-[#0a0a0a] border border-[#FF0000]/20 transition-all duration-500 overflow-hidden h-full"
+          className="relative flex flex-col bg-[#0a0a0a] border border-[#ffd400]/20 transition-all duration-500 overflow-hidden h-full"
           style={{
-            boxShadow: isHovered ? "0 0 30px rgba(255, 0, 0, 0.15)" : "none",
+            boxShadow: isHovered ? "0 0 30px rgba(255, 212, 0, 0.15)" : "none",
             borderColor: isHovered
-              ? "rgba(255, 0, 0, 0.5)"
-              : "rgba(255, 0, 0, 0.2)",
+              ? "rgba(255, 212, 0, 0.5)"
+              : "rgba(255, 212, 0, 0.2)",
           }}
         >
           {/* HUD Header */}
-          <div className="flex items-center justify-between px-4 py-2 border-b border-[#FF0000]/10 bg-black/40">
+          <div className="flex items-center justify-between px-4 py-2 border-b border-[#ffd400]/10 bg-black/40">
             <div className="flex items-center gap-2">
               <div
-                className={`w-1.5 h-1.5 rounded-full shadow-[0_0_8px_rgba(255,0,0,0.4)] ${
+                className={`w-1.5 h-1.5 rounded-full shadow-[0_0_8px_rgba(255, 212, 0,0.4)] ${
                   isLive
-                    ? "bg-[#FF0000] animate-pulse scale-110"
-                    : "bg-[#FF0000]/40 animate-[pulse_3s_infinite]"
+                    ? "bg-[#ffd400] animate-pulse scale-110"
+                    : "bg-[#ffd400]/40 animate-[pulse_3s_infinite]"
                 }`}
               />
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[9px] font-mono tracking-widest text-[#FF0000]/50 uppercase">
+              <span className="text-[9px] font-mono tracking-widest text-[#ffd400]/50 uppercase">
                 STATION_0{index + 1}
               </span>
-              <Activity size={8} className="text-[#FF0000]/30" />
+              <Activity size={8} className="text-[#ffd400]/30" />
             </div>
           </div>
 
@@ -491,8 +494,8 @@ function ProjectCard({
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 z-30 pointer-events-none"
                   >
-                    <div className="absolute top-4 right-4 w-3 h-3 border-t border-r border-[#FF0000]" />
-                    <div className="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-[#FF0000]" />
+                    <div className="absolute top-4 right-4 w-3 h-3 border-t border-r border-[#ffd400]" />
+                    <div className="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-[#ffd400]" />
                   </motion.div>
 
                   {/* Grain Overlay */}
@@ -502,8 +505,8 @@ function ProjectCard({
             </AnimatePresence>
 
             {/* Type Label */}
-            <div className="absolute bottom-0 left-0 bg-black/80 backdrop-blur-md px-3 py-1.5 border-t border-r border-[#FF0000]/30 z-40">
-              <span className="text-[10px] font-mono text-[#FF0000] tracking-tighter uppercase">
+            <div className="absolute bottom-0 left-0 bg-black/80 backdrop-blur-md px-3 py-1.5 border-t border-r border-[#ffd400]/30 z-40">
+              <span className="text-[10px] font-mono text-[#ffd400] tracking-tighter uppercase">
                 {project.type}
               </span>
             </div>
@@ -513,7 +516,7 @@ function ProjectCard({
           <div className="p-5 flex-1 flex flex-col">
             <div className="flex justify-between items-start mb-2">
               <h3
-                className="text-lg font-bold text-[#FF0000] tracking-widest uppercase transition-colors group-hover:text-white"
+                className="text-lg font-bold text-[#ffd400] tracking-widest uppercase transition-colors group-hover:text-white"
                 style={{ fontFamily: "var(--font-orbitron)" }}
               >
                 {project.title}
@@ -523,15 +526,11 @@ function ProjectCard({
               </span>
             </div>
 
-            <p className="text-[11px] font-mono tracking-widest text-white/60 leading-relaxed mb-5 line-clamp-2 border-l border-[#FF0000]/20 pl-4 transition-colors group-hover:text-[#FF0000]">
-              {project.description}
-            </p>
-
             <div className="mt-auto flex flex-wrap gap-2 mb-6">
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="text-[9px] font-mono text-white/50 border border-white/10 px-2 py-0.5 group-hover:border-[#FF0000]/30 group-hover:text-[#FF0000]/80 transition-all"
+                  className="text-[9px] font-mono text-white/50 border border-white/10 px-2 py-0.5 group-hover:border-[#ffd400]/30 group-hover:text-[#ffd400]/80 transition-all"
                 >
                   {t}
                 </span>
@@ -539,7 +538,7 @@ function ProjectCard({
             </div>
 
             {/* Action Footer */}
-            <div className="group/btn relative inline-flex items-center justify-between w-full px-4 py-2.5 bg-[#FF0000]/5 border border-[#FF0000]/20 overflow-hidden transition-all group-hover:bg-[#FF0000] group-hover:border-[#FF0000]">
+            <div className="group/btn relative inline-flex items-center justify-between w-full px-4 py-2.5 bg-[#ffd400]/5 border border-[#ffd400]/20 overflow-hidden transition-all group-hover:bg-[#ffd400] group-hover:border-[#ffd400]">
               {/* Hover Background Sweep */}
               <motion.div
                 className="absolute inset-0 bg-white/10 -translate-x-full"
@@ -547,24 +546,24 @@ function ProjectCard({
                 transition={{ duration: 0.5 }}
               />
 
-              <span className="relative text-[11px] font-mono font-bold tracking-widest text-[#FF0000] group-hover:text-black transition-colors">
-                ACCESS_DATABASE
+              <span className="relative text-[11px] font-mono font-bold tracking-widest text-[#ffd400] group-hover:text-black transition-colors">
+                VIEW
               </span>
               <ArrowUpRight
                 size={14}
-                className="relative text-[#FF0000] group-hover:text-black transition-colors"
+                className="relative text-[#ffd400] group-hover:text-black transition-colors"
               />
             </div>
           </div>
 
           {/* Bottom Status Bar */}
-          <div className="px-4 py-1.5 bg-black/60 border-t border-[#FF0000]/10 flex items-center justify-between">
+          <div className="px-4 py-1.5 bg-black/60 border-t border-[#ffd400]/10 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex gap-1">
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className={`w-3 h-1 ${isHovered ? "bg-[#FF0000]" : "bg-white/10"} transition-colors`}
+                    className={`w-3 h-1 ${isHovered ? "bg-[#ffd400]" : "bg-white/10"} transition-colors`}
                     style={{ transitionDelay: `${i * 100}ms` }}
                   />
                 ))}
@@ -575,14 +574,14 @@ function ProjectCard({
             </div>
             <Cpu
               size={10}
-              className={`${isHovered ? "text-[#FF0000]" : "text-white/20"} transition-colors`}
+              className={`${isHovered ? "text-[#ffd400]" : "text-white/20"} transition-colors`}
             />
           </div>
         </div>
       </Link>
 
       {/* Background Glow */}
-      <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-3xl bg-red-500/10 pointer-events-none" />
+      <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-3xl bg-yellow-400/10 pointer-events-none" />
     </motion.div>
   );
 }
@@ -622,10 +621,10 @@ export default function Portfolio2Page() {
   if (!mounted) return null;
 
   return (
-    <main className="min-h-screen bg-[#000000] text-white relative overflow-x-hidden selection:bg-[#FF0000] selection:text-black">
+    <main className="min-h-screen bg-[#000000] text-white relative overflow-x-hidden selection:bg-[#ffd400] selection:text-black">
       {/* Progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-[#FF0000] z-[100] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-[#ffd400] z-[100] origin-left"
         style={{ scaleX: scrollYProgress, opacity: 0.6 }}
       />
 
@@ -634,11 +633,11 @@ export default function Portfolio2Page() {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-[#000000] border-b border-[#FF0000]/15"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#000000] border-b border-[#ffd400]/15"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-center justify-between text-[11px] font-mono">
           <div className="flex items-center gap-6">
-            <span className="text-[#FF0000] space-x-5 tracking-wider">
+            <span className="text-[#ffd400] space-x-5 tracking-wider">
               PORTFOLIO
             </span>
             <span className="text-white/20 hidden sm:inline">
@@ -649,7 +648,7 @@ export default function Portfolio2Page() {
             <motion.div
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-[#FF0000]"
+              className="w-1.5 h-1.5 bg-[#ffd400]"
             />
             <span className="text-white/40 tracking-wider">
               {filteredProjects.length} PROJECTS
@@ -661,16 +660,30 @@ export default function Portfolio2Page() {
       {/* ─── Hero ─── */}
       <section className="relative z-10 pt-20 pb-0 overflow-hidden">
         <HeroWaves />
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-12 md:pt-24 md:pb-16 relative z-10">
-          {/* Label */}
+        {/* Spider Background */}
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden flex items-center justify-center">
+          <PixelNoise />
+          <div className="absolute w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <Image
+              src="/spder.png"
+              alt="Spider Background"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-12 md:pt-24 md:pb-16 relative z-10 flex flex-col items-center text-center">
+            {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 mb-6"
+            className="flex justify-center items-center gap-3 mb-6"
           >
-            <div className="w-8 h-[1px] bg-[#FF0000]" />
-            <span className="text-[#FF0000] text-[11px] font-mono tracking-[0.3em] uppercase">
+            <div className="w-8 h-[1px] bg-[#ffd400]" />
+            <span className="text-[#ffd400] text-[11px] font-mono tracking-[0.3em] uppercase">
               Selected Works
             </span>
           </motion.div>
@@ -685,55 +698,20 @@ export default function Portfolio2Page() {
             data-scroll
             data-scroll-speed="0.2"
           >
-            <span className="text-[#FF0000]">{heroTitle || "\u00A0"}</span>
+            <span className="text-[#ffd400]">{heroTitle || "\u00A0"}</span>
           </motion.h1>
 
-          {/* Subtitle + stats */}
+          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mt-8 pt-8 border-t border-[#FF0000]/10"
+            className="mt-8 pt-8 border-t border-[#ffd400]/10 w-full max-w-2xl"
           >
-            <p className="text-white/80 text-sm max-w-md leading-relaxed font-mono">
+            <p className="text-white/80 text-sm leading-relaxed font-mono">
               A curated collection of projects spanning AI, Web3, and full-stack
               development.
             </p>
-            <div className="flex animate-pulse items-center gap-8 shrink-0">
-              <div>
-                <div
-                  className="text-2xl font-black text-white"
-                  style={{ fontFamily: "var(--font-orbitron)" }}
-                >
-                  {PORTFOLIO_PROJECTS.length}
-                </div>
-                <div className="text-[9px] font-mono text-[#FF0000] tracking-[0.3em] mt-1">
-                  PROJECTS
-                </div>
-              </div>
-              <div>
-                <div
-                  className="text-2xl font-black text-[#FF0000]"
-                  style={{ fontFamily: "var(--font-orbitron)" }}
-                >
-                  {liveCount}
-                </div>
-                <div className="text-[9px] font-mono text-white/90 tracking-[0.3em] mt-1">
-                  LIVE
-                </div>
-              </div>
-              <div>
-                <div
-                  className="text-2xl font-black text-white"
-                  style={{ fontFamily: "var(--font-orbitron)" }}
-                >
-                  4
-                </div>
-                <div className="text-[9px] font-mono text-[#FF0000] tracking-[0.3em] mt-1">
-                  SECTORS
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -741,7 +719,7 @@ export default function Portfolio2Page() {
       {/* ─── Filters ─── */}
       <section className="relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-6">
-          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide pb-2">
+          <div className="flex justify-center items-center gap-3 overflow-x-auto scrollbar-hide pb-2">
             {filters.map((f) => {
               const isActive = filter === f;
               const config = CATEGORY_CONFIG[f];
@@ -755,14 +733,14 @@ export default function Portfolio2Page() {
                       : "px-4 py-3 text-[10px]"
                   } ${
                     isActive
-                      ? "text-black bg-[#FF0000] border-2 border-[#FF0000]"
-                      : "text-[#FF0000] border-2 border-[#FF0000]/30 hover:border-white hover:text-white"
+                      ? "text-black bg-[#ffd400] border-2 border-[#ffd400]"
+                      : "text-[#ffd400] border-2 border-[#ffd400]/30 hover:border-white hover:text-white"
                   }`}
                 >
                   <div className="scale-125">{config.icon}</div>
                   <span className="mt-[2px]">{config.label}</span>
                   <span
-                    className={`text-[11px] mt-[2px] ${isActive ? "text-black/60" : "text-[#FF0000]/50"}`}
+                    className={`text-[11px] mt-[2px] ${isActive ? "text-black/60" : "text-[#ffd400]/50"}`}
                   >
                     {config.count}
                   </span>
@@ -791,13 +769,13 @@ export default function Portfolio2Page() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-32 border border-[#FF0000]/10 bg-black/40"
+              className="text-center py-32 border border-[#ffd400]/10 bg-black/40"
               style={{
                 clipPath:
                   "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))",
               }}
             >
-              <div className="inline-flex items-center gap-3 mb-4 text-[#FF0000]/40">
+              <div className="inline-flex items-center gap-3 mb-4 text-[#ffd400]/40">
                 <Activity size={16} />
                 <span className="font-mono text-sm tracking-widest">
                   QUERY_RETURNED_NULL
@@ -819,7 +797,7 @@ export default function Portfolio2Page() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative bg-[#000000] p-1 border-t-2 border-[#FF0000]/60 shadow-[0_10px_30px_rgba(255,0,0,0.1)]"
+            className="relative bg-[#000000] p-1 border-t-2 border-[#ffd400]/60 shadow-[0_10px_30px_rgba(255, 212, 0,0.1)]"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%)",
@@ -837,20 +815,20 @@ export default function Portfolio2Page() {
               <div
                 className="absolute inset-0 opacity-10 pointer-events-none"
                 style={{
-                  backgroundImage: `linear-gradient(to right, #FF0000 1px, transparent 1px), linear-gradient(to bottom, #FF0000 1px, transparent 1px)`,
+                  backgroundImage: `linear-gradient(to right, #ffd400 1px, transparent 1px), linear-gradient(to bottom, #ffd400 1px, transparent 1px)`,
                   backgroundSize: "40px 40px",
                 }}
               />
 
               {/* Mecha Decorators */}
-              <div className="absolute top-0 left-0 w-32 h-1 bg-[#FF0000]/80" />
-              <div className="absolute top-1 left-0 w-12 h-1 bg-[#FF0000]/40" />
-              <div className="absolute bottom-0 right-0 w-48 h-1 bg-[#FF0000]/80" />
+              <div className="absolute top-0 left-0 w-32 h-1 bg-[#ffd400]/80" />
+              <div className="absolute top-1 left-0 w-12 h-1 bg-[#ffd400]/40" />
+              <div className="absolute bottom-0 right-0 w-48 h-1 bg-[#ffd400]/80" />
               
               {/* Professional Status HUD */}
               <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-2 font-mono text-[10px] text-white/50 tracking-[0.15em] uppercase z-10">
                 <span className="flex items-center gap-2 text-white/80">
-                  <span className="w-1.5 h-1.5 bg-[#FF0000] rounded-sm animate-pulse" />
+                  <span className="w-1.5 h-1.5 bg-[#ffd400] rounded-sm animate-pulse" />
                   System Status: Secure
                 </span>
                 <span>Active Nodes: 142</span>
@@ -871,7 +849,7 @@ export default function Portfolio2Page() {
                   transition={{ duration: 1, ease: "backOut" }}
                   className="mb-8"
                 >
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF0000" strokeWidth="1.5">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd400" strokeWidth="1.5">
                     <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
                     <circle cx="12" cy="12" r="4" />
                     <line x1="12" y1="2" x2="12" y2="8" />
@@ -884,7 +862,7 @@ export default function Portfolio2Page() {
                   style={{ fontFamily: "var(--font-orbitron)" }}
                 >
                   HAVE A <br className="hidden sm:block" />
-                  <span className="text-[#FF0000]">PROJECT</span> IN MIND?
+                  <span className="text-[#ffd400]">PROJECT</span> IN MIND?
                 </h2>
                 
                 <p className="mb-12 text-white/60 font-mono text-sm tracking-wide leading-relaxed">
@@ -897,7 +875,7 @@ export default function Portfolio2Page() {
                     href="https://api.whatsapp.com/send/?phone=%2B919080880124&text=Hi%20Bala%2C%20I%27d%20like%20to%20discuss%20a%20new%20project%20with%20you.&type=phone_number&app_absent=0"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative px-10 py-4 bg-[#FF0000] text-black font-mono text-sm font-bold tracking-widest uppercase transition-all hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255,0,0,0.4)] group w-full sm:w-auto text-center"
+                    className="relative px-10 py-4 bg-[#ffd400] text-black font-mono text-sm font-bold tracking-widest uppercase transition-all hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255, 212, 0,0.4)] group w-full sm:w-auto text-center"
                     style={{
                       clipPath: "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
                     }}
@@ -916,11 +894,13 @@ export default function Portfolio2Page() {
         </div>
       </section>
 
+      <ExperienceTeaser />
+
       {/* ─── Footer ─── */}
-      <footer className="relative z-10 border-t border-[#FF0000]/10">
+      <footer className="relative z-10 border-t border-[#ffd400]/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-white/20">
           <span>
-            <span className="text-[#FF0000]/50">&copy;</span>{" "}
+            <span className="text-[#ffd400]/50">&copy;</span>{" "}
             {new Date().getFullYear()} BALA
           </span>
           <span className="text-white/15">NEXT.JS / REACT / TAILWIND</span>

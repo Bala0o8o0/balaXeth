@@ -108,7 +108,7 @@ const MatrixRain = ({ color = "#FF2222" }) => {
 const PROJECTS = [
   {
     id: "01",
-    title: "LUMINA_AI",
+    title: "LUMINA TRY",
     type: "AI / SAAS",
     link: "#",
     description:
@@ -119,25 +119,25 @@ const PROJECTS = [
   },
   {
     id: "02",
-    title: "CLAWX_DEX",
-    type: "WEB3 / DEX",
+    title: "NEUI PRD",
+    type: "PRODUCT DESIGN",
     link: "https://www.figma.com/proto/lpHTMs3OkzMwQH2emyBYGd/CLAWX-DEX?node-id=4194-813&p=f&viewport=301%2C257%2C0.05&t=Gw29hRjLFNMXZW1R-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4194%3A835&page-id=215%3A3283",
     description:
-      "AUTONOMOUS DECENTRALIZED EXCHANGE PROTOCOL. HIGH-FREQUENCY TOKEN SWAPS WITH MINIMAL SLIPPAGE.",
+      "NEURAL USER INTERFACE PRODUCT DESIGN. ADVANCED PROTOTYPING FOR NEXT-GEN EXPERIENCES.",
     status: "PROTOTYPE",
     tech: ["PHOTOSHOP", "FIGMA"],
     image: "/assets/clawx.png",
   },
   {
     id: "03",
-    title: "DANK_DEALERZ",
-    type: "WEB3 / NFT",
+    title: "BORAQUETATU",
+    type: "CREATIVE / DESIGN",
     link: "#",
     description:
-      "DIGITAL ASSET BROKER PLATFORM. STEALTH TRADING AND SECURE PEER-TO-PEER ASSET TRANSFERS.",
+      "BORAQUETATU DIGITAL EXPERIENCE. IMMERSIVE BRANDING AND VISUAL IDENTITY PLATFORM.",
     status: "DEPLOYED",
     tech: ["FIGMA", "REACT.JS"],
-    image: "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
+    image: "/assets/TATU.png",
   },
 ];
 

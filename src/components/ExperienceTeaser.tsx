@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
  * 2. Visuals: Persistent theme (Red/Black), no white-flash on hover.
  */
 
-function PixelNoise() {
+export function PixelNoise() {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
       {[...Array(12)].map((_, i) => (
@@ -88,9 +88,9 @@ export function ExperienceTeaser() {
         </div>
 
         {/* ── Main Data Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1">
           {/* Left: Bio Data + CTA */}
-          <div className="border-r border-[#ffd400]/20 p-5 space-y-6 flex flex-col justify-center">
+          <div className="p-5 space-y-6 flex flex-col justify-center">
             <div className="space-y-1">
               <span className="text-white/40 text-[8px] font-mono uppercase tracking-widest">
                 Name
@@ -122,48 +122,7 @@ export function ExperienceTeaser() {
               <span className="text-[#ffd400] font-bold">AVAILABLE</span>
             </div>
           </div>
-
-          {/* Right: The Spider Scan */}
-          <div className="relative p-5 bg-black flex items-center justify-center min-h-[220px]">
-            {/* Technical Grid */}
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none"
-              style={{
-                backgroundImage:
-                  "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              }}
-            />
-
-            <PixelNoise />
-
-            {/* Spider Image - Bigger & Brighter */}
-            <div className="relative w-68 h-48 brightness-125 contrast-110">
-              <Image
-                src="/spder.png"
-                alt="Scan Subject"
-                fill
-                sizes="(max-width: 768px) 100vw, 300px"
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            {/* Dynamic Targeting Frame - Darker border */}
-            <motion.div
-              animate={{
-                opacity: [0.6, 0.3, 0.6],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="absolute z-20 border border-white w-44 h-24"
-            />
-
-            <div className="absolute top-2 right-4 text-[7px] font-mono text-white/40 uppercase tracking-widest">
-              Profile Image
-            </div>
           </div>
-        </div>
 
         {/* ── Status Table ── */}
         <div className="border-t border-[#ffd400]/20 p-5 bg-[#ffd400]/2">
