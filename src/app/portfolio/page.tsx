@@ -37,7 +37,7 @@ const PORTFOLIO_PROJECTS = [
     title: "Lumina AI Try-On",
     shortName: "LUMINA",
     id: "PRJ-LR",
-    imgSrc: "/assets/LUMINA_SAMPLE.png",
+    imgSrc: "/assets/lumina.png",
     link: "#",
     category: ["MVPS & SAAS"],
     type: "AI / SAAS",
