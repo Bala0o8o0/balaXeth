@@ -37,7 +37,7 @@ const PORTFOLIO_PROJECTS = [
     title: "Lumina AI Try-On",
     shortName: "LUMINA",
     id: "PRJ-LR",
-    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/1.jpg",
+    imgSrc: "/assets/LUMINA_SAMPLE.png",
     link: "#",
     category: ["MVPS & SAAS"],
     type: "AI / SAAS",
