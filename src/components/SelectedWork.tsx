@@ -122,7 +122,7 @@ const PROJECTS = [
       "VIRTUAL FITTING PROTOCOL. AI PROJECTION OF APPAREL ONTO SUBJECTS IN REAL-TIME.",
     status: "LIVE_ALPHA",
     tech: ["AI", "SUPABASE", "NEXT.JS"],
-    image: "/LUMINA_SAMPLE.png",
+    image: "/lumina.png",
   },
   {
     id: "02",

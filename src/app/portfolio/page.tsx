@@ -37,7 +37,7 @@ const PORTFOLIO_PROJECTS = [
     title: "Lumina AI Try-On",
     shortName: "LUMINA",
     id: "PRJ-LR",
-    imgSrc: "/assets/lumina.png",
+    imgSrc: "/lumina.png",
     link: "https://lumina-tryon.vercel.app/",
     category: ["MVPS & SAAS"],
     type: "AI / SAAS",
