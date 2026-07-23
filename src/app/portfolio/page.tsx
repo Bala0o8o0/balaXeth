@@ -32,21 +32,7 @@ const PORTFOLIO_PROJECTS = [
       "A sophisticated and immersive website design for a high-end tattoo studio.",
     tech: ["FIGMA", "WORDPRESS", "JAVASCRIPT"],
   },
-  {
-    title: "DankDealerz NFT Dapp",
-    shortName: "DEALERZ",
-    id: "PRJ-44Y",
-    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
-    link: "#",
-    category: ["WEBSITE"],
-    type: "WEB3 / NFT",
-    year: "2021",
-    role: "Frontend Dev",
-    status: "DEPLOYED",
-    description:
-      "Digital asset broker platform. Stealth trading and secure peer-to-peer asset transfers.",
-    tech: ["FIGMA", "REACT.JS"],
-  },
+
   {
     title: "Lumina AI Try-On",
     shortName: "LUMINA",
@@ -66,7 +52,7 @@ const PORTFOLIO_PROJECTS = [
     title: "neui prd",
     shortName: "NEUI",
     id: "PRJ-L",
-    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/1.jpg",
+    imgSrc: "/assets/neui.png",
     link: "#",
     category: ["MVPS & SAAS"],
     type: "AI / SAAS",
@@ -76,6 +62,21 @@ const PORTFOLIO_PROJECTS = [
     description:
       "Virtual fitting protocol. AI projection of apparel onto subjects in real-time.",
     tech: ["AI", "REACT.JS"],
+  },
+  {
+    title: "DankDealerz NFT Dapp",
+    shortName: "DEALERZ",
+    id: "PRJ-44Y",
+    imgSrc: "https://balaxeth-ai.vercel.app/assets/imgs/works/3.gif",
+    link: "#",
+    category: ["WEBSITE"],
+    type: "WEB3 / NFT",
+    year: "2021",
+    role: "Frontend Dev",
+    status: "DEPLOYED",
+    description:
+      "Digital asset broker platform. Stealth trading and secure peer-to-peer asset transfers.",
+    tech: ["FIGMA", "REACT.JS"],
   },
   {
     title: "ContractGuardian AI",
@@ -315,9 +316,8 @@ const CATEGORY_CONFIG: Record<
         <line x1="14" y1="4" x2="10" y2="20" />
       </motion.svg>
     ),
-    count: PORTFOLIO_PROJECTS.filter(
-      (p) => p.category.includes("WEB APPS")
-    ).length,
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("WEB APPS"))
+      .length,
   },
   WEBSITE: {
     label: "WEBSITE",
@@ -337,7 +337,8 @@ const CATEGORY_CONFIG: Record<
         <line x1="12" y1="17" x2="12" y2="21" />
       </motion.svg>
     ),
-    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("WEBSITE")).length,
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("WEBSITE"))
+      .length,
   },
   "MVPS & SAAS": {
     label: "MVPS & SAAS",
@@ -357,7 +358,8 @@ const CATEGORY_CONFIG: Record<
         <path d="M2 12l10 5 10-5" />
       </motion.svg>
     ),
-    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("MVPS & SAAS")).length,
+    count: PORTFOLIO_PROJECTS.filter((p) => p.category.includes("MVPS & SAAS"))
+      .length,
   },
 };
 
@@ -611,7 +613,8 @@ export default function Portfolio2Page() {
           if (filter === "UI DESIGNS") return p.category.includes("UI DESIGNS");
           if (filter === "WEB APPS") return p.category.includes("WEB APPS");
           if (filter === "WEBSITE") return p.category.includes("WEBSITE");
-          if (filter === "MVPS & SAAS") return p.category.includes("MVPS & SAAS");
+          if (filter === "MVPS & SAAS")
+            return p.category.includes("MVPS & SAAS");
           return false;
         });
   const liveCount = PORTFOLIO_PROJECTS.filter(
@@ -675,7 +678,7 @@ export default function Portfolio2Page() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-12 md:pt-24 md:pb-16 relative z-10 flex flex-col items-center text-center">
-            {/* Label */}
+          {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -824,7 +827,7 @@ export default function Portfolio2Page() {
               <div className="absolute top-0 left-0 w-32 h-1 bg-[#ffd400]/80" />
               <div className="absolute top-1 left-0 w-12 h-1 bg-[#ffd400]/40" />
               <div className="absolute bottom-0 right-0 w-48 h-1 bg-[#ffd400]/80" />
-              
+
               {/* Professional Status HUD */}
               <div className="hidden lg:flex absolute top-8 left-8 flex-col gap-2 font-mono text-[10px] text-white/50 tracking-[0.15em] uppercase z-10">
                 <span className="flex items-center gap-2 text-white/80">
@@ -849,7 +852,14 @@ export default function Portfolio2Page() {
                   transition={{ duration: 1, ease: "backOut" }}
                   className="mb-8"
                 >
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffd400" strokeWidth="1.5">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ffd400"
+                    strokeWidth="1.5"
+                  >
                     <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
                     <circle cx="12" cy="12" r="4" />
                     <line x1="12" y1="2" x2="12" y2="8" />
@@ -864,9 +874,10 @@ export default function Portfolio2Page() {
                   HAVE A <br className="hidden sm:block" />
                   <span className="text-[#ffd400]">PROJECT</span> IN MIND?
                 </h2>
-                
+
                 <p className="mb-12 text-white/60 font-mono text-sm tracking-wide leading-relaxed">
-                  Let&apos;s build something exceptional together. Available for freelance opportunities and full-time roles.
+                  Let&apos;s build something exceptional together. Available for
+                  freelance opportunities and full-time roles.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
@@ -877,7 +888,8 @@ export default function Portfolio2Page() {
                     rel="noopener noreferrer"
                     className="relative px-10 py-4 bg-[#ffd400] text-black font-mono text-sm font-bold tracking-widest uppercase transition-all hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(255, 212, 0,0.4)] group w-full sm:w-auto text-center"
                     style={{
-                      clipPath: "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                      clipPath:
+                        "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
                     }}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-3">
@@ -885,8 +897,6 @@ export default function Portfolio2Page() {
                       <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </span>
                   </a>
-
-
                 </div>
               </div>
             </div>

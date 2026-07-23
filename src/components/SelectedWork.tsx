@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence, PanInfo, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  PanInfo,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight, Hand } from "lucide-react";
 
 // ─── Matrix Rain Component ──────────────────────────────────────────────────
@@ -126,7 +133,7 @@ const PROJECTS = [
       "NEURAL USER INTERFACE PRODUCT DESIGN. ADVANCED PROTOTYPING FOR NEXT-GEN EXPERIENCES.",
     status: "PROTOTYPE",
     tech: ["PHOTOSHOP", "FIGMA"],
-    image: "/assets/clawx.png",
+    image: "/assets/neui.png",
   },
   {
     id: "03",
@@ -383,7 +390,11 @@ function SelectedWorkHeadingVisualizer() {
   });
 
   const scale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 3.5, 8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.85, 1], [1, 0.85, 0, 0]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.85, 1],
+    [1, 0.85, 0, 0],
+  );
 
   return (
     <div ref={containerRef} className="relative w-full h-[180vh] z-20">
@@ -481,7 +492,8 @@ export function SelectedWork() {
             >
               {PROJECTS.map((project, i) => {
                 const isActive = i === index;
-                const isPrev = i === (index - 1 + PROJECTS.length) % PROJECTS.length;
+                const isPrev =
+                  i === (index - 1 + PROJECTS.length) % PROJECTS.length;
                 const isNext = i === (index + 1) % PROJECTS.length;
 
                 return (
@@ -497,11 +509,16 @@ export function SelectedWork() {
               })}
             </div>
           </div>
-          
+
           {/* Terminal Overlay */}
           <div className="absolute top-6 right-4 md:top-10 md:right-10 font-mono text-[5px] md:text-[7px] hidden md:flex flex-col items-end gap-1 uppercase select-none pointer-events-none">
-            <span className="text-white/60">PROJECT NAME: <span className="text-[#ffd400]">{PROJECTS[index].title}</span></span>
-            <span className="text-white/60">STATUS: <span className="text-[#ffd400]">ACTIVE</span></span>
+            <span className="text-white/60">
+              PROJECT NAME:{" "}
+              <span className="text-[#ffd400]">{PROJECTS[index].title}</span>
+            </span>
+            <span className="text-white/60">
+              STATUS: <span className="text-[#ffd400]">ACTIVE</span>
+            </span>
             <RollingText />
           </div>
         </div>
