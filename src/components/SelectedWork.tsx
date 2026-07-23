@@ -117,7 +117,7 @@ const PROJECTS = [
     id: "01",
     title: "LUMINA TRY",
     type: "AI / SAAS",
-    link: "#",
+    link: "https://lumina-tryon.vercel.app/",
     description:
       "VIRTUAL FITTING PROTOCOL. AI PROJECTION OF APPAREL ONTO SUBJECTS IN REAL-TIME.",
     status: "LIVE_ALPHA",
@@ -128,7 +128,7 @@ const PROJECTS = [
     id: "02",
     title: "NEUI PRD",
     type: "PRODUCT DESIGN",
-    link: "https://www.figma.com/proto/lpHTMs3OkzMwQH2emyBYGd/CLAWX-DEX?node-id=4194-813&p=f&viewport=301%2C257%2C0.05&t=Gw29hRjLFNMXZW1R-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=4194%3A835&page-id=215%3A3283",
+    link: "https://neui-prd.vercel.app/",
     description:
       "NEURAL USER INTERFACE PRODUCT DESIGN. ADVANCED PROTOTYPING FOR NEXT-GEN EXPERIENCES.",
     status: "PROTOTYPE",
