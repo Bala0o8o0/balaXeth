@@ -8,16 +8,22 @@ function Particles({ count = 1500 }) {
     const mesh = useRef<THREE.InstancedMesh>(null);
     const light = useRef<THREE.PointLight>(null);
 
-    // Generate random positions, velocities and colors for our particles
+    // Generate deterministic pseudo-random values to prevent hydration errors and keep render pure
+    const pseudoRandom = (seed: number) => {
+        const x = Math.sin(seed + 1) * 10000;
+        return x - Math.floor(x);
+    };
+
+    // Generate positions, velocities and colors for our particles
     const particles = useMemo(() => {
         const temp = [];
         for (let i = 0; i < count; i++) {
-            const time = Math.random() * 100;
-            const factor = 20 + Math.random() * 100;
-            const speed = 0.01 + Math.random() / 200;
-            const x = Math.random() * 100 - 50;
-            const y = Math.random() * 100 - 50;
-            const z = Math.random() * 100 - 50;
+            const time = pseudoRandom(i * 6) * 100;
+            const factor = 20 + pseudoRandom(i * 6 + 1) * 100;
+            const speed = 0.01 + pseudoRandom(i * 6 + 2) / 200;
+            const x = pseudoRandom(i * 6 + 3) * 100 - 50;
+            const y = pseudoRandom(i * 6 + 4) * 100 - 50;
+            const z = pseudoRandom(i * 6 + 5) * 100 - 50;
 
             temp.push({ time, factor, speed, x, y, z });
         }

@@ -30,67 +30,77 @@ export default function HudSounds() {
     };
 
     // --- Sound Synthesis Functions ---
-    // Hi-tech subtle hover blip
-    const playHoverSound = () => {
+    // Deep Thocky Mechanical Keyboard Switch Click (60% Volume)
+    const playThockyKeyboardSound = () => {
       if (!audioCtxRef.current) return;
       const ctx = audioCtxRef.current;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      const now = ctx.currentTime;
 
-      osc.type = "sine";
-      // Quick pitch sweep up for a futuristic feel
-      osc.frequency.setValueAtTime(800, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.05);
+      // Master Gain set to 60% volume
+      const masterGain = ctx.createGain();
+      masterGain.gain.setValueAtTime(0.6, now);
+      masterGain.connect(ctx.destination);
 
-      gain.gain.setValueAtTime(0, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.09, ctx.currentTime + 0.01); // Kept volume very low (0.03)
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+      // Layer 1: Mechanical Switch Bottom-Out Thud (Triangle Pitch Drop)
+      const bodyOsc = ctx.createOscillator();
+      const bodyGain = ctx.createGain();
+      const bodyFilter = ctx.createBiquadFilter();
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+      bodyOsc.type = "triangle";
+      bodyOsc.frequency.setValueAtTime(180, now);
+      bodyOsc.frequency.exponentialRampToValueAtTime(45, now + 0.05);
 
-      osc.start();
-      osc.stop(ctx.currentTime + 0.05);
-    };
+      bodyFilter.type = "lowpass";
+      bodyFilter.frequency.setValueAtTime(550, now);
 
-    // Custom Audio File Click
-    const playClickSound = () => {
-      if (clickAudioRef.current) {
-        clickAudioRef.current.currentTime = 0;
-        clickAudioRef.current
-          .play()
-          .catch((e) => console.log("Audio play blocked", e));
+      bodyGain.gain.setValueAtTime(0.85, now);
+      bodyGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+      bodyOsc.connect(bodyFilter);
+      bodyFilter.connect(bodyGain);
+      bodyGain.connect(masterGain);
+
+      bodyOsc.start(now);
+      bodyOsc.stop(now + 0.05);
+
+      // Layer 2: Mechanical Switch Tactile Contact Noise
+      const bufferSize = Math.floor(ctx.sampleRate * 0.02);
+      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 8);
       }
+
+      const noiseSrc = ctx.createBufferSource();
+      noiseSrc.buffer = noiseBuffer;
+
+      const noiseFilter = ctx.createBiquadFilter();
+      noiseFilter.type = "bandpass";
+      noiseFilter.frequency.setValueAtTime(1400, now);
+      noiseFilter.Q.setValueAtTime(1.2, now);
+
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.3, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+      noiseSrc.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(masterGain);
+
+      noiseSrc.start(now);
     };
 
     // --- Event Listeners ---
     const handleClick = (e: MouseEvent) => {
       initAudio();
-      playClickSound();
-    };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Check if hovering over interactive elements
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("cursor-target")
-      ) {
-        initAudio();
-        playHoverSound();
-      }
+      playThockyKeyboardSound();
     };
 
     // Attach listeners
     window.addEventListener("click", handleClick, { capture: true });
-    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener("click", handleClick, { capture: true });
-      window.removeEventListener("mouseover", handleMouseOver);
       if (audioCtxRef.current && audioCtxRef.current.state !== "closed") {
         audioCtxRef.current.close().catch(console.error);
       }

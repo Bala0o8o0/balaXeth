@@ -31,8 +31,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${orbitron.variable} ${rajdhani.variable}`}
+      suppressHydrationWarning
     >
-      <body className="antialiased bg-[#000000] text-white overflow-x-hidden">
+      <body className="antialiased bg-[#000000] text-white overflow-x-hidden" suppressHydrationWarning>
         <SmoothScroll>
           {children}
         </SmoothScroll>

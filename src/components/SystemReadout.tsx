@@ -20,7 +20,12 @@ export function SystemReadout() {
         <div className="w-full h-1.5 flex items-end justify-between gap-[1px] z-10">
           {bars.map((_, i) => {
             const maxH = Math.sin((i / 16) * Math.PI) * 100;
-            const randomScale = 0.2 + Math.random() * 0.8;
+            // Deterministic pseudo-random values
+            const pseudoRandom = (seed: number) => {
+              const x = Math.sin(seed + 1) * 10000;
+              return x - Math.floor(x);
+            };
+            const randomScale = 0.2 + pseudoRandom(i) * 0.8;
             
             return (
               <motion.div
@@ -31,7 +36,7 @@ export function SystemReadout() {
                   height: [`${15 * randomScale}%`, `${maxH}%`, `${15 * randomScale}%`],
                 }}
                 transition={{
-                  duration: 1.0 + Math.random() * 0.4,
+                  duration: 1.0 + pseudoRandom(i + 16) * 0.4,
                   repeat: Infinity,
                   ease: "easeInOut",
                   delay: i * 0.04,

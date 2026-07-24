@@ -4,9 +4,16 @@ import { useRef, useMemo, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
+import { MousePointerClick } from "lucide-react";
+import { useWatchCrownSound } from "@/hooks/useWatchCrownSound";
 import {
   EffectComposer,
   Bloom,
@@ -788,9 +795,7 @@ export function CTASectionChip() {
           <h2
             className={`text-[#ffd400] font-bold text-4xl sm:text-5xl tracking-tighter leading-none mb-2 transition-all duration-500 ${isConnecting ? "drop-shadow-[0_0_20px_rgba(255, 212, 0,1)] text-white" : "drop-shadow-[0_0_10px_rgba(255, 212, 0,0.8)]"}`}
             style={{ fontFamily: "var(--font-orbitron)" }}
-          >
-            
-          </h2>
+          ></h2>
           <div className="text-white text-xs tracking-[0.4em] font-bold uppercase">
             Micro_Architecture
           </div>
@@ -890,7 +895,11 @@ function PortfolioHeadingVisualizer() {
   });
 
   const scale = useTransform(scrollYProgress, [0, 0.6, 1], [1, 3.5, 8]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.85, 1], [1, 0.85, 0, 0]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.85, 1],
+    [1, 0.85, 0, 0],
+  );
 
   return (
     <div ref={containerRef} className="relative w-full h-[180vh] z-50">
@@ -925,6 +934,21 @@ export function CTASection() {
   const [isConnecting, setIsConnecting] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef });
+  const { playTick } = useWatchCrownSound();
+  const lastTickRef = useRef(0);
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      const step = Math.floor(latest * 30);
+      if (step !== lastTickRef.current) {
+        playTick();
+        lastTickRef.current = step;
+      }
+    });
+  }, [scrollYProgress, playTick]);
 
   const handleConnect = () => {
     setIsConnecting(true);
@@ -1136,12 +1160,12 @@ export function CTASection() {
   );
 
   return (
-    <section className="w-full pb-8 pt-0 md:pb-24 px-4 bg-transparent flex flex-col justify-center items-center">
+    <section ref={sectionRef} className="w-full min-h-[110svh] md:min-h-0 pb-36 mb-28 md:mb-0 md:pb-24 pt-4 px-4 bg-transparent flex flex-col justify-center items-center">
       {/* Section Title */}
       <PortfolioHeadingVisualizer />
 
       {/* Hacker HUD Outer Container */}
-      <div className="relative w-full max-w-[1200px] min-h-[350px] sm:min-h-[500px] md:min-h-[850px] bg-[#000000] flex justify-center items-center font-mono overflow-hidden group">
+      <div className="relative w-full max-w-[1200px] min-h-[82svh] md:min-h-[850px] bg-[#000000] flex justify-center items-center font-mono overflow-hidden group">
         <style>{`
              .flowing-line {
                stroke-dasharray: 80 1000;
@@ -1199,11 +1223,72 @@ export function CTASection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_70%)] pointer-events-none"></div>
 
         {/* Full Geometric SVG HUD */}
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none p-4 md:p-8 overflow-hidden">
-          {/* Keep viewBox large to handle translation */}
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none p-2 md:p-8 overflow-hidden">
+          {/* Mobile Optimized SVG HUD (<768px) */}
+          <svg
+            viewBox="-500 -520 1000 1040"
+            className="w-full h-full md:hidden hud-pulse object-contain"
+          >
+            <defs>
+              <filter
+                id="hudGlowMobile"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <g filter="url(#hudGlowMobile)">
+              {/* Translated outward (170) to give clear space around center dragon logo */}
+              <Quadrant transform="scale(0.8, 1.05) translate(170, 0)" />
+              <Quadrant transform="scale(-0.8, 1.05) translate(170, 0)" />
+              <Quadrant transform="scale(0.8, -1.05) translate(170, 0)" />
+              <Quadrant transform="scale(-0.8, -1.05) translate(170, 0)" />
+
+              {/* Top & Bottom framing lines brought forward to Y = -85 / +85 (framing the logo comfortably without touching) */}
+              <path
+                d="M -150 -85 L 150 -85"
+                stroke="#ffd400"
+                strokeWidth="1"
+                opacity="0.5"
+                fill="none"
+              />
+              <path
+                d="M -150 85 L 150 85"
+                stroke="#ffd400"
+                strokeWidth="1"
+                opacity="0.5"
+                fill="none"
+              />
+              <path
+                d="M -90 -100 L 90 -100"
+                stroke="#ffd400"
+                strokeWidth="2.5"
+                fill="none"
+                opacity="0.8"
+              />
+              <path
+                d="M -90 100 L 90 100"
+                stroke="#ffd400"
+                strokeWidth="2.5"
+                fill="none"
+                opacity="0.8"
+              />
+            </g>
+          </svg>
+
+          {/* Desktop Optimized SVG HUD (≥768px) */}
           <svg
             viewBox="-700 -450 1400 900"
-            className="w-full h-full max-w-[1200px] min-w-[600px] md:min-w-0 hud-pulse"
+            className="hidden md:block w-full h-full max-w-[1200px] hud-pulse"
           >
             <defs>
               <filter id="hudGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -1265,7 +1350,7 @@ export function CTASection() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             disabled={isConnecting}
-            className={`group relative flex flex-col items-center justify-center transition-all duration-300 cursor-pointer disabled:cursor-not-allowed ${isConnecting ? "scale-110" : "hover:scale-105"}`}
+            className={`group/logo relative flex flex-col items-center justify-center transition-all duration-300 cursor-pointer disabled:cursor-not-allowed ${isConnecting ? "scale-110" : "hover:scale-105"}`}
           >
             {/* Cyberpunk Core (Matches X Design) */}
             <div className="relative w-[120px] h-[120px] md:w-[180px] md:h-[180px] flex items-center justify-center">
@@ -1273,7 +1358,7 @@ export function CTASection() {
               <img
                 src="/assets/dragon_logo.png"
                 alt="Dragon Core"
-                className={`relative z-10 w-[42px] h-[42px] md:w-[62px] md:h-[62px] object-contain filter drop-shadow-[0_0_4px_#ffd400] transition-all duration-300 ${isConnecting ? "opacity-100 scale-125 drop-shadow-[0_0_20px_#ffd400]" : "opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_#ffd400]"}`}
+                className={`relative z-10 w-[42px] h-[42px] md:w-[62px] md:h-[62px] object-contain transition-all duration-300 ${isConnecting ? "opacity-100 scale-125" : "opacity-90 group-hover/logo:opacity-100 group-hover/logo:scale-110"}`}
               />
 
               {/* Invisible hit area for button to ensure it's easily clickable */}
@@ -1290,7 +1375,41 @@ export function CTASection() {
                 ></div>
               </>
             )}
+
+            {/* Desktop-only Top Hover Label [ CLICK ] */}
+            <div className="hidden md:flex absolute -top-9 opacity-0 group-hover/logo:opacity-100 transition-all duration-300 transform -translate-y-1 group-hover/logo:translate-y-0 pointer-events-none items-center gap-1.5 bg-[#000000]/95 backdrop-blur-md border border-[#ffd400]/60 rounded-sm px-3 py-1 shadow-[0_0_15px_rgba(255,212,0,0.4)]">
+              <MousePointerClick className="w-3.5 h-3.5 text-[#ffd400]" />
+              <span
+                className="text-[#ffd400] text-[10px] font-bold tracking-[0.2em] uppercase"
+                style={{ fontFamily: "var(--font-orbitron)" }}
+              >
+                CLICK
+              </span>
+            </div>
+
+            {/* Desktop-only Bottom Hover Label [ LOGO ] */}
+            <div className="hidden md:flex absolute -bottom-9 opacity-0 group-hover/logo:opacity-100 transition-all duration-300 transform translate-y-1 group-hover/logo:translate-y-0 pointer-events-none items-center gap-1.5 bg-[#000000]/95 backdrop-blur-md border border-[#ffd400]/60 rounded-sm px-3 py-1 shadow-[0_0_15px_rgba(255,212,0,0.4)]">
+              <span
+                className="text-[#ffd400] text-[10px] font-bold tracking-[0.2em] uppercase"
+                style={{ fontFamily: "var(--font-orbitron)" }}
+              >
+                HERE
+              </span>
+            </div>
           </button>
+        </div>
+
+        {/* Mobile-only "CLICK LOGO" prompt moved to top of the section container */}
+        <div className="md:hidden absolute top-4 inset-x-0 flex items-center justify-center pointer-events-none z-40">
+          <div className="bg-[#000000]/80 backdrop-blur-sm border border-[#ffd400]/40 rounded-sm px-3 py-1 flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,212,0,0.2)]">
+            <MousePointerClick className="w-3.5 h-3.5 text-[#ffd400] animate-bounce" />
+            <span
+              className="text-[#ffd400] text-[10px] font-bold tracking-[0.2em] uppercase animate-pulse"
+              style={{ fontFamily: "var(--font-orbitron)" }}
+            >
+              [ CLICK LOGO ]
+            </span>
+          </div>
         </div>
       </div>
 
@@ -1303,62 +1422,75 @@ export function CTASection() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[9999] pointer-events-none flex items-center justify-center bg-[#ffd400] overflow-hidden"
           >
-             <motion.div
-               animate={{
-                 x: [-10, 10, -5, 5, 0],
-                 y: [5, -5, 10, -10, 0],
-                 opacity: [0.8, 1, 0.5, 0.9, 1],
-                 scale: [1.02, 0.98, 1.05, 0.95, 1]
-               }}
-               transition={{ duration: 0.15, repeat: Infinity, repeatType: "mirror" }}
-               className="absolute inset-0 bg-transparent opacity-40 mix-blend-multiply"
-               style={{
-                 backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')"
-               }}
-             />
-             
-             {/* Scanlines (Darker for red background) */}
-             <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.2)_1px,transparent_1px)] bg-[size:4px_4px] mix-blend-multiply opacity-50" />
-             
-             {/* Glitching Dragon Logo */}
-             <motion.div
-               animate={{ 
-                 x: [-15, 15, -5, 20, -10, 5],
-                 y: [-5, 5, -2, 8, -6, 2],
-                 filter: ["hue-rotate(0deg)", "hue-rotate(90deg)", "hue-rotate(180deg)", "hue-rotate(270deg)"],
-                 scale: [1, 1.1, 0.95, 1.15, 0.9, 1.05],
-                 skewX: [0, 10, -10, 15, -5, 0]
-               }}
-               transition={{ duration: 0.15, repeat: Infinity, ease: "linear" }}
-               className="relative z-10 mix-blend-normal flex items-center justify-center"
-               style={{ filter: "drop-shadow(5px 0 0 #00FFFF) drop-shadow(-5px 0 0 #FF00FF)" }}
-             >
-               <img
-                 src="/assets/dragon_logo.png"
-                 alt="Glitch Dragon Logo"
-                 className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] object-contain brightness-0 drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
-               />
-             </motion.div>
-             
-             {/* Random glitch lines */}
-             <motion.div
-               animate={{ 
-                 top: ["10%", "40%", "80%", "20%", "90%"], 
-                 height: ["2px", "15px", "4px", "25px", "8px"],
-                 opacity: [0.3, 0.8, 0.2, 0.9, 0.5]
-               }}
-               transition={{ duration: 0.1, repeat: Infinity }}
-               className="absolute left-0 w-full bg-white mix-blend-overlay"
-             />
-             <motion.div
-               animate={{ 
-                 top: ["80%", "20%", "50%", "90%", "10%"], 
-                 height: ["5px", "2px", "12px", "3px", "20px"],
-                 opacity: [0.5, 0.2, 0.7, 0.4, 0.8]
-               }}
-               transition={{ duration: 0.12, repeat: Infinity }}
-               className="absolute left-0 w-full bg-black mix-blend-overlay"
-             />
+            <motion.div
+              animate={{
+                x: [-10, 10, -5, 5, 0],
+                y: [5, -5, 10, -10, 0],
+                opacity: [0.8, 1, 0.5, 0.9, 1],
+                scale: [1.02, 0.98, 1.05, 0.95, 1],
+              }}
+              transition={{
+                duration: 0.15,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+              className="absolute inset-0 bg-transparent opacity-40 mix-blend-multiply"
+              style={{
+                backgroundImage:
+                  "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')",
+              }}
+            />
+
+            {/* Scanlines (Darker for red background) */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.2)_1px,transparent_1px)] bg-[size:4px_4px] mix-blend-multiply opacity-50" />
+
+            {/* Glitching Dragon Logo */}
+            <motion.div
+              animate={{
+                x: [-15, 15, -5, 20, -10, 5],
+                y: [-5, 5, -2, 8, -6, 2],
+                filter: [
+                  "hue-rotate(0deg)",
+                  "hue-rotate(90deg)",
+                  "hue-rotate(180deg)",
+                  "hue-rotate(270deg)",
+                ],
+                scale: [1, 1.1, 0.95, 1.15, 0.9, 1.05],
+                skewX: [0, 10, -10, 15, -5, 0],
+              }}
+              transition={{ duration: 0.15, repeat: Infinity, ease: "linear" }}
+              className="relative z-10 mix-blend-normal flex items-center justify-center"
+              style={{
+                filter:
+                  "drop-shadow(5px 0 0 #00FFFF) drop-shadow(-5px 0 0 #FF00FF)",
+              }}
+            >
+              <img
+                src="/assets/dragon_logo.png"
+                alt="Glitch Dragon Logo"
+                className="w-[150px] h-[150px] md:w-[250px] md:h-[250px] object-contain brightness-0 drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+              />
+            </motion.div>
+
+            {/* Random glitch lines */}
+            <motion.div
+              animate={{
+                top: ["10%", "40%", "80%", "20%", "90%"],
+                height: ["2px", "15px", "4px", "25px", "8px"],
+                opacity: [0.3, 0.8, 0.2, 0.9, 0.5],
+              }}
+              transition={{ duration: 0.1, repeat: Infinity }}
+              className="absolute left-0 w-full bg-white mix-blend-overlay"
+            />
+            <motion.div
+              animate={{
+                top: ["80%", "20%", "50%", "90%", "10%"],
+                height: ["5px", "2px", "12px", "3px", "20px"],
+                opacity: [0.5, 0.2, 0.7, 0.4, 0.8],
+              }}
+              transition={{ duration: 0.12, repeat: Infinity }}
+              className="absolute left-0 w-full bg-black mix-blend-overlay"
+            />
           </motion.div>
         )}
       </AnimatePresence>

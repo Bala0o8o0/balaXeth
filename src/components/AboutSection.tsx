@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { HoloWave } from "@/components/HoloWave";
 import { CyberScanner } from "@/components/CyberScanner";
 import { useEffect, useState, useRef } from "react";
+import { useWatchCrownSound } from "@/hooks/useWatchCrownSound";
 import {
   Layout,
   Globe,
@@ -362,6 +363,19 @@ export function AboutSection() {
   const { scrollYProgress } = useScroll({
     target: targetRef,
   });
+
+  const { playTick } = useWatchCrownSound();
+  const lastTickRef = useRef(0);
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (latest) => {
+      const step = Math.floor(latest * 40);
+      if (step !== lastTickRef.current) {
+        playTick();
+        lastTickRef.current = step;
+      }
+    });
+  }, [scrollYProgress, playTick]);
   
   // 0% to 75% scroll handles horizontal movement. 75% to 100% handles the zoom.
   const x = useTransform(scrollYProgress, [0, 0.75, 1], ["0%", "-66.6666%", "-66.6666%"]);
